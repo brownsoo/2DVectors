@@ -1,0 +1,25 @@
+# Site settings
+title: Vectors of animation
+email: hansune@me.com
+description:
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+
+baseurl: "/vectors" # the subpath of your site, e.g. /blog/
+url: "http://brownsoo.github.io" # the base hostname & protocol for your site
+twitter_username:
+github_username:  brownsoo
+
+highlighter: pygments
+safe: true
+lsi: false
+source: .
+pygments: true
+
+# Build settings
+markdown: kramdown
+
+# serving
+port: 4000
+host: 127.0.0.1
