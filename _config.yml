@@ -1,5 +1,5 @@
 # Site settings
-title: Vectors of animation
+title: Vectors for Animation
 email: hansune@me.com
 description:
   Write an awesome description for your new site here. You can edit this
@@ -8,17 +8,26 @@ description:
 
 baseurl: "/vectors" # the subpath of your site, e.g. /blog/
 url: "http://brownsoo.github.io" # the base hostname & protocol for your site
-twitter_username:
 github_username:  brownsoo
 
-highlighter: pygments
 safe: true
 lsi: false
 source: .
-pygments: true
+highlighter: pygments
 
 # Build settings
 markdown: kramdown
+collections:
+ tutorials:
+  output: true
+  permalink: /:path/
+
+exclude: [
+.git,
+.gitignore,
+README.md,
+.sass-cashe
+]
 
 # serving
 port: 4000
