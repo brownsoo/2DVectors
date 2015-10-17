@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Ball vs Line</title>
+  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+
+  <link rel="stylesheet" href="/vectors/css/main.css">
+  <link rel="canonical" href="http://brownsoo.github.io/vectors/ball_vs_line/">
+  <link rel="alternate" type="application/rss+xml" title="Vectors for Animation" href="http://brownsoo.github.io/vectors/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/vectors/">Vectors for Animation</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/vectors/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+
+        <div class="top-nav">
+        <ul>
+    
+    
+    <li class="section">Basics</li>
+    <li>
+        <a href="/vectors/point_vector/">Point, Vector</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/length_normals/">Length, Normals</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/adding_projecting/">Adding, Projecting</a>
+    </li>
+    
+</ul>
+<ul>
+    
+    
+    <li class="section">Using vectors</li>
+    <li>
+        <a href="/vectors/move_accelerate/">Move, Accelerate</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/intersection/">Intersection</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/bounce/">Bounce</a>
+    </li>
+    
+</ul>
+<ul>
+    
+    
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/ball_in_the_corner/">Ball in the Corner</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/ball_vs_ball/">Ball vs Ball</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/moving_ball_vs_ball/">Moving ball vs ball</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/2_moving_balls/">2 Moving balls</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/ball_vs_arc/">Ball vs Arc</a>
+    </li>
+    
+
+</ul>
+
+
+<div id="cc">
+<!-- 저작권 -->
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/2.0/88x31.png" /></a><br>
+<br>
+이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+
+<div id="browser">
+본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
+</div>
+        </div>
+
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+
+      <div class="wrapper">
+
+        <div class="side-nav">
+          <ul>
+    
+    
+    <li class="section">Basics</li>
+    <li>
+        <a href="/vectors/point_vector/">Point, Vector</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/length_normals/">Length, Normals</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/adding_projecting/">Adding, Projecting</a>
+    </li>
+    
+</ul>
+<ul>
+    
+    
+    <li class="section">Using vectors</li>
+    <li>
+        <a href="/vectors/move_accelerate/">Move, Accelerate</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/intersection/">Intersection</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/bounce/">Bounce</a>
+    </li>
+    
+</ul>
+<ul>
+    
+    
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/ball_in_the_corner/">Ball in the Corner</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/ball_vs_ball/">Ball vs Ball</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/moving_ball_vs_ball/">Moving ball vs ball</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/2_moving_balls/">2 Moving balls</a>
+    </li>
+    
+    
+    <li>
+        <a href="/vectors/ball_vs_arc/">Ball vs Arc</a>
+    </li>
+    
+
+</ul>
+
+
+<div id="cc">
+<!-- 저작권 -->
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/2.0/88x31.png" /></a><br>
+<br>
+이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+
+<div id="browser">
+본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
+</div>
+        </div>
+
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Ball vs Line</h1>
+  </header>
+
+  <article class="post-content">
+    <h1 id="vs--ball-vs-line">공 vs 선 (Ball vs line)</h1>
+
+<p>이제까지 여러분은 단 하나의 움직이는 점만 사용해서 아마 지루할 것입니다.  움직이는 점에 문제가 있는 것은 아니고, 점들은 완전하지만, 점은 점일 뿐입니다, 여러분 주변에 얼마나 많이 움직이는 점들을 볼 수 있나요? 많이 없을 것입니다. 결론적으로, 우리는 큰 걸음 앞으로 나아가 좀더 현실적인 - 공 같은 것을 움직이기 시작할 것입니다.</p>
+
+<p>여러분은 실생활에서 많은 공들을 만났을 것은 확신합니다. 그래서 여러분은 점과 공이 어떻게 다른지 압니다. 공은 너비를 갖습니다. 우리의 2D 예제에서 공은 원으로 표현되고 그것의 중앙에 좌표를 갖고, 반경 또한 갖습니다.</p>
+
+<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">game</span><span class="o">.</span><span class="na">myOb</span><span class="o">={</span><span class="n">r</span><span class="o">:</span><span class="mi">10</span><span class="o">};</span>
+<span class="n">game</span><span class="o">.</span><span class="na">myOb</span><span class="o">.</span><span class="na">p0</span><span class="o">={</span><span class="n">x</span><span class="o">:</span><span class="mi">150</span><span class="o">,</span> <span class="n">y</span><span class="o">:</span><span class="mi">100</span><span class="o">};</span></code></pre></div>
+
+<p>여기 움직이는 물체는 반경이 10인 공입니다. 이제 그 공의 중심 좌표, 운동 벡터, 반경을 알고, 어느 지점에서 벽에 충돌할 지 알기 원합니다.</p>
+
+<p><img src="../img/tut07_1.gif" alt="Alt 벽 벡터와 공의 교차" /></p>
+
+<p>그림에서 공의 중심점과 벽의 교차점은 회색 원이 있는 곳일 것입니다. 실제 공은 이전에 벽에 부딪힙니다. 벽에 부딪히는 실제 지점은 공의 운동벡터(빨강)와 공의 반경만큼 노말 방향으로 벽 벡터(초록)를 이동시킨 벡터(파랑) 의 교차점입니다. 그래서, 벽 벡터로 교차점을 찾는 대신에 방향은 같고 시작점이 옮겨진 다른 벽 벡터를 사용해야 할 것입니다.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="axes-method">축 방법 (Axes method)</h1>
+
+<p>선과 공의 교차점은 다른 방법으로도 구해질 수 있습니다. 좀더 간단한 투영을 이용해 어떻게 공이 벽에 부딪히는지 판단하는지 보도록 합시다.</p>
+
+<p><img src="../img/tut07_2.gif" alt="Alt 축 방법" /></p>
+
+<p>그림에서 벡터의 끝점에 p1에 있는 공을 보세요. 벽의 시작점(v2.p0)에서 공의 중심점까지 벡터(파랑)을 그립니다. 이제 이 새로운 벡터를 벽의 노말에 투영하면, 그림에서 투영은 벡터 v3 (빨강) 입니다. 공을 벽 근처에 두기 위해서 다음 크기만큼 벽의 노말 방향으로 움직여야 합니다.</p>
+
+<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">ball</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="n">v3</span><span class="o">.</span><span class="na">len</span></code></pre></div>
+
+<p>예제 코드에서 벽의 노말은 단위 벡터이여야 할 것입니다:</p>
+
+<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">v</span><span class="o">.</span><span class="na">lx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span>
+<span class="n">v</span><span class="o">.</span><span class="na">ly</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span></code></pre></div>
+
+<p>runme 함수에서 모든 벽 벡터에 대한 검사를 수행합니다 :</p>
+
+<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="k">for</span><span class="o">(</span><span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+  <span class="n">var</span> <span class="n">w</span> <span class="o">=</span> <span class="n">game</span><span class="o">[</span><span class="s2">&quot;v&quot;</span><span class="o">+</span><span class="n">i</span><span class="o">];</span>
+  <span class="c1">//if we have hit the wall</span>
+  <span class="n">var</span> <span class="n">pen</span> <span class="o">=</span> <span class="n">ob</span><span class="o">.</span><span class="na">r</span><span class="o">-</span><span class="n">findIntersection</span><span class="o">(</span><span class="n">ob</span><span class="o">,</span> <span class="n">w</span><span class="o">);</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">pen</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">){</span>
+    <span class="c1">//move object away from the wall</span>
+    <span class="n">ob</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">+=</span> <span class="n">w</span><span class="o">.</span><span class="na">lx</span><span class="o">*</span><span class="n">pen</span><span class="o">;</span>
+    <span class="n">ob</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">+=</span> <span class="n">w</span><span class="o">.</span><span class="na">ly</span><span class="o">*</span><span class="n">pen</span><span class="o">;</span>
+    <span class="c1">//change movement</span>
+    <span class="n">var</span> <span class="n">vb</span> <span class="o">=</span> <span class="n">bounce</span><span class="o">(</span><span class="n">ob</span><span class="o">,</span> <span class="n">w</span><span class="o">);</span>
+    <span class="n">ob</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">vb</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
+    <span class="n">ob</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">vb</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<blockquote>
+  <p>위 식에서 w.lx, w.ly 가 단위벡터의 속성 크기이기 때문에 pen 값을 곱했다.</p>
+</blockquote>
+
+<p>각각 벽을 통과하는 양을 찾아내고, 만약 공이 벽 안에 있다면 공을 떨어뜨려 놓습니다. 그리고 같은 이전 bounce 함수를 사용해 새로운 운동 벡터를 구합니다.</p>
+
+<p>통과한 길이를 구하는 함수 :</p>
+
+<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="kd">function </span><span class="nf">findIntersection</span><span class="o">(</span><span class="err">v1,</span> <span class="err">v2</span><span class="o">){</span>
+  <span class="c1">//vector between center of ball</span>
+  <span class="c1">//and starting point of wall</span>
+  <span class="n">var</span> <span class="n">v3</span> <span class="o">=</span> <span class="o">{};</span>
+  <span class="n">v3</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span><span class="o">-</span><span class="n">v2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
+  <span class="n">v3</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span><span class="o">-</span><span class="n">v2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">;</span>
+  <span class="c1">//project this vector on the normal of the wall</span>
+  <span class="n">var</span> <span class="n">v</span> <span class="o">=</span> <span class="n">projectVector</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">v2</span><span class="o">.</span><span class="na">lx</span><span class="o">,</span> <span class="n">v2</span><span class="o">.</span><span class="na">ly</span><span class="o">);</span>
+  <span class="c1">//find length of projection</span>
+  <span class="n">v</span><span class="o">.</span><span class="na">len</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">+</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="na">len</span><span class="o">;</span>
+<span class="o">}</span></code></pre></div>
+
+<p>다음 예제에서 벽의 점들 중 끝 점을 드래그 해보십시요 :</p>
+
+<div id="flashContent">
+    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="300" height="200" id="vect7" align="middle">
+        <param name="movie" value="vect7.swf" />
+        <param name="quality" value="high" />
+        <param name="bgcolor" value="#ffffff" />
+        <param name="play" value="true" />
+        <param name="loop" value="true" />
+        <param name="wmode" value="opaque" />
+        <param name="scale" value="noborder" />
+        <param name="menu" value="false" />
+        <param name="devicefont" value="false" />
+        <param name="salign" value="" />
+        <param name="allowScriptAccess" value="sameDomain" />
+        <!--[if !IE]>-->
+        <object type="application/x-shockwave-flash" data="vect7.swf" width="300" height="200">
+            <param name="movie" value="vect7.swf" />
+            <param name="quality" value="high" />
+            <param name="bgcolor" value="#ffffff" />
+            <param name="play" value="true" />
+            <param name="loop" value="true" />
+            <param name="wmode" value="opaque" />
+            <param name="scale" value="noborder" />
+            <param name="menu" value="false" />
+            <param name="devicefont" value="false" />
+            <param name="salign" value="" />
+            <param name="allowScriptAccess" value="sameDomain" />
+        <!--<![endif]-->
+            <a href="http://www.adobe.com/go/getflash">
+                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+            </a>
+        <!--[if !IE]>-->
+        </object>
+        <!--<![endif]-->
+    </object>
+</div>
+
+<p>이 예제는 벽의 길이를 다루지 않음을 유념하세요, 모든 벽들은 끝없이 이어져 있는 것으로 간주합니다. 그렇기 때문에, 이 예제는 박스안에 공을 붙잡아 두는데 사용할 수 있지만, 박스 밖에 잡아두지는 못합니다. 다음 단계에서 벽의 코너에 공이 어떻게 충돌을 하는지 보도록 할 것입니다.</p>
+
+<p>소스 <a href="vect7.fla">fla</a>를 다운받을 수 있습니다. </p>
+
+<p><br />
+<br />
+다음 : <a href="/vectors/ball_in_the_corner/">Ball in the corner</a></p>
+
+
+  </article>
+
+</div>
+
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Vectors for Animation</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Vectors for Animation</li>
+          <li><a href="mailto:hansune@me.com">hansune@me.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/brownsoo">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">brownsoo</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38112441-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </body>
+
+</html>
