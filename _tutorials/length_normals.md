@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Length, Normals
+section: Basics
+number: 1002
 ---
 
 # Basic. 벡터는 무엇을 갖고 있을까요?

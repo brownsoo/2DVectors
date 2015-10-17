@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Move, Accelerate
+section: Using vectors
+number: 2001
 ---
 
 # 벡터로 움직이기 (Moving with Vector)

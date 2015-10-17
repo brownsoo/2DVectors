@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Moving ball vs ball
+section: The ball
+number: 3004
 ---
 
 # 움직이는 공에 충돌하기 (Collision with moving ball)

@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Ball in the Corner
+section: The ball
+number: 3002
 ---
 
 # 코너에 있는 공 (Ball in the corner)

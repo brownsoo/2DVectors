@@ -1,8 +1,4 @@
----
-layout: page
-title: Start
-permalink: /start/
----
+>현재 작업 중입니다. - 한수댁
 
 # 반갑습니다.
 

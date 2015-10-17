@@ -30,9 +30,36 @@
     .menu-icon {
         display: none;
     }
+    .top-nav {
+        display: none;
+        width: 210px;
+        line-height: 140%;
+        margin-left: 0px;
+        margin-top: 0.7em;
+        background: #f5f5f5;
+
+        li {
+            list-style-type: none;
+            padding: 5px 10px;
+        }
+
+        #cc {
+            background: #fff;
+            padding: 0.5em;
+            font-size: small;
+            line-height: 120%;
+        }
+
+        #browser {
+            background: #fff;
+            padding: 0.5em;
+            font-size: small;
+            line-height: 120%;
+        }
+    }
 
     .page-link {
-        color: $text-color;
+        // color: $text-color;
         line-height: $base-line-height;
 
         // Gaps between nav items, but not on the first one
@@ -77,12 +104,76 @@
         &:hover .trigger {
             display: block;
             padding-bottom: 5px;
+            box-shadow: 4px 4px 10px #acacac;
         }
 
         .page-link {
             display: block;
             padding: 5px 10px;
         }
+
+        &:hover .top-nav {
+            clear:both;
+            display: block;
+        }
+    }
+}
+
+
+/**
+ * Nav
+ */
+
+.side-nav {
+    float: left;
+    padding-right: $spacing-unit;
+    width: $side-nav-width;
+    line-height:200%;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+
+    @include media-query($on-laptop) {
+        width: 100%;
+        border-bottom: 1px solid #e8e8e8;
+        padding-right:0px;
+    }
+
+    @include media-query($on-palm) {
+        display: none;
+    }
+
+    ul {
+        margin-left: 0px;
+        @include media-query($on-laptop) {
+            display: inline-table;
+            width: 32%;
+        }
+    }
+
+    li {
+        list-style-type: none;          
+    }
+
+    .section {
+        font-weight: bolder;
+    }
+}
+
+#cc {
+    background: #fff;
+    padding: 0.5em 0 0.5em;
+    font-size: small;
+    line-height: 120%;
+}
+
+#browser {
+    background: #fff;
+    padding: 0.5em 0 0.5em;
+    font-size: small;
+    line-height: 120%;
+    @include media-query($on-laptop) {
+        padding-top: 0px;
+        
     }
 }
 
@@ -190,9 +281,21 @@
 
 
 
+
 /**
  * Posts
  */
+
+.post {
+    float:left;
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 3) - #{$side-nav-width});
+    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 3) - #{$side-nav-width});
+    
+    @include media-query($on-laptop) {
+        max-width:100%;
+    }
+}
+
 .post-header {
     margin-bottom: $spacing-unit;
 }

@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Bounce
+section: Using vectors
+number: 2003
 ---
 
 # 반동 (Bounce)

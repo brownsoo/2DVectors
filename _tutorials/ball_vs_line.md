@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Ball vs Line
+section: The ball
+number: 3001
 ---
 
 # 공 vs 선 (Ball vs line)

@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Ball vs Arc
+section: The ball
+number: 3006
 ---
 
 # 공 vs 호(Ball vs arc)

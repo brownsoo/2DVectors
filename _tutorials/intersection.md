@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Intersection
+section: Using vectors
+number: 2002
 ---
 
 # 교차하기 (Intersection)
@@ -11,10 +13,10 @@ title: Intersection
 
 먼저 그들이 교차하지 않는 경우를 봅시다. 벡터들이 평행하면 교차할 수 없습니다. 그리고 벡터의 단위벡터들이 같다면 그들은 평행합니다(같은 방향일 필요는 없으며, 반대 방향이여도 됩니다):
 
-<code>
+```
 (v1.dx==v2.dx and v1.dy==v2.dy)<br>
 (v1.dx==-v2.dx and v1.dy==-v2.dy)
-</code>
+```
 
 벡터들이 평행하지 않으면 언젠가는 교차합니다. 초록선은 시작점 p0를 갖고 있는 운동 벡터이고, 빨간선은 시작점 p0 를 갖고 있는 벽입니다. 파란색은 시작점 간의 벡터입니다:
 

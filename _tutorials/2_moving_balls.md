@@ -1,6 +1,8 @@
 ---
 layout: page
 title: 2 Moving balls
+section: The ball
+number: 3005
 ---
 
 # 2 개의 움직이는 공 (2 moving balls)

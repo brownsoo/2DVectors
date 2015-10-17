@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Point, Vector
+section: Basics
+number: 1001
 ---
 
 # Basic. 벡터들, 이것들은 어디에서 왔을까요?

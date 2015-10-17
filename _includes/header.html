@@ -19,6 +19,11 @@
           <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
           {% endif %}
         {% endfor %}
+
+        <div class="top-nav">
+        {% include nav.html %}
+        </div>
+
       </div>
     </nav>
 
