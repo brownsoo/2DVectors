@@ -132,7 +132,9 @@
 </div>
 
 <div id="browser">
-본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
+본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.<br><br>
+현재 모바일에서는 예제의 인터랙션이 어렵습니다. 이 문제는 추후 보완될 가능성이 있습니다.^^
+
 </div>
         </div>
 
@@ -232,7 +234,9 @@
 </div>
 
 <div id="browser">
-본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
+본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.<br><br>
+현재 모바일에서는 예제의 인터랙션이 어렵습니다. 이 문제는 추후 보완될 가능성이 있습니다.^^
+
 </div>
         </div>
 
@@ -246,14 +250,14 @@
     <h1 id="moving-with-vector">벡터로 움직이기 (Moving with Vector)</h1>
 
 <p>기본 단계를 넘기고, 이제 포인트가 무엇인지, 벡터가 무엇인지, 어떻게 벡터들의 다른 속성들을 계산해야 하는지 알게 되었습니다. 
-그리고 실제 작업에서 벡터를 사용하면서 손이 바빠지기를 꽤나 기다리셨을 것입니다. 물체를 움직이기 위해 어떻게 벡터를 사용하는지 보도록 합시다.</p>
+이제는 물체를 움직이기 위해 어떻게 벡터를 사용하는지 보도록 합시다.</p>
 
 <p>이 예제에서 빨간 점이 우리의 오브젝트입니다. 예제 블럭을 선택하고, 방향키를 이용해 운동 벡터의 vx, vy 요소를 바꿀 수 있습니다.</p>
 
 <canvas data-processing-sources="../data/moving_with_vector.pde"></canvas>
 <p><small>(소스파일 <a href="../data/moving_with_vector.pde">pde</a>를 다운받을 수 있습니다.)</small></p>
 
-<p>먼저 오브젝트를 선언합니다. 참고로 오브젝트는 벡터의 속성을 갖고 있습니다.</p>
+<p>먼저 (벡터를 확장시킨) 오브젝트를 선언합니다.</p>
 
 <div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">myOb</span> <span class="o">=</span> <span class="o">{};</span>
 <span class="n">myOb</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="o">{</span><span class="n">x</span><span class="o">:</span><span class="mi">100</span><span class="o">,</span> <span class="n">y</span><span class="o">:</span><span class="mi">150</span><span class="o">};</span>
@@ -282,36 +286,37 @@
 <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">+</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">time</span><span class="o">;</span>
 <span class="n">v</span><span class="o">.</span><span class="na">lastTime</span> <span class="o">=</span> <span class="n">thisTime</span><span class="o">;</span></code></pre></div>
 
-<p>플래시는 프레임 기반 프로그램입니다. 무비 프레임 레이트에 정해 놓은 만큼 모든 애니메이션과 액션스크립트 코드를 1초에 여러번 실행하려고 합니다. 모든 계산을 다루기 위해 enterFrame clipEvent를 사용하는 것이 보통인데, 이는 정말 좋은 방법은 아닙니다. 여러분이 매 프레임마다 오브젝트의 x 좌표를 1 씩 증가하도록 코드를 작성했다고 가정해 봅시다. 만약 프레임 레이트를 20으로 설정하였다면, 코드가 초당 20번씩 실행되어 오브젝트가 초당 20픽셀을 이동하는 결과를 낳습니다.</p>
+<p>보통 움직임을 만들기 위해 어느 함수를 매우 빈번하게 호출하게 됩니다. 아시다시피 보통 1초 안에 화면을 몇번이나 갱신하는지를 따져 24fps, 30fps 와 같은 영상의 속성을 지정합니다. 어도비 플래시의 경우 프레임 기반 프로그램입니다. 정해 놓은 frameRate 만큼 모든 애니메이션과 액션스크립트 코드를 1초에 여러번 실행하려고 합니다. 모든 계산을 다루기 위해 enterFrame를 사용하는 것이 보통인데, 이는 정말 좋은 방법은 아닙니다. 매 프레임마다 오브젝트의 x 좌표를 1 씩 증가하도록 코드를 작성했다고 가정해 봅시다. 만약 frameRate를 20으로 설정하였다면, 코드가 초당 20번씩 실행되어 오브젝트가 초당 20픽셀을 이동하는 결과를 낳습니다.</p>
 
-<p>또는 여러분이 알고 있는 일이 벌어질 것입니다. 실제 플래시는 정확하게 똑같은 프레임 레이트로 작동하지 않습니다. 프레임 레이트는 단지 최대값이고 플래시 플레이어가 그 값에 맞추려고 노력하지만, 보통 실패합니다. 브라우저에 보여지는 플래시 무비들은 고생스럽습니다. 브라우저는 어느정도 CPU 자원을 필요로 하고, 어떤 컴퓨터들은 상대적을 느리며, 사람들은 다른 프로그램들도 돌리고 있을 것이기 때문입니다. 이 모든 것들은 프레임 레이트를 보통 20-25% 떨어뜨리는 요인이 됩니다.</p>
+<p>또는 여러분이 알고 있는 일이 벌어질 것입니다. 실제 플래시는 정확하게 똑같은 프레임 레이트로 작동하지 않습니다. 프레임 레이트는 단지 최대값이고 플래시 플레이어가 그 값에 맞추려고 노력하지만, 보통 실패합니다. 브라우저에 보여지는 플래시 무비들은 고생스럽습니다. 브라우저는 어느 정도 CPU 자원을 필요로 하고, 어떤 컴퓨터들은 상대적으로 느리며, 사람들은 다른 프로그램들도 돌리고 있을 것이기 때문입니다. 이 모든 것들은 프레임 레이트를 보통 20-25% 떨어뜨리는 요인이 됩니다.</p>
 
-<p>“그게 어떻다는 거지?” 궁금할 것입니다. 여전히 작동되고, 좌표들도 계산되어 지고, 무비클립들 역시 움직입니다. 그래요. 그러나 여러분은 더이상 게임을 지배할 수 없습니다. 일정시간 후에 무비클립이 어디에 있는지, 정확히 어떤 속도로 움직이는지 여러분은 결코 확신할 수 없습니다. 만약 플래시 게임에 대한 사람들의 반응을 살펴보고자 할 때, 프레임 레이트가 50% 떨어져 낮은 프레임 속도에서 재생한 사람들은 (거의) 올바른 프레임 속도에서 재생한 사람들보다 큰 잇점을 갖습니다. 이것은 플래시 게임에서 일반적인 부정 방법으로, 여러분은 쉽게 무비를 느리게 할 수 있어서 어떤 식으로든 게임에서 쉽게 이길 수 있습니다.</p>
+<p>플래시 뿐만 아니라 이런 식의 프레임 기반 코드는 동일한 문제를 일으킬 수 밖에 없습니다.</p>
 
-<p>이 과정의 해결책은 계산을 프레임 수를 기준으로 하지 말고, 실제 시간을 기준으로 하는 것입니다. 프레임 기반 게임에서 속도 vx=3을 선언하는 것은 플래시 플레이어가 무비를 실행할 수 있는 기회를 얻는 매시간마다 무비클립이  3 픽셀씩 움직일 것임을 의미합니다. 시간 기반 게임에서 vx=3을 선언하는 것은 무비클립이 매초마다 3픽셀씩 움직일 것임을 의미합니다. 시간 기반 게임에서 프레임 레이트가 떨어지는 것은 알 수 없는 결과를 만들지 않습니다. 1초 뒤에, 10초 뒤에 또는 1시간 뒤에 무비클립이 어디에 있을지 정확히 알 수 있습니다. 시간 기반 무비에서 낮은 프레임 레이트는 움직임의 부드러움에 영향을 줍니다. 오브젝트는 매초마다 적은 횟수로 스테이지에 그려지고, 움직임은 ‘건너뛰듯이’ 보일 것입니다. 그렇지만 오브젝트는 매번 그려지고, 또한 매우 정확한 위치에 그려집니다.</p>
+<p>“그게 어떻다는 거지?” 궁금할 것입니다. 여전히 작동되고, 좌표들도 계산되어 지고, 무비클립들 역시 잘 움직입니다. 그러나 우리는 더이상 우리가 만든 움직임을 컨트롤 할 수 없습니다. 일정시간 후에 오브젝트가 어디에 있는지, 정확히 어떤 속도로 움직이는지 우리는 결코 확신할 수 없습니다. </p>
 
-<p>우리는 getTimer 함수를 이용해 시간을 알아 낼 수 있습니다:</p>
+<p>또한, 만약 하드웨어적인 문제로 프레임 레이트가 50% 떨어져 낮은 프레임 속도에서 플래시 게임을 재생한 사람들은 (거의) 올바른 프레임 속도에서 재생한 사람들보다 큰 잇점을 갖습니다. 이것은 플래시 게임에서 일반적인 부정 방법으로, 여러분은 쉽게 무비를 느리게 할 수 있어서 어떤 식으로든 게임에서 쉽게 이길 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">var</span> <span class="n">thisTime</span> <span class="o">=</span> <span class="n">getTimer</span><span class="p">();</span>
-<span class="n">var</span> <span class="n">time</span> <span class="o">=</span> <span class="p">(</span><span class="n">thisTime</span><span class="o">-</span><span class="n">v</span><span class="p">.</span><span class="n">lastTime</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">;</span></code></pre></div>
+<p>이 과정의 해결책은 계산을 프레임 수를 기준으로 하지 말고, 실제 시간을 기준으로 하는 것입니다. 프레임 기반 게임에서 속도 vx=3을 선언하는 것은 프로그램이 코드를 실행할 수 있는 기회를 얻는 매시간마다 오브젝트를 3 픽셀씩 움직일 것임을 의미합니다. 시간 기반 게임에서 vx=3을 선언하는 것은 오브젝트가 매초마다 3픽셀씩 움직일 것임을 의미합니다. 시간 기반 게임에서 프레임 레이트가 떨어지는 것 때문에 알 수 없는 결과를 만들지 않습니다. 1초 뒤에, 10초 뒤에 또는 1시간 뒤에 오브젝트가 어디에 있을지 정확히 알 수 있습니다. </p>
 
-<p>getTimer 함수는 플래시 무비가 시작한 시점으로부터 밀리 초의 숫자를 반환합니다. 움직임 연산에서 우리는 마지막 계산한 시간을 저장해서 현재시간에서 그 시간을 빼줍니다. 그리고 시간이 밀리초로 계산되었기 때문에 초 단위의 시간을 얻기위해 우리는 <s>100</s>으로 나눠야 합니다. 물론 pixel/millisecond 단위로 속도를 벡터에 사용할 수 있습니다. 다만 그렇게 하면 실질적으로 값이 매우 작아질 것임을 주의해야 합니다.</p>
+<p>시간 기반 게임에서 낮은 프레임 레이트는 움직임의 부드러움에 영향을 줍니다. 오브젝트는 매초마다 적은 횟수로 화면에 그려지고, 움직임은 ‘건너뛰듯이’ 보일 것입니다. 그렇지만 오브젝트는 매번 그려지고, 또한 매우 정확한 위치에 그려집니다.</p>
+
+<p>우리는 함수를 이용해 시간을 알아 낼 수 있습니다:(예 Processing에서 millis, 플래시에서 getTimer)</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">var</span> <span class="n">thisTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+<span class="n">var</span> <span class="n">time</span> <span class="o">=</span> <span class="p">(</span><span class="n">thisTime</span><span class="o">-</span><span class="n">v</span><span class="p">.</span><span class="n">lastTime</span><span class="p">)</span><span class="o">/</span><span class="mf">1000f</span><span class="o">*</span><span class="n">scale</span><span class="p">;</span></code></pre></div>
+
+<p>millis 함수는 프로세싱 무비가 시작한 시점으로부터 지난 시간을 1000분의 1초 단위로 반환합니다. 움직임 연산에서 우리는 마지막 계산한 시간을 저장해서 현재시간에서 그 시간을 빼줍니다. 그리고 시간이 밀리초로 계산되었기 때문에 초 단위의 시간을 얻기위해 우리는 1000으로 나눠야 합니다.
+다만 예제에서는 그렇게 하면 실질적으로 값이 매우 작아져서 그리드 스케일 만큼 곱했습니다.</p>
 
 <blockquote>
-  <p>원문에서 100으로 나누도록 되어 있어서 그대로 썼지만, 1000으로 나누는 것이 맞다. 밀리세컨드는 1000 분의 1 초를 의미하기 때문이다. getTimer 함수는 AS3를 실행하는 경우와 AS2, AS1 을 실행하는 경우 의미가 조금 다르다. AS2 이하를 실행할 때는 플래시 런타임이 시작한 시점부터 계산하고, AS3 의 경우 플래시 런타임 버추얼 머신(AVM2)이 시작한 시점부터 계산한다. <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/package.html#getTimer()">여기서</a> 확인할 수 있다.</p>
+  <p>플래시의 getTimer 함수는 AS3를 실행하는 경우와 AS2, AS1 을 실행하는 경우 의미가 조금 다르다. AS2 이하를 실행할 때는 플래시 런타임이 시작한 시점부터 계산하고, AS3 의 경우 플래시 런타임 버추얼 머신(AVM2)이 시작한 시점부터 계산한다. <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/package.html#getTimer()">여기서</a> 확인할 수 있다.</p>
 </blockquote>
 
 <p>그러면 끝점의 새로운 좌표는 소요된 시간을 이용해 계산되어 집니다 :</p>
 
 <div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">+</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">time</span><span class="o">;</span></code></pre></div>
 
-<p>실제로 잘 작동하는지 살펴봅시다. 무비클립이 x=150, y=100 에 있고, vx 가 1 이라고 가정합니다. 프레임 레이트를 20으로 놓으면, 상황에 따라 변수 time은 5에서 50 ms 사이 일 것입니다. 시간이 5 ms 이라고 고정해보면, v.p1.x = v.p0.x + 0.05 식을 얻게 됩니다. 1초 동안 20번 움직임을 한 오브젝트는 20*0.05=1 픽셀 이동합니다. 이것이 정확하게 우리가 원하는 속도 vx 입니다. 이제 time이 50이면, 무비클립은 1초에 단지 두번 새 좌표가 계산되고 그려집니다. 그렇지만 최종 위치는 역시 2*0.5=1 픽셀입니다.</p>
-
-<blockquote>
-  <p>이 계산 또한 밀리세컨드를 1000 분의 1 초로 다시 생각해야 한다. 안내서는 100 분의 1 초로 인식하고 있음을 알아야 한다. 프레임 레이트를 20으로 설정하면, time 은 50ms 또는 그 이상 일 것이다.</p>
-</blockquote>
-
-<p>소스 <a href="vect4.fla">fla</a>를 다운받을 수 있습니다.</p>
+<p>실제로 잘 작동하는지 살펴봅시다. 무비클립이 x=150, y=100 에 있고, vx 가 1 이라고 가정합니다. 프레임 레이트를 20으로 놓으면, 상황에 따라 변수 time은 50ms 또는 그 이상 일 것입니다. 시간이 50 ms 이라고 고정해보면, v.p1.x = v.p0.x + 0.05 식을 얻게 됩니다. 1초 동안 20번 움직임을 한 오브젝트는 20*0.05=1 픽셀 이동합니다. 이것이 정확하게 우리가 원하는 속도 vx 입니다. 이제 time이 500이면, 무비클립은 1초에 단지 두번 새 좌표가 계산되고 그려집니다. 그렇지만 최종 위치는 역시 2*0.5=1 픽셀입니다.</p>
 
 <p><br /></p>
 

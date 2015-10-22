@@ -122,11 +122,15 @@ void drawAll() {
   
   //draw grid
   stroke(208);
-  strokeWeight(1);
+  noFill();
   for(int i=0; i<width; i+=scale) {
+    if(i%(10*scale)==0 && i>0) strokeWeight(2);
+    else strokeWeight(1);
     line(i, 0, i, height);
   }
   for(int j=0; j<height; j+=scale) {
+    if(j%(10*scale)==0 && j>0) strokeWeight(2);
+    else strokeWeight(1);
     line(0, j, width, j);  
   }
   

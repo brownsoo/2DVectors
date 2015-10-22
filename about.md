@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-> 현재 작업 중입니다. - 한수댁
+> 현재 작업 중입니다. 내용을 신뢰하지 마세용- 한수댁
 
 본 사이트는 [Vectors for Flash written by TONYPA](http://www.tonypa.pri.ee/vectors) 사이트를 번역하고, 부가적인 내용을 첨가하는 등 내용을 다시 재가공하였습니다. 현재 원본 사이트는 삭제된 상태입니다.
 
