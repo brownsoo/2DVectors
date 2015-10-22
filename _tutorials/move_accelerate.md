@@ -10,12 +10,12 @@ number: 2001
 기본 단계를 넘기고, 이제 포인트가 무엇인지, 벡터가 무엇인지, 어떻게 벡터들의 다른 속성들을 계산해야 하는지 알게 되었습니다. 
 그리고 실제 작업에서 벡터를 사용하면서 손이 바빠지기를 꽤나 기다리셨을 것입니다. 물체를 움직이기 위해 어떻게 벡터를 사용하는지 보도록 합시다.
 
-이 예제에서 빨간 점이 우리의 오브젝트입니다. 방향키를 이용해 운동 벡터의 x, y 요소를 바꿀 수 있습니다.
+이 예제에서 빨간 점이 우리의 오브젝트입니다. 예제 블럭을 선택하고, 방향키를 이용해 운동 벡터의 vx, vy 요소를 바꿀 수 있습니다.
 
 <canvas data-processing-sources="../data/moving_with_vector.pde"></canvas>
 <small>(소스파일 [pde](../data/moving_with_vector.pde)를 다운받을 수 있습니다.)</small>
 
-먼저 벡터 오브젝트를 선언합니다.
+먼저 오브젝트를 선언합니다. 참고로 오브젝트는 벡터의 속성을 갖고 있습니다.
 
 {% highlight as3 %}  
 myOb = {};
@@ -25,11 +25,9 @@ myOb.vy = 1;
 {% endhighlight %}
 
 이 벡터의 시작점은 x=100, y=150 이고, 운동요소는 vx=3, vy=1 의 값을 가지고 있습니다. 오브젝트의 새로운 위치는 벡터의 끝점(p1)이며, 이는 예제 코드의 undateVector 함수에서 계산됩니다. 만약에 p1의 값을 어떻게 아는지 기억나지 않는다면, Point. Vector 페이지를 살펴보기 바랍니다. 
-그래픽 요소를 p0 위치에 놓은 다음, drawAll 함수에서 다음 계산을 위해 끝점 p1을 시작점으로 지정할 것입니다.
+오브젝트를 p1 위치에 놓은 다음, drawAll 함수에서 다음 계산을 위해 끝점 p1을 시작점으로 지정할 것입니다.
 
-방향키를 누를 때마다, vx 또는 vy 속성이 증가하거나 줄어듭니다. getKeys 와 releaseKeys 함수에서 이를 다룹니다. 주요 함수 runMe 는 매 프레임마다 실행되며, 새로운 위치를 알아내고 mc(그래픽 요소)를 놓기위해  updateVector 와 drawAll 함수들을 호출합니다. 예제에서는 오브젝트가 화면 영역 밖으로 나갔는지도 검사하고, 정말 나갔다면, 오브젝트를 반대편으로 옮겨놓습니다.
-
-위 계산동안 mc의 x, y 속성을 변수로 사용하지 말아야 합니다. 모든 계산이 완료된 후 mc를 정확한 좌표에 놓기 위한 마지막 단계에서만 사용합니다.
+방향키를 누를 때마다, vx 또는 vy 속성이 증가하거나 줄어듭니다. keyPressed 함수에서 이를 다룹니다. 주요 함수 runMe 는 매 프레임마다 실행되며, 새로운 위치를 알아내고 오브젝트를 놓기위해  updateVector 와 drawAll 함수들을 호출합니다. 예제에서는 오브젝트가 화면 영역 밖으로 나갔는지도 검사하고, 정말 나갔다면, 오브젝트를 반대편으로 옮겨놓습니다.
 
 <br>
 
@@ -37,14 +35,14 @@ myOb.vy = 1;
 
 <br>
 
-# 프레임 또는 시간 (Frame or time)
+# 프레임 또는 시간 (Frame or Time)
 
 updateVector 함수를 다시 살펴보면, 새로운 좌표로 끝점 p1을 찾는 방법을 볼 수 있습니다 :
 
 {% highlight as3 %}  
-var thisTime = getTimer();
-var time = (thisTime-v.lastTime)/100;
-v.p1 = {};
+var thisTime = millis();
+var time = (thisTime-v.lastTime)/1000f*scale;
+v.p1 = new Point();
 v.p1.x = v.p0.x+v.vx*time;
 v.p1.y = v.p0.y+v.vy*time;
 v.lastTime = thisTime;
