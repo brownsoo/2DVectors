@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="/vectors/css/main.css">
   <link rel="canonical" href="http://brownsoo.github.io/vectors/length_normals/">
   <link rel="alternate" type="application/rss+xml" title="Vectors for Animation" href="http://brownsoo.github.io/vectors/feed.xml" />
+
+  <script src="/vectors/js/processing.min.js"></script>
 </head>
 
 
@@ -333,43 +335,10 @@ y" = - x;
   <p>사실 노멀은 이런 행렬계산까지 하지 않아도 우리가 알고 있는 평면좌표에 그려보면 이런 식을 알 수 있다. 그런데 행렬계산으로 나온 식은 위에 나오는 식과 좌우 노멀이 서로 바뀌어 있다. 이것은 화면에서 y 값이 반전된 좌표를 사용하고 있기 때문이다. 일반적인 평면좌표와 행렬계산에서는 각도가 시계방향으로 증가하는 반면, 플래시(또는 2D CG)에서는 반시계방향으로 증가한다. 그래서 자신이 작업하는 좌표계가 어떻게 되어있는지 꼭 확인할 필요가 있다. 참고로 플래시에서 Matrix 의 rotation 함수는 위와 같은 행렬계산을 실행한다. 매트릭스를 심볼에 적용하게 되면 각도가 증가할 수록 심볼이 반시계 방향으로 돌 것 같지만, 시계방향으로 돌도록 내부적으로 바로 잡아준다.</p>
 </blockquote>
 
-<p>마지막으로, 간단한 무비클립을 만들었습니다. 포인트를 움직여보면 벡터가 어떻게 변화되는지 볼 수 있습니다.</p>
+<p>마지막으로, 간단한 앱을 만들었습니다. 포인트를 움직여보면 벡터가 어떻게 변화되는지 볼 수 있습니다.</p>
 
-<div id="flashContent">
-    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="300" height="200" id="vect2">
-        <param name="movie" value="vect2.swf" />
-        <param name="quality" value="high" />
-        <param name="bgcolor" value="#ffffff" />
-        <param name="play" value="true" />
-        <param name="loop" value="true" />
-        <param name="wmode" value="opaque" />
-        <param name="scale" value="noborder" />
-        <param name="menu" value="false" />
-        <param name="devicefont" value="false" />
-        <param name="salign" value="" />
-        <param name="allowScriptAccess" value="sameDomain" />
-        <!--[if !IE]>-->
-        <object type="application/x-shockwave-flash" data="vect2.swf" width="300" height="200">
-            <param name="movie" value="vect2.swf" />
-            <param name="quality" value="high" />
-            <param name="bgcolor" value="#ffffff" />
-            <param name="play" value="true" />
-            <param name="loop" value="true" />
-            <param name="wmode" value="opaque" />
-            <param name="scale" value="noborder" />
-            <param name="menu" value="false" />
-            <param name="devicefont" value="false" />
-            <param name="salign" value="" />
-            <param name="allowScriptAccess" value="sameDomain" />
-        <!--<![endif]-->
-            <a href="http://www.adobe.com/go/getflash">
-                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-            </a>
-        <!--[if !IE]>-->
-        </object>
-        <!--<![endif]-->
-    </object>
-</div>
+<canvas data-processing-sources="../data/length_normals.pde"></canvas>
+<p><small>(소스파일 <a href="../data/length_normals.pde">pde</a>를 다운받을 수 있습니다.)</small></p>
 
 <p>검은 색 선은 벡터이고, 파란색은 단위벡터, 녹색은 오른쪽 노멀, 빨간색은 왼쪽 노멀입니다. 소스 fla 파일 역시 다운로드할 수 있습니다.</p>
 
