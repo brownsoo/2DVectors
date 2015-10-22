@@ -7,13 +7,14 @@ number: 2001
 
 # 벡터로 움직이기 (Moving with Vector)
 
-다행히 기본 단계를 넘겼고, 이제 포인트들이 무엇인지, 벡터들이 무엇인지, 어떻게 벡터들의 다른 속성들을 계산해야 하는지 알고 있습니다. 그리고 여러분은 실제 게임에서 벡터를 사용하면서 손이 바빠지기를 꽤나 기다리셨습니다. 물체를 움직이기 위해 어떻게 벡터를 사용하는지 보도록 합시다.
+기본 단계를 넘기고, 이제 포인트가 무엇인지, 벡터가 무엇인지, 어떻게 벡터들의 다른 속성들을 계산해야 하는지 알게 되었습니다. 
+그리고 실제 작업에서 벡터를 사용하면서 손이 바빠지기를 꽤나 기다리셨을 것입니다. 물체를 움직이기 위해 어떻게 벡터를 사용하는지 보도록 합시다.
 
 이 예제에서 빨간 점이 우리의 오브젝트입니다. 방향키를 이용해 운동 벡터의 x, y 요소를 바꿀 수 있습니다.
 
 <div id="flashContent">
     <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="300" height="200" id="vect4" align="middle">
-        <param name="movie" value="vect4.swf" />
+        <param name="movie" value="../data_old/vect4.swf" />
         <param name="quality" value="high" />
         <param name="bgcolor" value="#ffffff" />
         <param name="play" value="true" />
@@ -25,8 +26,8 @@ number: 2001
         <param name="salign" value="" />
         <param name="allowScriptAccess" value="sameDomain" />
         <!--[if !IE]>-->
-        <object type="application/x-shockwave-flash" data="vect4.swf" width="300" height="200">
-            <param name="movie" value="vect4.swf" />
+        <object type="application/x-shockwave-flash" data="../data_old/vect4.swf" width="300" height="200">
+            <param name="movie" value="../data_old/vect4.swf" />
             <param name="quality" value="high" />
             <param name="bgcolor" value="#ffffff" />
             <param name="play" value="true" />
@@ -47,7 +48,7 @@ number: 2001
     </object>
 </div>
 
-먼저 오브젝트를 선언합니다 :
+먼저 벡터 오브젝트를 선언합니다.
 
 {% highlight as3 %}  
 myOb = {};
@@ -56,14 +57,12 @@ myOb.vx = 3;
 myOb.vy = 1;
 {% endhighlight %}
 
-오브젝트의 시작점은 x=100, y=150 이고, 운동벡터는 vx=3, vy=1 의 값을 가지고 있습니다. 오브젝트의 새로운 위치는 벡터의 끝점(p1)이며, 이는 undateVector 함수에서 계산됩니다. 만약에 p1의 값을 어떻게 아는지 기억나지 않는다면, Point. Vector 페이지를 살펴보기 바랍니다. 무비클립이 올바르게 놓은 다음, drawAll 함수에서 다음 계산을 위해 끝점 p1을 시작점으로 지정할 것입니다.
+이 벡터의 시작점은 x=100, y=150 이고, 운동요소는 vx=3, vy=1 의 값을 가지고 있습니다. 오브젝트의 새로운 위치는 벡터의 끝점(p1)이며, 이는 예제 코드의 undateVector 함수에서 계산됩니다. 만약에 p1의 값을 어떻게 아는지 기억나지 않는다면, Point. Vector 페이지를 살펴보기 바랍니다. 
+그래픽 요소를 p0 위치에 놓은 다음, drawAll 함수에서 다음 계산을 위해 끝점 p1을 시작점으로 지정할 것입니다.
 
-방향키를 누를 때마다, vx 또는 vy 속성이 증가하거나 줄어듭니다. getKeys 와 releaseKeys 함수에서 이를 다룹니다. 주요 함수 runMe 는 매 프레임마다 실행되며, 새로운 위치를 알아내고 mc(무비클립)을 놓기위해  updateVector 와 drawAll 함수들을 호출합니다. 예제에서는 오브젝트가 스테이지 영역 밖으로 나갔는지도 검사하고, 정말 나갔다면, 오브젝트를 반대편으로 옮겨놓습니다.
+방향키를 누를 때마다, vx 또는 vy 속성이 증가하거나 줄어듭니다. getKeys 와 releaseKeys 함수에서 이를 다룹니다. 주요 함수 runMe 는 매 프레임마다 실행되며, 새로운 위치를 알아내고 mc(그래픽 요소)를 놓기위해  updateVector 와 drawAll 함수들을 호출합니다. 예제에서는 오브젝트가 화면 영역 밖으로 나갔는지도 검사하고, 정말 나갔다면, 오브젝트를 반대편으로 옮겨놓습니다.
 
-위 계산동안 무비클립의 _x, _y 속성을 변수로 사용하지 말아야 합니다. 모든 계산이 완료된 후 무비클립을 정확한 좌표에 놓기 위한 마지막 단계에서만 사용합니다.
-
->Actionscript 3 에서는 x, y 를 심볼의 속성으로 사용한다. 1, 2 버전에서는 언더스코프(_)가 어두에 붙어있는 속성들을 사용한다(_name, _x, _y, _width, _height, _rotation, _xscale(scaleX in AS3), _yscale(scaleY in AS3), _alpha, _xmouse(mouseX in AS3), _ymouse(mouseY in AS3))
-
+위 계산동안 mc의 x, y 속성을 변수로 사용하지 말아야 합니다. 모든 계산이 완료된 후 mc를 정확한 좌표에 놓기 위한 마지막 단계에서만 사용합니다.
 
 <br>
 

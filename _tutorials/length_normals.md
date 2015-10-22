@@ -104,6 +104,7 @@ v.ly = -v.vx;
 
 검은 색 선은 벡터이고, 파란색은 단위벡터, 녹색은 오른쪽 노멀, 빨간색은 왼쪽 노멀입니다. 소스 fla 파일 역시 다운로드할 수 있습니다.
 
+<script src="../data/length_normals.js" type="text/javascript"></script>
 
 <br>
 <br>
