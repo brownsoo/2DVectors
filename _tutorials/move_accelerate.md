@@ -62,7 +62,7 @@ v.lastTime = thisTime;
 
 시간 기반 게임에서 낮은 프레임 레이트는 움직임의 부드러움에 영향을 줍니다. 오브젝트는 매초마다 적은 횟수로 화면에 그려지고, 움직임은 '건너뛰듯이' 보일 것입니다. 그렇지만 오브젝트는 매번 그려지고, 또한 매우 정확한 위치에 그려집니다.
 
-우리는 함수를 이용해 시간을 알아 낼 수 있습니다:(예 Processing에서 millis, 플래시에서 getTimer)
+우리는 함수를 이용해 시간을 알아 낼 수 있습니다.(예: Processing에서 millis, 플래시에서 getTimer를 사용)
 
 {% highlight cpp %}  
 var thisTime = millis();
@@ -90,43 +90,10 @@ v.p1.x = v.p0.x+v.vx*time;
 
 # 가속 (Acceleration)
 
-속도 벡터가 오브젝트의 위치를 변경하듯이, 가속도 벡터는 오브젝트의 시간 단위 속도를 변경합니다.
+속도 벡터가 오브젝트의 위치를 변경하듯이, 가속도 벡터는 오브젝트의 속도를 변경합니다.
 
-<div id="flashContent">
-    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="300" height="200" id="vect4a" align="middle">
-        <param name="movie" value="vect4a.swf" />
-        <param name="quality" value="high" />
-        <param name="bgcolor" value="#ffffff" />
-        <param name="play" value="true" />
-        <param name="loop" value="true" />
-        <param name="wmode" value="opaque" />
-        <param name="scale" value="noborder" />
-        <param name="menu" value="false" />
-        <param name="devicefont" value="false" />
-        <param name="salign" value="" />
-        <param name="allowScriptAccess" value="sameDomain" />
-        <!--[if !IE]>-->
-        <object type="application/x-shockwave-flash" data="vect4a.swf" width="300" height="200">
-            <param name="movie" value="vect4a.swf" />
-            <param name="quality" value="high" />
-            <param name="bgcolor" value="#ffffff" />
-            <param name="play" value="true" />
-            <param name="loop" value="true" />
-            <param name="wmode" value="opaque" />
-            <param name="scale" value="noborder" />
-            <param name="menu" value="false" />
-            <param name="devicefont" value="false" />
-            <param name="salign" value="" />
-            <param name="allowScriptAccess" value="sameDomain" />
-        <!--<![endif]-->
-            <a href="http://www.adobe.com/go/getflash">
-                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-            </a>
-        <!--[if !IE]>-->
-        </object>
-        <!--<![endif]-->
-    </object>
-</div>
+<canvas data-processing-sources="../data/acceleration.pde"></canvas>
+<small>(소스파일 [pde](../data/acceleration.pde)를 다운받을 수 있습니다.)</small>
 
 그래서 시작 시점에서 오브젝트의 가속도 벡터를 0으로 설정합니다 :
 
@@ -143,8 +110,6 @@ v.vy = v.vy + v.ay;
 {% endhighlight %}
 
 게다가 완전히 오브젝트를 멈추고자 한다면 속도 벡터를 0으로 선정하는 것으로는 부족함을 알아야 합니다. 가속도 벡터 또한 0 으로 설정해야 합니다. 그렇지 않으면 오브젝트는 움직임을 유지합니다.
-
-소스 <a href="vect4a.fla">fla</a>를 다운받을 수 있습니다.
 
 
 <br>

@@ -231,7 +231,6 @@ String roundMe(float num) {
     nums[1] = "00";
   }
   return nums[0]+"." + nums[1].substring(0, min(nums[1].length(), 2));
-  
 }
 
 /** Handler to drag the points */

@@ -15,7 +15,7 @@ void setup() {
   size(320, 300);
   background(255);
   //create object
-  ball = new Ball(0xffff5252, 4);
+  ball = new Ball(0xffff5252, 10);
   //point p0 is its starting point in the coordinates x/y
   ball.p0 = new Point(150, 100);
   //vector x/y components
@@ -30,19 +30,19 @@ void draw() {
 void keyPressed() {
   if (key == CODED) {
     if(keyCode == LEFT && ball.vx > -maxV) {
-      //reduce x component
+      //reduce x velocity
       ball.vx--;
     }
     else if(keyCode == RIGHT && ball.vx < maxV) {
-      //increase x component
+      //increase x velocity
       ball.vx++;
     }
     else if (keyCode == UP && ball.vy > -maxV) {
-      //reduce y component
+      //reduce y velocity
       ball.vy--;
     } 
     else if (keyCode == DOWN && ball.vy < maxV) {
-      //increase y component
+      //increase y velocity
       ball.vy++;
     } 
   }
