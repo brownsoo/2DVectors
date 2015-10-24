@@ -18,7 +18,9 @@ SimpleButton resetBt;
 void setup() {
   size(320, 300);
   // Pulling the display's density dynamically
-  //pixelDensity(displayDensity());
+  try {
+    pixelDensity(displayDensity());
+  } catch(Exception e){}
   background(255);
   //create object
   ball = new Ball(0xffff5252, 10);
@@ -251,7 +253,7 @@ To make button;
   btn.x = 10;
   btn.y = 50;
 
-2. create new listener class of Button.
+2. create new class of ButtonCallback.
   class ClickImpl implements ButtonCallback {
     void onClick() {
       println("onclick");

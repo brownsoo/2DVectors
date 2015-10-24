@@ -9,50 +9,54 @@
 //dragging is true when the point is being dragged
 boolean dragging = false;
 
-Vector vector0;
 Vector vector1;
-Vector proj0;
+Vector vector2;
 Vector proj1;
-Dragger dragger0;
+Vector proj2;
 Dragger dragger1;
 Dragger dragger2;
-Arrow arrow0;//vector 0
+Dragger dragger3;
 Arrow arrow1;//vector 1
-Arrow arrow2;//projection
+Arrow arrow2;//vector 2
 Arrow arrow3;//projection
+Arrow arrow4;//projection
 
 void setup() {
   size(320, 300);
+  // Pulling the display's density dynamically
+  try {
+    pixelDensity(displayDensity());
+  } catch(Exception e){}
   background(255);
   
   //create first vector
   //point p0 is its starting point in the coordinates x/y
   //point p1 is its end point in the coordinates x/y
-  vector0 = new Vector();
-  vector0.p0 = new Point(150, 100);
-  vector0.p1 = new Point(200, 150);
-  //create second vector
   vector1 = new Vector();
   vector1.p0 = new Point(150, 100);
-  vector1.p1 = new Point(150, 50);
+  vector1.p1 = new Point(200, 150);
+  //create second vector
+  vector2 = new Vector();
+  vector2.p0 = new Point(150, 100);
+  vector2.p1 = new Point(150, 50);
   
   //Dragging Handler
-  dragger0 = new Dragger(12);
   dragger1 = new Dragger(12);
   dragger2 = new Dragger(12);
+  dragger3 = new Dragger(12);
   
   //Arrow graphics for vector
-  arrow0 = new Arrow(0xff212121);//black: vector 0
-  arrow1 = new Arrow(0xff9f9f9f);//gray: vector 1
-  arrow2 = new Arrow(0xff4caf50);//green: perp vector of vector0 on vector1
-  arrow3 = new Arrow(0xffff5252);//red : perp vector of voector0 on vector1's normal
+  arrow1 = new Arrow(0xff212121);//black: vector 1
+  arrow2 = new Arrow(0xff9f9f9f);//gray: vector 2
+  arrow3 = new Arrow(0xff4caf50);//green: perp vector of vector1 on vector2
+  arrow4 = new Arrow(0xffff5252);//red : perp vector of voector1 on vector2's normal
   
   //calculate all parameters for the vector and draw it
-  updateVector(vector0);
   updateVector(vector1);
+  updateVector(vector2);
   //find projections
-  proj0 = projectVector(vector0, vector1.dx, vector1.dy);
-  proj1 = projectVector(vector0, vector1.lx/vector1.length, vector1.ly/vector1.length);
+  proj1 = projectVector(vector1, vector2.dx, vector2.dy);
+  proj2 = projectVector(vector1, vector2.lx/vector2.length, vector2.ly/vector2.length);
   
   drawAll();
 }
@@ -62,23 +66,23 @@ void draw() {
 }
 
 void mousePressed() {
-  if(dragger0.contains(mouseX, mouseY)) {
+  if(dragger1.contains(mouseX, mouseY)) {
     dragging = true;
-    dragger0.pressed = true;
-    dragger1.pressed = false;
-    dragger2.pressed = false;
-  }
-  else if(dragger1.contains(mouseX, mouseY)) {    
-    dragging = true;
-    dragger0.pressed = false;
     dragger1.pressed = true;
     dragger2.pressed = false;
+    dragger3.pressed = false;
   }
   else if(dragger2.contains(mouseX, mouseY)) {    
     dragging = true;
-    dragger0.pressed = false;
     dragger1.pressed = false;
     dragger2.pressed = true;
+    dragger3.pressed = false;
+  }
+  else if(dragger3.contains(mouseX, mouseY)) {    
+    dragging = true;
+    dragger1.pressed = false;
+    dragger2.pressed = false;
+    dragger3.pressed = true;
   }
   else {
     dragging = false;
@@ -86,9 +90,9 @@ void mousePressed() {
 }
 void mouseReleased() {
   dragging = false;
-  dragger0.pressed = false;
   dragger1.pressed = false;
   dragger2.pressed = false;
+  dragger3.pressed = false;
   drawAll();
 }
 
@@ -97,28 +101,28 @@ void runMe() {
   //check if point is dragged
   if (dragging) {
     //get the coordinates from draggers
-    if(dragger0.pressed) {
-      vector0.p0.x = mouseX;
-      vector0.p0.y = mouseY;
+    if(dragger1.pressed) {
       vector1.p0.x = mouseX;
       vector1.p0.y = mouseY;
+      vector2.p0.x = mouseX;
+      vector2.p0.y = mouseY;
     }
-    if(dragger1.pressed) {
-      vector0.p1.x = mouseX;
-      vector0.p1.y = mouseY;
-    }
-    
     if(dragger2.pressed) {
       vector1.p1.x = mouseX;
       vector1.p1.y = mouseY;
     }
     
-    updateVector(vector0);
+    if(dragger3.pressed) {
+      vector2.p1.x = mouseX;
+      vector2.p1.y = mouseY;
+    }
+    
     updateVector(vector1);
+    updateVector(vector2);
     
     //find projections
-    proj0 = projectVector(vector0, vector1.dx, vector1.dy);
-    proj1 = projectVector(vector0, vector1.lx/vector1.length, vector1.ly/vector1.length);
+    proj1 = projectVector(vector1, vector2.dx, vector2.dy);
+    proj2 = projectVector(vector1, vector2.lx/vector2.length, vector2.ly/vector2.length);
     drawAll();
     
   }
@@ -132,67 +136,66 @@ void drawAll() {
   
   //Draw coordinte by vector 1
   pushMatrix();
-  translate(vector1.p0.x, vector1.p0.y);
-  rotate(atan2(vector1.vy, vector1.vx));
+  translate(vector2.p0.x, vector2.p0.y);
+  rotate(atan2(vector2.vy, vector2.vx));
   stroke(0, 204, 255, 128);
   line(-1000, 0, 1000, 0);
-  stroke(0, 102, 255, 128);
   line(0, -1000, 0, 1000);
   popMatrix();
   
   //Draw Dragger
-  dragger0.x = vector0.p0.x;
-  dragger0.y = vector0.p0.y;
-  dragger0.place();
-  dragger1.x = vector0.p1.x;
-  dragger1.y = vector0.p1.y;
+  dragger1.x = vector1.p0.x;
+  dragger1.y = vector1.p0.y;
   dragger1.place();
   dragger2.x = vector1.p1.x;
   dragger2.y = vector1.p1.y;
   dragger2.place();
+  dragger3.x = vector2.p1.x;
+  dragger3.y = vector2.p1.y;
+  dragger3.place();
   
   // vector 0's line
-  stroke(arrow0.c);
-  line(vector0.p0.x, vector0.p0.y, vector0.p1.x, vector0.p1.y);
-  // vector 1's line
   stroke(arrow1.c);
   line(vector1.p0.x, vector1.p0.y, vector1.p1.x, vector1.p1.y);
-  // project vector's line of vector0 on vector 1
+  // vector 1's line
   stroke(arrow2.c);
-  line(vector0.p0.x, vector0.p0.y, 
-        vector0.p0.x + proj0.vx, vector0.p0.y + proj0.vy);
-  // project vector's line of vector0 on vector 1's normal
+  line(vector2.p0.x, vector2.p0.y, vector2.p1.x, vector2.p1.y);
+  // project vector's line of vector1 on vector 1
   stroke(arrow3.c);
-  line(vector0.p0.x, vector0.p0.y, 
-        vector0.p0.x + proj1.vx, vector0.p0.y + proj1.vy);
+  line(vector1.p0.x, vector1.p0.y, 
+        vector1.p0.x + proj1.vx, vector1.p0.y + proj1.vy);
+  // project vector's line of vector1 on vector 1's normal
+  stroke(arrow4.c);
+  line(vector1.p0.x, vector1.p0.y, 
+        vector1.p0.x + proj2.vx, vector1.p0.y + proj2.vy);
   
   //Draw arrows
-  arrow0.x = vector0.p1.x;
-  arrow0.y = vector0.p1.y;
-  arrow0.rotation = atan2(vector0.vy, vector0.vx);
-  arrow0.place();
   arrow1.x = vector1.p1.x;
   arrow1.y = vector1.p1.y;
   arrow1.rotation = atan2(vector1.vy, vector1.vx);
   arrow1.place();
-  arrow2.x = vector0.p0.x + round(proj0.vx);
-  arrow2.y = vector0.p0.y + round(proj0.vy);
-  arrow2.rotation = atan2(proj0.vy, proj0.vx);
+  arrow2.x = vector2.p1.x;
+  arrow2.y = vector2.p1.y;
+  arrow2.rotation = atan2(vector2.vy, vector2.vx);
   arrow2.place();
-  arrow3.x = vector0.p0.x + round(proj1.vx);
-  arrow3.y = vector0.p0.y + round(proj1.vy);
+  arrow3.x = vector1.p0.x + round(proj1.vx);
+  arrow3.y = vector1.p0.y + round(proj1.vy);
   arrow3.rotation = atan2(proj1.vy, proj1.vx);
   arrow3.place();
+  arrow4.x = vector1.p0.x + round(proj2.vx);
+  arrow4.y = vector1.p0.y + round(proj2.vy);
+  arrow4.rotation = atan2(proj2.vy, proj2.vx);
+  arrow4.place();
   
   //text
-  fill(arrow0.c);
-  text("v1", arrow0.x + 5, arrow0.y);
   fill(arrow1.c);
-  text("v2", arrow1.x + 5, arrow1.y);
+  text("v1", arrow1.x + 5, arrow1.y);
   fill(arrow2.c);
-  text("Proj on v2", arrow2.x + 5, arrow2.y);
+  text("v2", arrow2.x + 5, arrow2.y);
   fill(arrow3.c);
-  text("Proj on v2's normal", arrow3.x + 5, arrow3.y);
+  text("Proj on v2", arrow3.x + 5, arrow3.y);
+  fill(arrow4.c);
+  text("Proj on v2's normal", arrow4.x + 5, arrow4.y);
   
 }
 

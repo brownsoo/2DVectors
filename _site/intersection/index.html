@@ -179,16 +179,14 @@
   <article class="post-content">
     <h1 id="intersection">교차하기 (Intersection)</h1>
 
-<p>이제 객체를 움직이는 법을 알고 있습니다. 그리고 삶이 분명하듯이, 움직이는 모든 객체들은 언젠가 무언가와 충돌할 것입니다. 이동하는 물체가 예를 들어 당신이라면, 운이 좋게도 침대같은 부드러운 것에 부딪힐 수도 있고 때론 딱딱한 소재. 돌벽. 시멘트 바닥. 닫힌 문에 충돌할 수도 있습니다. 현실에는 슬프게도 당신과 부딪히기만을 기다리거나 다른 움직이는 물체들 등 딱딱한 요소들이 많이 존재합니다. 그래서 미래에 어떤 물체가 여러분과 충돌할지 아는 것이 일반적으로 현명하고 여러분의 머리에도 좋습니다.</p>
+<p>이제 오브젝트를 움직이는 법을 알게 되었습니다. 그런데 움직이는 모든 오브젝트들은 언젠가 무언가와 충돌할 것입니다. 이동하는 물체가 예를 들어 당신이라면, 운이 좋게도 침대처럼 부드러운 것에 부딪힐 수도 있고 때론 딱딱한 소재 -돌벽, 시멘트 바닥, 닫힌 문에 충돌할 수도 있습니다. 현실에는 당신과 부딪히기만을 기다리거나 다른 움직이는 딱딱한 물체들이 많이 존재합니다. 그래서 미래에 어떤 물체가 나와 충돌할지 미리 아는 것은 현명하고 머리 건강에도 좋습니다.</p>
 
-<p>우리는 객체의 운동 벡터를 압니다. 그리고 벽을 만들고 있는 벡터도 압니다. (그래요, 벽은 얇은 선처럼 보입니다. 그래도 주의할 필요가 있습니다). 우리는 객체가 벽에 부딪히는지, 그렇다면, 언제, 어디서 일어나는지 알고 싶습니다. 아니면 다시 질문합니다. “어디서 두 벡터가 교차할까요?”</p>
+<p>여기 객체의 운동 벡터와 벽을 만들고 있는 벡터가 있습니다. 우리는 객체가 벽에 부딪히는지, 그렇다면, 언제, 어디서 일어나는지 알고자 합니다. 이렇게 다시 질문합니다. “어디서 두 벡터가 교차할까요?”</p>
 
 <p>먼저 그들이 교차하지 않는 경우를 봅시다. 벡터들이 평행하면 교차할 수 없습니다. 그리고 벡터의 단위벡터들이 같다면 그들은 평행합니다(같은 방향일 필요는 없으며, 반대 방향이여도 됩니다):</p>
 
-<p><code>
-(v1.dx==v2.dx and v1.dy==v2.dy)&lt;br&gt;
-(v1.dx==-v2.dx and v1.dy==-v2.dy)
-</code></p>
+<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="o">(</span><span class="n">v1</span><span class="o">.</span><span class="na">dx</span><span class="o">==</span><span class="n">v2</span><span class="o">.</span><span class="na">dx</span> <span class="n">and</span> <span class="n">v1</span><span class="o">.</span><span class="na">dy</span><span class="o">==</span><span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">)</span>
+<span class="o">(</span><span class="n">v1</span><span class="o">.</span><span class="na">dx</span><span class="o">==-</span><span class="n">v2</span><span class="o">.</span><span class="na">dx</span> <span class="n">and</span> <span class="n">v1</span><span class="o">.</span><span class="na">dy</span><span class="o">==-</span><span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">)</span></code></pre></div>
 
 <p>벡터들이 평행하지 않으면 언젠가는 교차합니다. 초록선은 시작점 p0를 갖고 있는 운동 벡터이고, 빨간선은 시작점 p0 를 갖고 있는 벽입니다. 파란색은 시작점 간의 벡터입니다:</p>
 
@@ -203,11 +201,10 @@
 <span class="n">ip</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">t</span><span class="o">;</span>
 
 <span class="kd">function </span><span class="nf">perP</span><span class="o">(</span><span class="err">va,</span> <span class="err">vb</span><span class="o">){</span>
-	<span class="n">pp</span> <span class="o">=</span> <span class="n">va</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">vb</span><span class="o">.</span><span class="na">vy</span> <span class="o">-</span> <span class="n">va</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">vb</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
-	<span class="k">return</span> <span class="n">pp</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">va</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">vb</span><span class="o">.</span><span class="na">vy</span> <span class="o">-</span> <span class="n">va</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">vb</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
 <span class="o">}</span></code></pre></div>
 
-<p>먼저 시작점 사이의 벡터 v3를 구합니다. 여기서 사용된 함수는 두 벡터의 perp product 을 구합니다. Perp product 는 첫번째 벡터 대신에 그 노말을 사용한다는 점만 빼고 내적과 비슷합니다. 내적은 다음과 같습니다:</p>
+<p>먼저 시작점 사이의 벡터 v3를 구합니다. 여기서 사용된 함수는 두 벡터의 Perp product을 구합니다. Perp product는 첫번째 벡터 대신에 그 노말을 사용한다는 점만 빼고 내적과 비슷합니다. 내적은 다음과 같습니다:</p>
 
 <div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">dp</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
@@ -222,82 +219,55 @@
 
 <p>이는 위 함수가 찾는 값입니다.</p>
 
-<p>두 perp product 의 비율 t 는 운동벡터 1의 끝점에서 정확히 교차하면 정확히 1 이 됩니다. 만약 t 가 0에서 1 사이 값이라면 교차점은 벡터 선상에 있습니다. 그런데, t 가 음수이면 벡터는 과거에 교차했을 것이고, 1 보다 큰 수이면, 교차는 미래에 언젠가 일어날 것입니다.</p>
+<p>두 perp product 의 비율 t는 운동벡터 v1의 끝점에서 정확히 교차하면 정확히 1이 됩니다. 만약 t가 0에서 1사이 값이라면 교차점은 v1 선상에 있습니다. 그런데, t가 음수이면 벡터는 과거에 교차했을 것이고, 1보다 큰 수이면, 교차는 미래에 언젠가 일어날 것입니다.</p>
 
-<p>교차점이 어떤 벡터 위에 있는지 알고 싶다면 물론, v2 의 t 또한 알아내야 합니다:</p>
+<p>교차점이 어떤 벡터 위에 있는지 알고 싶다면 물론, v2의 t값 또한 알아내야 합니다:</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">v3</span> <span class="o">=</span> <span class="o">{</span><span class="n">vx</span><span class="o">:</span><span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">-</span><span class="n">v2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="n">vy</span><span class="o">:</span><span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">-</span><span class="n">v2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">};</span>
-<span class="n">var</span> <span class="n">t</span> <span class="o">=</span> <span class="n">perP</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">v1</span><span class="o">)/</span><span class="n">perP</span><span class="o">(</span><span class="n">v2</span><span class="o">,</span> <span class="n">v1</span><span class="o">);</span></code></pre></div>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">v3</span> <span class="o">=</span> <span class="p">{</span><span class="nl">vx</span><span class="p">:</span><span class="n">v1</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="n">v2</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="nl">vy</span><span class="p">:</span><span class="n">v1</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">y</span><span class="o">-</span><span class="n">v2</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">y</span><span class="p">};</span>
+<span class="n">var</span> <span class="n">t</span> <span class="o">=</span> <span class="n">perP</span><span class="p">(</span><span class="n">v3</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span><span class="o">/</span><span class="n">perP</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="n">v1</span><span class="p">);</span></code></pre></div>
 
 <p>이 예제에서 점들을 움직여 보고 어디서 교차하는지 보세요:</p>
 
-<div id="flashContent">
-    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="300" height="200" id="vect5" align="middle">
-        <param name="movie" value="vect5.swf" />
-        <param name="quality" value="high" />
-        <param name="bgcolor" value="#ffffff" />
-        <param name="play" value="true" />
-        <param name="loop" value="true" />
-        <param name="wmode" value="opaque" />
-        <param name="scale" value="noborder" />
-        <param name="menu" value="false" />
-        <param name="devicefont" value="false" />
-        <param name="salign" value="" />
-        <param name="allowScriptAccess" value="sameDomain" />
-        <!--[if !IE]>-->
-        <object type="application/x-shockwave-flash" data="vect5.swf" width="300" height="200">
-            <param name="movie" value="vect5.swf" />
-            <param name="quality" value="high" />
-            <param name="bgcolor" value="#ffffff" />
-            <param name="play" value="true" />
-            <param name="loop" value="true" />
-            <param name="wmode" value="opaque" />
-            <param name="scale" value="noborder" />
-            <param name="menu" value="false" />
-            <param name="devicefont" value="false" />
-            <param name="salign" value="" />
-            <param name="allowScriptAccess" value="sameDomain" />
-        <!--<![endif]-->
-            <a href="http://www.adobe.com/go/getflash">
-                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-            </a>
-        <!--[if !IE]>-->
-        </object>
-        <!--<![endif]-->
-    </object>
-</div>
-
-<p>교차 알고리즘이 어떻게 만들어지는지 실제 방법에 관심있다면, <a href="http://softsurfer.com/Archive/algorithm_0104/algorithm_0104B.htm">여기</a>를 보기 바랍니다.</p>
-
-<p>소스 <a href="vect5.fla">fla</a>를 다운받을 수 있습니다.</p>
+<canvas data-processing-sources="../data/intersection.pde"></canvas>
+<p><small>(소스파일 <a href="../data/intersection.pde">pde</a>를 다운받을 수 있습니다.)</small></p>
 
 <blockquote>
-  <p>위 사이트 연결은 깨져 있다. <a href="http://geomalgorithms.com/a05-_intersect-1.html">여기</a>를 참고할 만 하다.</p>
+  <p>교차 알고리즘이 어떻게 만들어지는지 실제 방법에 관심있다면, <a href="http://geomalgorithms.com/a05-_intersect-1.html">여기</a>를 참고할 만하다.</p>
 </blockquote>
 
-<blockquote>
-  <p>벡터 교차에 대한 추가 설명을 붙여본다.
-먼저 두 점(P0, P1)를 지나는 백터 방정식을 매개변수로 표현한 방정식으로 표현하면, P(s) = P0 + s(P1 - P0) = P0 + su(s는 실수, u는 벡터)로 정의할 수 있다. 이 표현을 빌리면, P(0) = P0, P(1) = P1, 0 &lt;= P(s) &lt;= 1 이다. 그리고 s = d(P0, P(s)) / d(P0, P1) 이다. s 가 0 보다 작으면 P(s)는 P0 의 바깥 쪽에 있고, s 가 1 보다 크면 P(s)는 P1 의 바깥 쪽에 있음을 의미한다.</p>
+<p><br />
+<br /></p>
 
-  <p>평행한 두 벡터 u(P1 - P0), v(Q1 - Q0) 에 대해 u = Cv 가 성립된다.(C는 실수) <br />
-같은 의미로 u/v 값은 항상 같은 값을 유지하는데 u(1)/v(1) = u(k) / v(k) 으로 표현할 수 있다. <br />
-u(1)v(k) - u(k)v(1) = 0 으로 수식정리를 할 수 있다. <br />
-이때 u=(u1, u2) 이고 v=(v1, v2)에 대해 u1v2 - u2v1 = 0 임을 perp product 라 한다. 기호로 u⊥·v = 0 , (u 가 (u1, u2) 일 때, u⊥ = (-u2, u1) 이다. ⊥ 는 perp operator, 직교 연산자)</p>
+<p>벡터 교차에 대한 좀더 자세한 설명을 붙여봅니다.</p>
 
-  <p>두 벡터가 평행하기 때문에 벡터 u의 직교벡터와 벡터 v 의 내적은 0 인 것이다.</p>
-</blockquote>
+<h3 id="perp-product--">Perp product 공식의 이해</h3>
 
-<blockquote>
-  <p>평행하지 않은 두 벡터는 특정 포인트에서 만난다. 교차점을 구하기 위해서 2개의 벡터와 함께 연관된 벡터를 같이 고려해야 한다.</p>
-</blockquote>
+<p>먼저 두 점(P<sub>0</sub>, P<sub>1</sub>)를 지나는 벡터 방정식을 매개변수로 표현한 방정식으로 표현하면, P(s) = P<sub>0</sub> + s(P<sub>1</sub> - P<sub>0</sub>) = P<sub>0</sub> + su(s는 실수, u는 벡터)로 정의할 수 있습니다. 이 표현을 빌리면, P(0) = P<sub>0</sub>, P(1) = P<sub>1</sub>, 0 &lt;= P(s) &lt;= 1 입니다. 아래와 같이 s값을 정리합니다.</p>
 
-<p><br /></p>
+<pre><code>su = P(s) - P0
+s = (P(s) - P0) / u
+s = (P(s) - P0) / (P1 - P0)
+s = d(P0, P(s)) / d(P0, P1)
+</code></pre>
+
+<p>벡터 d로 정리된 s값을 살펴보면, s가 0보다 작으면 P(s)는 P0의 바깥 쪽에 있고, s가 1 보다 크면 P(s)는 P<sub>1</sub>의 바깥 쪽에 있음을 알 수 있습니다.</p>
+
+<p>평행한 두 벡터 u(P<sub>1</sub> - P<sub>0</sub>), v(Q<sub>1</sub> - Q<sub>0</sub>)에 대해 u = Cv 가 성립됩니다.(C는 실수)
+같은 의미로 u/v 값은 항상 같은 값을 유지하는데 u(1)/v(1) = u(k)/v(k) 으로 표현할 수 있습니다. <br /></p>
+
+<p><code>
+u(1)v(k) - u(k)v(1) = 0
+</code></p>
+
+<p>이때 u=(u1, u2) 이고 v=(v1, v2)에 대해 u1v2 - u2v1 = 0 임을 Perp product라고 합니다. 기호로 u⊥·v = 0, (u가 (u1, u2) 일 때, u⊥ = (-u2, u1) 입니다. ⊥ 는 perp operator, 직교 연산자)</p>
+
+<p><strong>두 벡터가 평행하기 때문에 벡터 u의 직교벡터와 벡터 v 의 내적은 0 인 것입니다.</strong></p>
+
+<p>교차점을 구하기 위해서는 2개의 벡터와 함께 연관된 벡터를 같이 고려해야 합니다.</p>
 
 <p><img src="../img/my05_1.gif" alt="Alt Vector Intersection" /></p>
 
-<blockquote>
-  <p>그림에서 v 와 u 의 교차점  P(si) 를 구하고자 한다. 벡터 w 는 w = P0 - Q0 일 때, P(s) - Q0 = w + su 이다. 그리고 교차점을 지나는 벡터 P(si) - Q0 는 v⊥와 직교한다. perp product 공식을 적용해보자.</p>
-</blockquote>
+<p>그림에서 v 와 u 의 교차점 P(si)를 구하고자 합니다. 벡터 w 는 w = P<sub>0</sub> - Q<sub>0</sub> 일 때, P(s) - Q<sub>0</sub> = w + su 입니다. 그리고 교차점을 지나는 벡터 P(si) - Q<sub>0</sub> 는 v⊥와 직교합니다. perp product 공식을 적용합니다.</p>
 
 <pre><code>v⊥·(w+si u) = 0
 v⊥·w + v⊥·si u = 0
@@ -305,16 +275,13 @@ v⊥·w + v⊥·si u = 0
 
 <p><img src="../img/my05_2.gif" alt="Alt Vector Intersection" /></p>
 
-<blockquote>
-  <p>그리고 두 벡터가 평행하면 v⊥· u = 0 임을 알고 있다. 직교 연산자의 속성인 u⊥·v = -v⊥·u 을 이용해 Q(ti) 의 위치도 구한다.</p>
-</blockquote>
+<p>그리고 두 벡터가 평행하면 v⊥· u = 0 임을 알고 있으니, 직교 연산자의 속성인 u⊥·v = -v⊥·u 을 이용해 Q(ti) 의 위치도 구합니다.</p>
 
 <p><img src="../img/my05_3.gif" alt="Alt Vector Intersection" /></p>
 
-<blockquote>
-  <p>교차점 I = P(si) = P(ti) 이기 때문에 한가지만 알아도 충분하다.<br />
-둘 중 하나 벡터의 길이가 무한하지 않은 경우, 교차점은 벡터의 (0&lt;= si &lt;= 1) 구간에서 일어난다. 두 벡터의 길이가 무한하지 않은 경우, P, Q 모두에 대해서 0&lt;= si &lt;= 1 구간에 있어야 교차하게 된다. si가 1이면 벡터의 끝에서 만나게 되며,0보다 작으면 이전에 만났을 경우가 될 수 있다. 1보다 크면 앞으로 만날 가능성이 있다.</p>
-</blockquote>
+<p>교차점 I = P(si) = P(ti) 이기 때문에 한가지만 알아도 충분합니다.</p>
+
+<p>둘 중 하나 벡터의 길이가 무한하지 않은 경우, 교차점은 벡터의 (0&lt;= si &lt;= 1) 구간에서 일어납니다. 두 벡터의 길이가 무한하지 않은 경우, P, Q 모두에 대해서 0&lt;= si &lt;= 1 구간에 있어야 교차하게 됩니다. si가 1이면 벡터의 끝에서 만나게 되며, 0보다 작으면 이전에 만났을 경우가 됩니다. 1보다 크면 앞으로 만날 가능성이 있습니다.</p>
 
 <p><br />
 <br />

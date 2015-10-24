@@ -13,6 +13,10 @@ Ball ball;
 
 void setup() {
   size(320, 300);
+  // Pulling the display's density dynamically
+  try {
+    pixelDensity(displayDensity());
+  } catch(Exception e){}
   background(255);
   //create object
   ball = new Ball(0xffff5252, 10);

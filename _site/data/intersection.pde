@@ -1,8 +1,8 @@
 /**
- * Adding, Projecting 
+ * Intersection 
  * by hyonsoo han
  *
- * Descripe vector's addtion and projection.
+ * Shows two vector's intersection.
  * Checkout : brownsoo.github.io/vectors
  */
 
@@ -11,15 +11,12 @@ boolean dragging = false;
 
 Vector vector1;
 Vector vector2;
-Vector proj1;
-Vector proj2;
-Dragger dragger1;
-Dragger dragger2;
-Dragger dragger3;
-Arrow arrow1;//vector 1
-Arrow arrow2;//vector 2
-Arrow arrow3;//projection
-Arrow arrow4;//projection
+Vector vector3;
+Point ip;//intersection point
+Dragger[] draggers;
+Arrow arrow1;
+Arrow arrow2;
+Arrow arrow3;
 
 void setup() {
   size(320, 300);
@@ -27,36 +24,38 @@ void setup() {
   try {
     pixelDensity(displayDensity());
   } catch(Exception e){}
-  background(255);
-  
   //create first vector
   //point p0 is its starting point in the coordinates x/y
   //point p1 is its end point in the coordinates x/y
   vector1 = new Vector();
-  vector1.p0 = new Point(150, 100);
-  vector1.p1 = new Point(200, 150);
+  vector1.p0 = new Point(150, 50);
+  vector1.p1 = new Point(150, 100);
   //create second vector
+  //point p0 is its starting point in the coordinates x/y
+  //point p1 is its end point in the coordinates x/y
   vector2 = new Vector();
-  vector2.p0 = new Point(150, 100);
-  vector2.p1 = new Point(150, 50);
+  vector2.p0 = new Point(100, 150);
+  vector2.p1 = new Point(200, 150);
   
   //Dragging Handler
-  dragger1 = new Dragger(12);
-  dragger2 = new Dragger(12);
-  dragger3 = new Dragger(12);
-  
+  draggers = new Dragger[4];
+  for(int i=0; i<draggers.length; i++) {
+    draggers[i] = new Dragger(12);
+  }
   //Arrow graphics for vector
-  arrow1 = new Arrow(0xff212121);//black: vector 1
-  arrow2 = new Arrow(0xff9f9f9f);//gray: vector 2
-  arrow3 = new Arrow(0xff4caf50);//green: perp vector of vector1 on vector2
-  arrow4 = new Arrow(0xffff5252);//red : perp vector of voector1 on vector2's normal
+  arrow1 = new Arrow(0xff4CAF50);//green: v0 - object
+  arrow2 = new Arrow(0xffFF5252);//red: v1 - wall
+  arrow3 = new Arrow(0xff03A9F4);//blue : vector between v0.p0->v1.p0
   
   //calculate all parameters for the vector and draw it
   updateVector(vector1);
   updateVector(vector2);
-  //find projections
-  proj1 = projectVector(vector1, vector2.dx, vector2.dy);
-  proj2 = projectVector(vector1, vector2.lx/vector2.length, vector2.ly/vector2.length);
+  
+  vector3 = new Vector();
+  vector3.p0 = vector1.p0;
+  vector3.p1 = vector2.p0;
+  updateVector(vector3);
+  findIntersection(vector1, vector2);
   
   drawAll();
 }
@@ -66,33 +65,24 @@ void draw() {
 }
 
 void mousePressed() {
-  if(dragger1.contains(mouseX, mouseY)) {
-    dragging = true;
-    dragger1.pressed = true;
-    dragger2.pressed = false;
-    dragger3.pressed = false;
+  boolean b = false;
+  for(int i=0; i<draggers.length; i++) {
+    if(draggers[i].contains(mouseX, mouseY)) {
+      draggers[i].pressed = true;
+      b = true;
+    }
+    else {
+      draggers[i].pressed = false;
+    }
   }
-  else if(dragger2.contains(mouseX, mouseY)) {    
-    dragging = true;
-    dragger1.pressed = false;
-    dragger2.pressed = true;
-    dragger3.pressed = false;
-  }
-  else if(dragger3.contains(mouseX, mouseY)) {    
-    dragging = true;
-    dragger1.pressed = false;
-    dragger2.pressed = false;
-    dragger3.pressed = true;
-  }
-  else {
-    dragging = false;
-  }
+  dragging = b;
 }
+
 void mouseReleased() {
   dragging = false;
-  dragger1.pressed = false;
-  dragger2.pressed = false;
-  dragger3.pressed = false;
+  for(int i=0; i<draggers.length; i++) {
+    draggers[i].pressed = false;
+  }
   drawAll();
 }
 
@@ -100,31 +90,34 @@ void mouseReleased() {
 void runMe() {
   //check if point is dragged
   if (dragging) {
+    
+    for(int i=0; i<draggers.length; i++) {
+      if(draggers[i].pressed) {
+        draggers[i].x = mouseX;
+        draggers[i].y = mouseY;
+      }
+    }
+    
     //get the coordinates from draggers
-    if(dragger1.pressed) {
-      vector1.p0.x = mouseX;
-      vector1.p0.y = mouseY;
-      vector2.p0.x = mouseX;
-      vector2.p0.y = mouseY;
-    }
-    if(dragger2.pressed) {
-      vector1.p1.x = mouseX;
-      vector1.p1.y = mouseY;
-    }
-    
-    if(dragger3.pressed) {
-      vector2.p1.x = mouseX;
-      vector2.p1.y = mouseY;
-    }
-    
+    vector1.p0.x = draggers[0].x;
+    vector1.p0.y = draggers[0].y;
+    vector1.p1.x = draggers[1].x;
+    vector1.p1.y = draggers[1].y;
     updateVector(vector1);
+    
+    vector2.p0.x = draggers[2].x;
+    vector2.p0.y = draggers[2].y;
+    vector2.p1.x = draggers[3].x;
+    vector2.p1.y = draggers[3].y;
     updateVector(vector2);
     
-    //find projections
-    proj1 = projectVector(vector1, vector2.dx, vector2.dy);
-    proj2 = projectVector(vector1, vector2.lx/vector2.length, vector2.ly/vector2.length);
-    drawAll();
+    vector3 = new Vector();
+    vector3.p0 = vector1.p0;
+    vector3.p1 = vector2.p0;
+    updateVector(vector3);
+    findIntersection(vector1, vector2);
     
+    drawAll();
   }
 }
 
@@ -138,21 +131,24 @@ void drawAll() {
   pushMatrix();
   translate(vector2.p0.x, vector2.p0.y);
   rotate(atan2(vector2.vy, vector2.vx));
-  stroke(0, 204, 255, 128);
+  stroke(0, 58);
   line(-1000, 0, 1000, 0);
   line(0, -1000, 0, 1000);
   popMatrix();
   
   //Draw Dragger
-  dragger1.x = vector1.p0.x;
-  dragger1.y = vector1.p0.y;
-  dragger1.place();
-  dragger2.x = vector1.p1.x;
-  dragger2.y = vector1.p1.y;
-  dragger2.place();
-  dragger3.x = vector2.p1.x;
-  dragger3.y = vector2.p1.y;
-  dragger3.place();
+  draggers[0].x = vector1.p0.x;
+  draggers[0].y = vector1.p0.y;
+  draggers[0].place();
+  draggers[1].x = vector1.p1.x;
+  draggers[1].y = vector1.p1.y;
+  draggers[1].place();
+  draggers[2].x = vector2.p0.x;
+  draggers[2].y = vector2.p0.y;
+  draggers[2].place();
+  draggers[3].x = vector2.p1.x;
+  draggers[3].y = vector2.p1.y;
+  draggers[3].place();
   
   // vector 0's line
   stroke(arrow1.c);
@@ -160,14 +156,10 @@ void drawAll() {
   // vector 1's line
   stroke(arrow2.c);
   line(vector2.p0.x, vector2.p0.y, vector2.p1.x, vector2.p1.y);
-  // project vector's line of vector1 on vector 1
+  // vector 2's line
   stroke(arrow3.c);
   line(vector1.p0.x, vector1.p0.y, 
-        vector1.p0.x + proj1.vx, vector1.p0.y + proj1.vy);
-  // project vector's line of vector1 on vector 1's normal
-  stroke(arrow4.c);
-  line(vector1.p0.x, vector1.p0.y, 
-        vector1.p0.x + proj2.vx, vector1.p0.y + proj2.vy);
+        vector1.p0.x + vector3.vx, vector1.p0.y + vector3.vy);
   
   //Draw arrows
   arrow1.x = vector1.p1.x;
@@ -178,25 +170,25 @@ void drawAll() {
   arrow2.y = vector2.p1.y;
   arrow2.rotation = atan2(vector2.vy, vector2.vx);
   arrow2.place();
-  arrow3.x = vector1.p0.x + round(proj1.vx);
-  arrow3.y = vector1.p0.y + round(proj1.vy);
-  arrow3.rotation = atan2(proj1.vy, proj1.vx);
+  arrow3.x = vector1.p0.x + round(vector3.vx);
+  arrow3.y = vector1.p0.y + round(vector3.vy);
+  arrow3.rotation = atan2(vector3.vy, vector3.vx);
   arrow3.place();
-  arrow4.x = vector1.p0.x + round(proj2.vx);
-  arrow4.y = vector1.p0.y + round(proj2.vy);
-  arrow4.rotation = atan2(proj2.vy, proj2.vx);
-  arrow4.place();
+  
+  //Draw intersection
+  noStroke();
+  fill(255, 0, 0, 178);
+  ellipse(ip.x, ip.y, 6, 6);
   
   //text
   fill(arrow1.c);
-  text("v1", arrow1.x + 5, arrow1.y);
+  text("v1", vector1.p1.x + 5, vector1.p1.y + 10);
   fill(arrow2.c);
-  text("v2", arrow2.x + 5, arrow2.y);
+  text("v2", vector2.p1.x + 5, vector2.p1.y + 10);
   fill(arrow3.c);
-  text("Proj on v2", arrow3.x + 5, arrow3.y);
-  fill(arrow4.c);
-  text("Proj on v2's normal", arrow4.x + 5, arrow4.y);
-  
+  text("v3", (vector3.p0.x + vector3.p1.x)/2 + 5, (vector3.p0.y + vector3.p1.y)/2);
+  fill(35);
+  text("interaction point", (ip.x + ip.x)/2 + 5, (ip.y + ip.y)/2 - 5);
 }
 
 //function to find all parameters for the vector
@@ -233,6 +225,31 @@ Vector projectVector(Vector v1, float dx, float dy) {
   proj.vx = dp*dx;
   proj.vy = dp*dy;
   return proj;
+}
+
+//find intersection point of 2 vectors
+void findIntersection(Vector v0, Vector v1) {
+  //vector between starting points
+  Vector v = new Vector();
+  v.vx = v1.p0.x - v0.p0.x;
+  v.vy = v1.p0.y - v0.p0.y;
+  float t;
+  if((v0.dx == v1.dx && v0.dy == v1.dy) ||
+    (v0.dx == -v1.dx && v0.dy == -v1.dy)) {
+    t = 1000000;
+  }
+  else {
+    t = perP(v, v1) / perP(v0, v1);
+  }
+  //intersection
+  ip = new Point();
+  ip.x = int(v0.p0.x + v0.vx*t);
+  ip.y = int(v0.p0.y + v0.vy*t);
+}
+
+//calculate perp  product of 2 vectors
+float perP(Vector v0, Vector v1) {
+  return v0.vx*v1.vy - v0.vy*v1.vx;
 }
 
 

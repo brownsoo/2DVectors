@@ -14,15 +14,19 @@ final int scale = 10;
 boolean dragging = false;
 
 Vector vector;
-Dragger dragger0;
 Dragger dragger1;
-Arrow arrow0;//vector
-Arrow arrow1;//unit vector
-Arrow arrow2;//right normal
-Arrow arrow3;//left normal
+Dragger dragger2;
+Arrow arrow1;//vector
+Arrow arrow2;//unit vector
+Arrow arrow3;//right normal
+Arrow arrow4;//left normal
 
 void setup() {
   size(320, 300);
+  // Pulling the display's density dynamically
+  try {
+    pixelDensity(displayDensity());
+  } catch(Exception e){}
   background(255);
   
   //create vector
@@ -39,18 +43,18 @@ void setup() {
   vector.p1.y = int(vector.p0.y + vector.vy);
   
   //Dragging Handler
-  dragger0 = new Dragger(12);
   dragger1 = new Dragger(12);
-  dragger0.x = scale * vector.p0.x;
-  dragger0.y = scale * vector.p0.y;
-  dragger1.x = scale * vector.p1.x;
-  dragger1.y = scale * vector.p1.y;
+  dragger2 = new Dragger(12);
+  dragger1.x = scale * vector.p0.x;
+  dragger1.y = scale * vector.p0.y;
+  dragger2.x = scale * vector.p1.x;
+  dragger2.y = scale * vector.p1.y;
   
   //Arrow graphics for vector
-  arrow0 = new Arrow(0xff212121);//black
-  arrow1 = new Arrow(0xff2196f3);//blue
-  arrow2 = new Arrow(0xff4caf50);//green
-  arrow3 = new Arrow(0xffff5252);//red
+  arrow1 = new Arrow(0xff212121);//black
+  arrow2 = new Arrow(0xff2196f3);//blue
+  arrow3 = new Arrow(0xff4caf50);//green
+  arrow4 = new Arrow(0xffff5252);//red
   
   //calculate all parameters for the vector and draw it
   updateVector(vector);
@@ -62,26 +66,26 @@ void draw() {
 }
 
 void mousePressed() {
-  if(dragger0.contains(mouseX, mouseY)) {
+  if(dragger1.contains(mouseX, mouseY)) {
     dragging = true;
-    dragger0.pressed = true;
-    dragger1.pressed = false;
-  }
-  else if(dragger1.contains(mouseX, mouseY)) {    
-    dragging = true;
-    dragger0.pressed = false;
     dragger1.pressed = true;
+    dragger2.pressed = false;
+  }
+  else if(dragger2.contains(mouseX, mouseY)) {    
+    dragging = true;
+    dragger1.pressed = false;
+    dragger2.pressed = true;
   }
   else {
     dragging = false;
-    dragger0.pressed = false;
     dragger1.pressed = false;
+    dragger2.pressed = false;
   }
 }
 void mouseReleased() {
   dragging = false;
-  dragger0.pressed = false;
   dragger1.pressed = false;
+  dragger2.pressed = false;
   drawAll();
 }
 
@@ -91,21 +95,21 @@ void runMe() {
   if (dragging) {
     
     //Snap the dragger with grid
-    if(dragger0.pressed) {
-      dragger0.x = round(mouseX / scale) * scale;
-      dragger0.y = round(mouseY / scale) * scale;
-    }
-    else {
+    if(dragger1.pressed) {
       dragger1.x = round(mouseX / scale) * scale;
       dragger1.y = round(mouseY / scale) * scale;
+    }
+    else {
+      dragger2.x = round(mouseX / scale) * scale;
+      dragger2.y = round(mouseY / scale) * scale;
     }
     
     Vector v = vector;
     //get the coordinates from draggers
-    v.p0.x = round(dragger0.x / scale);
-    v.p0.y = round(dragger0.y / scale);
-    v.p1.x = round(dragger1.x / scale);
-    v.p1.y = round(dragger1.y / scale);
+    v.p0.x = round(dragger1.x / scale);
+    v.p0.y = round(dragger1.y / scale);
+    v.p1.x = round(dragger2.x / scale);
+    v.p1.y = round(dragger2.y / scale);
     
     //calculate new parameters for the vector and draw
     updateVector(v);
@@ -135,56 +139,56 @@ void drawAll() {
   }
   
   //Draw Dragger
-  dragger0.place();
   dragger1.place();
+  dragger2.place();
   
   Vector v = vector;
   // vector's line
-  stroke(arrow0.c);
+  stroke(arrow1.c);
   line(v.p0.x * scale, v.p0.y * scale, 
       v.p1.x * scale, v.p1.y * scale);
   
   //unit vector's line
-  stroke(arrow1.c);
+  stroke(arrow2.c);
   line(v.p0.x * scale, v.p0.y * scale, 
       (v.p0.x+v.dx) * scale, (v.p0.y+v.dy) * scale);
   
   //right normal's line
-  stroke(arrow2.c);
+  stroke(arrow3.c);
   line(v.p0.x * scale, v.p0.y * scale, 
       (v.p0.x+v.rx) * scale, (v.p0.y+v.ry) * scale);    
 
   //left normal's line
-  stroke(arrow3.c);
+  stroke(arrow4.c);
   line(v.p0.x * scale, v.p0.y * scale, 
       (v.p0.x+v.lx) * scale, (v.p0.y+v.ly) * scale);
   
   //Draw arrows
-  arrow0.x = v.p1.x * scale;
-  arrow0.y = v.p1.y * scale;
-  arrow0.rotation = atan2(v.vy, v.vx);
-  arrow1.x = int((v.p0.x+v.dx) * scale);
-  arrow1.y = int((v.p0.y+v.dy) * scale);
-  arrow1.rotation = atan2(v.dy, v.dx);
-  arrow2.x = int((v.p0.x+v.rx) * scale);
-  arrow2.y = int((v.p0.y+v.ry) * scale);
-  arrow2.rotation = atan2(v.ry, v.rx);
-  arrow3.x = int((v.p0.x+v.lx) * scale);
-  arrow3.y = int((v.p0.y+v.ly) * scale);
-  arrow3.rotation = atan2(v.ly, v.lx);
+  arrow1.x = v.p1.x * scale;
+  arrow1.y = v.p1.y * scale;
+  arrow1.rotation = atan2(v.vy, v.vx);
+  arrow2.x = int((v.p0.x+v.dx) * scale);
+  arrow2.y = int((v.p0.y+v.dy) * scale);
+  arrow2.rotation = atan2(v.dy, v.dx);
+  arrow3.x = int((v.p0.x+v.rx) * scale);
+  arrow3.y = int((v.p0.y+v.ry) * scale);
+  arrow3.rotation = atan2(v.ry, v.rx);
+  arrow4.x = int((v.p0.x+v.lx) * scale);
+  arrow4.y = int((v.p0.y+v.ly) * scale);
+  arrow4.rotation = atan2(v.ly, v.lx);
   
-  arrow0.place();
   arrow1.place();
   arrow2.place();
   arrow3.place();
+  arrow4.place();
   
   //text
-  fill(arrow0.c);
-  text("vector", arrow0.x + 5, arrow0.y);
-  fill(arrow2.c);
-  text("R normal", (vector.p0.x * scale  + arrow2.x) * 0.5 + 5, (vector.p0.y * scale + arrow2.y) * 0.5 + 5);
+  fill(arrow1.c);
+  text("vector", arrow1.x + 5, arrow1.y);
   fill(arrow3.c);
-  text("L normal", (vector.p0.x * scale  + arrow3.x) * 0.5 + 5, (vector.p0.y * scale + arrow3.y) * 0.5 + 5);
+  text("R normal", (vector.p0.x * scale  + arrow3.x) * 0.5 + 5, (vector.p0.y * scale + arrow3.y) * 0.5 + 5);
+  fill(arrow4.c);
+  text("L normal", (vector.p0.x * scale  + arrow4.x) * 0.5 + 5, (vector.p0.y * scale + arrow4.y) * 0.5 + 5);
   
   fill(45);
   text("p0: x="+v.p0.x+", y="+v.p0.y, 10, 20);
