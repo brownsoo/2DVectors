@@ -167,14 +167,14 @@ void drawAll() {
   arrow1.x = v.p1.x * scale;
   arrow1.y = v.p1.y * scale;
   arrow1.rotation = atan2(v.vy, v.vx);
-  arrow2.x = int((v.p0.x+v.dx) * scale);
-  arrow2.y = int((v.p0.y+v.dy) * scale);
+  arrow2.x = (v.p0.x+v.dx) * scale;
+  arrow2.y = (v.p0.y+v.dy) * scale;
   arrow2.rotation = atan2(v.dy, v.dx);
-  arrow3.x = int((v.p0.x+v.rx) * scale);
-  arrow3.y = int((v.p0.y+v.ry) * scale);
+  arrow3.x = (v.p0.x+v.rx) * scale;
+  arrow3.y = (v.p0.y+v.ry) * scale;
   arrow3.rotation = atan2(v.ry, v.rx);
-  arrow4.x = int((v.p0.x+v.lx) * scale);
-  arrow4.y = int((v.p0.y+v.ly) * scale);
+  arrow4.x = (v.p0.x+v.lx) * scale;
+  arrow4.y = (v.p0.y+v.ly) * scale;
   arrow4.rotation = atan2(v.ly, v.lx);
   
   arrow1.place();
@@ -239,8 +239,8 @@ String roundMe(float num) {
 
 /** Handler to drag the points */
 class Dragger {
-  public int x;
-  public int y;
+  public float x;
+  public float y;
   private int size;
   public boolean pressed = false;
   public Dragger(int size0) {
@@ -268,8 +268,8 @@ class Dragger {
 
 /** Arrow Graphic definition */
 class Arrow {
- public int x;
- public int y;
+ public float x;
+ public float y;
  public float rotation = 0;//radian
  public int c = 0;
  
@@ -291,10 +291,10 @@ class Arrow {
 
 /** Point definition */
 class Point {
- public int x;
- public int y;
+ public float x;
+ public float y;
  Point(){}
- Point(int x0, int y0) {
+ Point(float x0, float y0) {
    this.x = x0;
    this.y = y0;
  }

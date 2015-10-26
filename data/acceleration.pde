@@ -82,7 +82,7 @@ void keyPressed() {
 void runMe() {
   
   //update the vector parameters
-  updateVector(ball);
+  updateBall(ball);
   
   //reset object to other side if gone out of stage
   if (ball.p1.x > width) {
@@ -131,9 +131,9 @@ void drawAll() {
   text("ax:"+roundMe(ball.ax) + " ay:" + roundMe(ball.ay), 10, 35);
 }
 
-//function to find all parameters for the vector 
+//function to find all parameters for the ball vector 
 //with using start point and vx/vy, time
-void updateVector(Vector v) {
+void updateBall(Ball v) {
   //update the speed vector with acceleration
   if(abs(v.vx+v.ax) < maxV) {
     v.vx = v.vx + v.ax;
@@ -142,7 +142,7 @@ void updateVector(Vector v) {
     v.vy = v.vy + v.ay;
   }
   
-  //find time passed from lasdate
+  //find time passed from last update
   int thisTime = millis();
   float time = (thisTime - v.lastTime)/1000f*scale;
   //find end point coordinates
@@ -189,6 +189,7 @@ String roundMe(float num) {
 class Ball extends Vector {
  public float size = 10;//radian
  public int c = 0;
+ public int lastTime = 0;
  
  Ball(int color0, float size0){
    super();
@@ -229,8 +230,7 @@ class Vector {
   public float ly;
   public float dx;
   public float dy;
-  public float length;
-  public int lastTime = 0; //New added in this course
+  public float length;  
    
   public Vector() {
     p0 = new Point();

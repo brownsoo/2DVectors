@@ -250,8 +250,8 @@ String roundMe(float num) {
 
 /** Handler to drag the points */
 class Dragger {
-  public int x;
-  public int y;
+  public float x;
+  public float y;
   private int size;
   public boolean pressed = false;
   public Dragger(int size0) {
@@ -279,8 +279,8 @@ class Dragger {
 
 /** Arrow Graphic definition */
 class Arrow {
- public int x;
- public int y;
+ public float x;
+ public float y;
  public float rotation = 0;//radian
  public int c = 0;
  
@@ -302,10 +302,10 @@ class Arrow {
 
 /** Point definition */
 class Point {
- public int x;
- public int y;
+ public float x;
+ public float y;
  Point(){}
- Point(int x0, int y0) {
+ Point(float x0, float y0) {
    this.x = x0;
    this.y = y0;
  }

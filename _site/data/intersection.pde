@@ -127,7 +127,7 @@ void drawAll() {
   //clear all
   background(255);
   
-  //Draw coordinte by vector 1
+  //Draw coordinte by vector 2
   pushMatrix();
   translate(vector2.p0.x, vector2.p0.y);
   rotate(atan2(vector2.vy, vector2.vx));
@@ -150,13 +150,13 @@ void drawAll() {
   draggers[3].y = vector2.p1.y;
   draggers[3].place();
   
-  // vector 0's line
+  // vector 1's line
   stroke(arrow1.c);
   line(vector1.p0.x, vector1.p0.y, vector1.p1.x, vector1.p1.y);
-  // vector 1's line
+  // vector 2's line
   stroke(arrow2.c);
   line(vector2.p0.x, vector2.p0.y, vector2.p1.x, vector2.p1.y);
-  // vector 2's line
+  // vector 3's line
   stroke(arrow3.c);
   line(vector1.p0.x, vector1.p0.y, 
         vector1.p0.x + vector3.vx, vector1.p0.y + vector3.vy);
@@ -267,8 +267,8 @@ String roundMe(float num) {
 
 /** Handler to drag the points */
 class Dragger {
-  public int x;
-  public int y;
+  public float x;
+  public float y;
   private int size;
   public boolean pressed = false;
   public Dragger(int size0) {
@@ -296,8 +296,8 @@ class Dragger {
 
 /** Arrow Graphic definition */
 class Arrow {
- public int x;
- public int y;
+ public float x;
+ public float y;
  public float rotation = 0;//radian
  public int c = 0;
  
@@ -319,10 +319,10 @@ class Arrow {
 
 /** Point definition */
 class Point {
- public int x;
- public int y;
+ public float x;
+ public float y;
  Point(){}
- Point(int x0, int y0) {
+ Point(float x0, float y0) {
    this.x = x0;
    this.y = y0;
  }

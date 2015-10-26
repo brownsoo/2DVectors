@@ -58,7 +58,7 @@ void keyPressed() {
 void runMe() {
   
   //update the vector parameters
-  updateVector(ball);
+  updateBall(ball);
   
   //reset object to other side if gone out of stage
   if (ball.p1.x > width) {
@@ -106,10 +106,10 @@ void drawAll() {
   text("vx:"+ball.vx + " vy:" + ball.vy, 10, 20);
 }
 
-//function to find all parameters for the vector 
+//function to find all parameters for the ball vector 
 //with using start point and vx/vy, time
-void updateVector(Vector v) {
-  //find time passed from lasdate
+void updateBall(Ball v) {
+  //find time passed from last update
   int thisTime = millis();
   float time = (thisTime - v.lastTime)/1000f*scale;
   //find end point coordinates
@@ -140,6 +140,7 @@ void updateVector(Vector v) {
 class Ball extends Vector {
  public float size = 10;//radian
  public int c = 0;
+ public int lastTime = 0;
  
  Ball(int color0, float size0){
    super();
@@ -179,7 +180,6 @@ class Vector {
   public float dx;
   public float dy;
   public float length;
-  public int lastTime = 0; //New added in this course
    
   public Vector() {
     p0 = new Point();

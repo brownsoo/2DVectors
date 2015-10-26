@@ -1,8 +1,8 @@
 /**
- * Intersection 
+ * Bounce 
  * by hyonsoo han
  *
- * Shows two vector's intersection.
+ * Shows vector's bounce.
  * Checkout : brownsoo.github.io/vectors
  */
 
@@ -17,6 +17,7 @@ Dragger[] draggers;
 Arrow arrow1;
 Arrow arrow2;
 Arrow arrow3;
+boolean isBounce = false;
 
 void setup() {
   size(320, 300);
@@ -25,17 +26,13 @@ void setup() {
     pixelDensity(displayDensity());
   } catch(Exception e){}
   //create first vector
-  //point p0 is its starting point in the coordinates x/y
-  //point p1 is its end point in the coordinates x/y
   vector1 = new Vector();
-  vector1.p0 = new Point(150, 50);
-  vector1.p1 = new Point(150, 100);
+  vector1.p0 = new Point(100, 100);
+  vector1.p1 = new Point(200, 200);
   //create second vector
-  //point p0 is its starting point in the coordinates x/y
-  //point p1 is its end point in the coordinates x/y
   vector2 = new Vector();
-  vector2.p0 = new Point(100, 150);
-  vector2.p1 = new Point(200, 150);
+  vector2.p0 = new Point(50, 170);
+  vector2.p1 = new Point(250, 170);
   
   //Dragging Handler
   draggers = new Dragger[4];
@@ -45,18 +42,15 @@ void setup() {
   //Arrow graphics for vector
   arrow1 = new Arrow(0xff4CAF50);//green: v0 - object
   arrow2 = new Arrow(0xffFF5252);//red: v1 - wall
-  arrow3 = new Arrow(0xff03A9F4);//blue : vector between v0.p0->v1.p0
+  arrow3 = new Arrow(0xff03A9F4);//blue : bounce vector
   
   //calculate all parameters for the vector and draw it
   updateVector(vector1);
   updateVector(vector2);
-  
-  vector3 = new Vector();
-  vector3.p0 = vector1.p0;
-  vector3.p1 = vector2.p0;
-  updateVector(vector3);
   findIntersection(vector1, vector2);
-  
+  if(isBounce) {
+    vector3 = bouncingVector(vector1, vector2);
+  }
   drawAll();
 }
 
@@ -116,7 +110,9 @@ void runMe() {
     vector3.p1 = vector2.p0;
     updateVector(vector3);
     findIntersection(vector1, vector2);
-    
+    if(isBounce) {
+      vector3 = bouncingVector(vector1, vector2);
+    }
     drawAll();
   }
 }
@@ -157,10 +153,10 @@ void drawAll() {
   stroke(arrow2.c);
   line(vector2.p0.x, vector2.p0.y, vector2.p1.x, vector2.p1.y);
   // vector 3's line
-  stroke(arrow3.c);
-  line(vector1.p0.x, vector1.p0.y, 
-        vector1.p0.x + vector3.vx, vector1.p0.y + vector3.vy);
-  
+  if(isBounce) {
+    stroke(arrow3.c);
+    line(vector3.p0.x, vector3.p0.y, vector3.p1.x, vector3.p1.y);
+  }
   //Draw arrows
   arrow1.x = vector1.p1.x;
   arrow1.y = vector1.p1.y;
@@ -170,14 +166,15 @@ void drawAll() {
   arrow2.y = vector2.p1.y;
   arrow2.rotation = atan2(vector2.vy, vector2.vx);
   arrow2.place();
-  arrow3.x = vector1.p0.x + round(vector3.vx);
-  arrow3.y = vector1.p0.y + round(vector3.vy);
-  arrow3.rotation = atan2(vector3.vy, vector3.vx);
-  arrow3.place();
-  
+  if(isBounce) {
+    arrow3.x = vector3.p0.x + vector3.vx;
+    arrow3.y = vector3.p0.y + vector3.vy;
+    arrow3.rotation = atan2(vector3.vy, vector3.vx);
+    arrow3.place();
+  }
   //Draw intersection
   noStroke();
-  fill(255, 0, 0, 178);
+  fill(35, 178);
   ellipse(ip.x, ip.y, 6, 6);
   
   //text
@@ -185,8 +182,10 @@ void drawAll() {
   text("v1", vector1.p1.x + 5, vector1.p1.y + 10);
   fill(arrow2.c);
   text("v2", vector2.p1.x + 5, vector2.p1.y + 10);
-  fill(arrow3.c);
-  text("v3", (vector3.p0.x + vector3.p1.x)/2 + 5, (vector3.p0.y + vector3.p1.y)/2);
+  if(isBounce) {
+    fill(arrow3.c);
+    text("v3", (vector3.p0.x + vector3.p1.x)/2 + 5, (vector3.p0.y + vector3.p1.y)/2);
+  }
   fill(35);
   text("interaction point", (ip.x + ip.x)/2 + 5, (ip.y + ip.y)/2 - 5);
 }
@@ -233,23 +232,57 @@ void findIntersection(Vector v0, Vector v1) {
   Vector v = new Vector();
   v.vx = v1.p0.x - v0.p0.x;
   v.vy = v1.p0.y - v0.p0.y;
-  float t;
+  Vector v_ = new Vector();
+  v_.vx = v0.p0.x - v1.p0.x;
+  v_.vy = v0.p0.y - v1.p0.y;
+  
+  float t, t_;
   if((v0.dx == v1.dx && v0.dy == v1.dy) ||
     (v0.dx == -v1.dx && v0.dy == -v1.dy)) {
-    t = 1000000;
+    t = 1000000; 
+    t_ = 1000000;
   }
   else {
     t = perP(v, v1) / perP(v0, v1);
+    t_ = perP(v_, v0) / perP(v1, v0);
   }
+  
+  if(t>=0 && t<=1 && t_>=0 && t_<=1) {
+    isBounce = true;
+  }
+  else {
+    isBounce = false;
+  }
+  
   //intersection
   ip = new Point();
-  ip.x = int(v0.p0.x + v0.vx*t);
-  ip.y = int(v0.p0.y + v0.vy*t);
+  ip.x = v0.p0.x + v0.vx*t;
+  ip.y = v0.p0.y + v0.vy*t;
 }
 
 //calculate perp  product of 2 vectors
 float perP(Vector v0, Vector v1) {
   return v0.vx*v1.vy - v0.vy*v1.vx;
+}
+
+Vector bouncingVector(Vector v0, Vector v1) {
+  //projection of v0 on v1
+  Vector proj1 = projectVector(v0, v1.dx, v1.dy);
+  //projection of v0 v1 normal
+  Vector proj2 = projectVector(v0, v1.lx/v1.length, v1.ly/v1.length);
+  //reverse projecton on v1 normal
+  proj2.vx *= -1;
+  proj2.vy *= -1;
+  //add the projections
+  Vector proj = new Vector();
+  proj.p0.x = ip.x;
+  proj.p0.y = ip.y;
+  proj.vx = proj1.vx + proj2.vx;
+  proj.vy = proj1.vy + proj2.vy;
+  proj.p1.x = proj.p0.x + proj.vx;
+  proj.p1.y = proj.p0.y + proj.vy;
+  
+  return proj;
 }
 
 
