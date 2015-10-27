@@ -90,6 +90,11 @@
 <ul>
     
     
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
 
 </ul>
 
@@ -162,6 +167,11 @@
 <ul>
     
     
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
 
 </ul>
 
@@ -189,13 +199,13 @@
   <article class="post-content">
     <h1 id="dealing-with-multiple-vectors">여러 개의 백터 다루기 (Dealing with multiple vectors)</h1>
 
-<p>한 개의 벡터를 다루는 것은 재밌을 수 있을 것입니다. 그러나 실제 한 개의 벡터만 다루는 일을 별로 없고, 두세개 혹은 더 많은 수의 벡터들을 다룹니다. 그래서 다수의 벡터를 다루는 방법을 알아야 합니다. 그렇지 않으면 당신의 제어 밖으로 벗어난 벡터들과 싸우는 일은 매우 지루할 것입니다.</p>
+<p>한 개의 벡터를 다루는 것은 어렵지 않습니다. 그러나 실제 한 개의 벡터만 다루는 일을 별로 없고, 두세개 혹은 더 많은 수의 벡터들을 다룹니다. 그래서 다수의 벡터를 다루는 방법을 알아야 합니다. 그렇지 않으면 당신의 제어 밖으로 벗어난 벡터들과 싸우는 일은 매우 지루할 것입니다.</p>
 
 <p>무엇보다, 물체에 영향을 주는 벡터가 1개 이상인 일이 빈번합니다. 간단한 예가 중력입니다: 물체가 움직이고 있을 때, 동시에 중력은 오브젝트를 땅으로 끌어당기고 있습니다. 중력도 당연히 여타의 힘처럼 벡터로 선언할 수 있습니다(그것은 항상 땅 쪽으로 향하고 있고, 옆에서 보는 게임에서는 바로 아래 방향이 됩니다). 여기 2개의 벡터가 있고 그 결과 벡터를 구해야 오브젝트를 움직일 수 있습니다. 벡터를 더하기 위해서 벡터들의 vx, vy 속성을 각각 더합니다.</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">resultv</span> <span class="o">=</span> <span class="p">{};</span>
-<span class="n">resultv</span><span class="p">.</span><span class="n">vx</span> <span class="o">=</span> <span class="n">v1</span><span class="p">.</span><span class="n">vx</span> <span class="o">+</span> <span class="n">v2</span><span class="p">.</span><span class="n">vx</span><span class="p">;</span>
-<span class="n">resultv</span><span class="p">.</span><span class="n">vy</span> <span class="o">=</span> <span class="n">v1</span><span class="p">.</span><span class="n">vy</span> <span class="o">+</span> <span class="n">v2</span><span class="p">.</span><span class="n">vy</span><span class="p">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">resultv</span> <span class="o">=</span> <span class="o">{};</span>
+<span class="n">resultv</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
+<span class="n">resultv</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">+</span> <span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
 <p>그리고 보다 많은 벡터가 있다면, 같은 방법으로 벡터들을 더하면 됩니다.</p>
 
@@ -213,7 +223,7 @@
 
 <p>가끔식 2개의 벡터가 어떤 방향을 향하고 있는지 알면 유용합니다, 벡터가 같은 방향으로 오브젝트를 보내고 있는지 아니면 하나는 동쪽으로 다른 하나는 서쪽으로 향하고 있는지 알면 말입니다.</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">dp</span> <span class="o">=</span> <span class="n">v1</span><span class="p">.</span><span class="n">vx</span> <span class="o">*</span> <span class="n">v2</span><span class="p">.</span><span class="n">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="p">.</span><span class="n">vy</span> <span class="o">*</span> <span class="n">v2</span><span class="p">.</span><span class="n">vy</span><span class="p">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">dp</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
 <p>우리는 두 벡터의 vx와 vy 속성끼리 곱한 다음 결과를 더합니다. 이 변수 dp를 ‘벡터 v1과 v2의 내적’이라고 부릅니다. dp는 벡터가 아니고 단지 숫자 입니다. 이 값이 양수이면 2개의 벡터는 같은 방향을 향하고 있고, 음수이면 서로 반대방향을 향하고 있는 것입니다.</p>
 
@@ -255,8 +265,8 @@ A·(B+C) = A·B + A·C
 
 <p>벡터 v2 에 투영한 벡터 v1의 투영벡터를 계산하기 :</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">proj</span><span class="p">.</span><span class="n">vx</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">*</span> <span class="n">v2</span><span class="p">.</span><span class="n">dx</span><span class="p">;</span>
-<span class="n">proj</span><span class="p">.</span><span class="n">vy</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">*</span> <span class="n">v2</span><span class="p">.</span><span class="n">dy</span><span class="p">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">proj</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span>
+<span class="n">proj</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span></code></pre></div>
 
 <p>투영 또한 벡터이고, 이것을 구하기 위해서는 두 벡터의 내적과 벡터 v2의 단위 벡터(dx/dy)를 곱합니다.</p>
 

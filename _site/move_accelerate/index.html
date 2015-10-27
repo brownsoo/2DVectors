@@ -90,6 +90,11 @@
 <ul>
     
     
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
 
 </ul>
 
@@ -162,6 +167,11 @@
 <ul>
     
     
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
 
 </ul>
 
@@ -199,8 +209,8 @@
 
 <p>먼저 (벡터를 확장시킨) 오브젝트를 선언합니다.</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">myOb</span> <span class="o">=</span> <span class="o">{};</span>
-<span class="n">myOb</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="o">{</span><span class="n">x</span><span class="o">:</span><span class="mi">100</span><span class="o">,</span> <span class="n">y</span><span class="o">:</span><span class="mi">150</span><span class="o">};</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">myOb</span> <span class="o">=</span> <span class="o">{};</span>
+<span class="n">myOb</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">100</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">150</span><span class="o">};</span>
 <span class="n">myOb</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
 <span class="n">myOb</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span></code></pre></div>
 
@@ -219,9 +229,9 @@
 
 <p>updateVector 함수를 다시 살펴보면, 새로운 좌표로 끝점 p<sub>1</sub>을 찾는 방법을 볼 수 있습니다 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">var</span> <span class="n">thisTime</span> <span class="o">=</span> <span class="n">millis</span><span class="o">();</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">var</span> <span class="n">thisTime</span> <span class="o">=</span> <span class="n">millis</span><span class="o">();</span>
 <span class="n">var</span> <span class="n">time</span> <span class="o">=</span> <span class="o">(</span><span class="n">thisTime</span><span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">lastTime</span><span class="o">)/</span><span class="mi">1000</span><span class="n">f</span><span class="o">*</span><span class="n">scale</span><span class="o">;</span>
-<span class="n">v</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Point</span><span class="o">();</span>
+<span class="n">v</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Point</span><span class="o">();</span>
 <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">+</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">time</span><span class="o">;</span>
 <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">+</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">time</span><span class="o">;</span>
 <span class="n">v</span><span class="o">.</span><span class="na">lastTime</span> <span class="o">=</span> <span class="n">thisTime</span><span class="o">;</span></code></pre></div>
@@ -234,7 +244,7 @@
 
 <p>“그게 어떻다는 거지?” 궁금할 것입니다. 여전히 작동되고, 좌표들도 계산되어 지고, 무비클립들 역시 잘 움직입니다. 그러나 우리는 더이상 우리가 만든 움직임을 컨트롤 할 수 없습니다. 일정시간 후에 오브젝트가 어디에 있는지, 정확히 어떤 속도로 움직이는지 우리는 결코 확신할 수 없습니다. </p>
 
-<p>또한, 만약 하드웨어적인 문제로 프레임 레이트가 50% 떨어져 낮은 프레임 속도에서 플래시 게임을 재생한 사람들은 (거의) 올바른 프레임 속도에서 재생한 사람들보다 큰 잇점을 갖습니다. 이것은 플래시 게임에서 일반적인 부정 방법으로, 여러분은 쉽게 무비를 느리게 할 수 있어서 어떤 식으로든 게임에서 쉽게 이길 수 있습니다.</p>
+<p>또한, 만약 하드웨어적인 문제로 프레임 레이트가 50% 떨어져 낮은 프레임 속도에서 플래시 게임을 재생한 사람들은 (거의) 올바른 프레임 속도에서 재생한 사람들보다 큰 잇점을 갖습니다. 이것은 플래시 게임에서 일반적인 부정 방법으로, 누구든 쉽게 무비를 느리게 할 수 있어서 게임에서 쉽게 이길 수 있습니다.</p>
 
 <p>이 과정의 해결책은 계산을 프레임 수를 기준으로 하지 말고, 실제 시간을 기준으로 하는 것입니다. 프레임 기반 게임에서 속도 vx=3을 선언하는 것은 프로그램이 코드를 실행할 수 있는 기회를 얻는 매시간마다 오브젝트를 3 픽셀씩 움직일 것임을 의미합니다. 시간 기반 게임에서 vx=3을 선언하는 것은 오브젝트가 매초마다 3픽셀씩 움직일 것임을 의미합니다. 시간 기반 게임에서 프레임 레이트가 떨어지는 것 때문에 알 수 없는 결과를 만들지 않습니다. 1초 뒤에, 10초 뒤에 또는 1시간 뒤에 오브젝트가 어디에 있을지 정확히 알 수 있습니다. </p>
 
@@ -242,19 +252,19 @@
 
 <p>우리는 함수를 이용해 시간을 알아 낼 수 있습니다.(예: Processing에서 millis, 플래시에서 getTimer를 사용)</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">var</span> <span class="n">thisTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
-<span class="n">var</span> <span class="n">time</span> <span class="o">=</span> <span class="p">(</span><span class="n">thisTime</span><span class="o">-</span><span class="n">v</span><span class="p">.</span><span class="n">lastTime</span><span class="p">)</span><span class="o">/</span><span class="mf">1000f</span><span class="o">*</span><span class="n">scale</span><span class="p">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">thisTime</span> <span class="o">=</span> <span class="n">millis</span><span class="o">();</span>
+<span class="kt">int</span> <span class="n">time</span> <span class="o">=</span> <span class="o">(</span><span class="n">thisTime</span><span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">lastTime</span><span class="o">)/</span><span class="mi">1000</span><span class="n">f</span><span class="o">*</span><span class="n">scale</span><span class="o">;</span></code></pre></div>
 
 <p>millis 함수는 프로세싱 무비가 시작한 시점으로부터 지난 시간을 1000분의 1초 단위로 반환합니다. 움직임 연산에서 우리는 마지막 계산한 시간을 저장해서 현재시간에서 그 시간을 빼줍니다. 그리고 시간이 밀리초로 계산되었기 때문에 초 단위의 시간을 얻기위해 우리는 1000으로 나눠야 합니다.
 다만 예제에서는 그렇게 하면 실질적으로 값이 매우 작아져서 그리드 스케일 만큼 곱했습니다.</p>
 
 <blockquote>
-  <p>플래시의 getTimer 함수는 AS3를 실행하는 경우와 AS2, AS1 을 실행하는 경우 의미가 조금 다르다. AS2 이하를 실행할 때는 플래시 런타임이 시작한 시점부터 계산하고, AS3 의 경우 플래시 런타임 버추얼 머신(AVM2)이 시작한 시점부터 계산한다. <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/package.html#getTimer()">여기서</a> 확인할 수 있다.</p>
+  <p>플래시의 getTimer 함수는 java를 실행하는 경우와 AS2, AS1 을 실행하는 경우 의미가 조금 다르다. AS2 이하를 실행할 때는 플래시 런타임이 시작한 시점부터 계산하고, java 의 경우 플래시 런타임 버추얼 머신(AVM2)이 시작한 시점부터 계산한다. <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/package.html#getTimer()">여기서</a> 확인할 수 있다.</p>
 </blockquote>
 
 <p>그러면 끝점의 새로운 좌표는 소요된 시간을 이용해 계산되어 집니다 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">+</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">time</span><span class="o">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">time</span><span class="o">;</span></code></pre></div>
 
 <p>실제로 잘 작동하는지 살펴봅시다. 무비클립이 x=150, y=100 에 있고, vx 가 1 이라고 가정합니다. 프레임 레이트를 20으로 놓으면, 상황에 따라 변수 time은 50ms 또는 그 이상 일 것입니다. 시간이 50 ms 이라고 고정해보면, v.p1.x = v.p0.x + 0.05 식을 얻게 됩니다. 1초 동안 20번 움직임을 한 오브젝트는 20*0.05=1 픽셀 이동합니다. 이것이 정확하게 우리가 원하는 속도 vx 입니다. 이제 time이 500이면, 무비클립은 1초에 단지 두번 새 좌표가 계산되고 그려집니다. 그렇지만 최종 위치는 역시 2*0.5=1 픽셀입니다.</p>
 
@@ -273,15 +283,15 @@
 
 <p>그래서 시작 시점에서 오브젝트의 가속도 벡터를 0으로 설정합니다 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">myOb</span><span class="o">.</span><span class="na">ax</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">myOb</span><span class="o">.</span><span class="na">ax</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 <span class="n">myOb</span><span class="o">.</span><span class="na">ay</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span></code></pre></div>
 
 <p>이제 방향키가 눌러질 때마다, 가속도 벡터의 x 나 y 성분을 변경합니다. update 함수에서 가속도 벡터를 속도 벡터에 더합니다. 가속도 벡터를 사용할 때는 주의해야 하는데, 여러분이 속도를 제한하지 않으면 시간이 흘러 속력이 계속 계속 커질 것입니다.</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">ax</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">ax</span><span class="o">;</span>
 <span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">ay</span><span class="o">;</span></code></pre></div>
 
-<p>게다가 완전히 오브젝트를 멈추고자 한다면 속도 벡터를 0으로 선정하는 것으로는 부족함을 알아야 합니다. 가속도 벡터 또한 0 으로 설정해야 합니다. 그렇지 않으면 오브젝트는 움직임을 유지합니다.</p>
+<p>게다가 완전히 오브젝트를 멈추고자 한다면 속도 벡터를 0으로 선정하는 것으로는 부족합니다. 가속도 벡터 또한 0 으로 설정해야 합니다. 그렇지 않으면 오브젝트는 움직임을 유지합니다.</p>
 
 <p><br />
 <br />

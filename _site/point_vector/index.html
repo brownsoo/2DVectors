@@ -90,6 +90,11 @@
 <ul>
     
     
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
 
 </ul>
 
@@ -162,6 +167,11 @@
 <ul>
     
     
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
 
 </ul>
 
@@ -191,12 +201,12 @@
 
 <p>우리가 어떤 게임을 만들려고 할 때, 화면에 오브젝트를 위치시키고 움직여야 했을 것입니다. 이미 알다시피, 화면에서 오브젝트는 x, y 라는 2차원 좌표값을 갖고 있습니다. 그래서 여러분은 화면 상의 지점 p를 아래와 같이 선언할 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">p</span> <span class="o">=</span> <span class="p">{</span><span class="nl">x</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="mi">5</span><span class="p">};</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">10</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">5</span><span class="o">};</span></code></pre></div>
 
 <p>훌륭하죠, 1 줄로 “p” 라는 새 객체를 생성하고 선언 했을 뿐 아니라 “x”, “y” 2개의 속성도 부여했습니다. 화면 상의 어느 한 지점을 포인트(Point)라고 합니다. 아래와 같은 방법으로 각각의 속성을 접근할 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">p</span><span class="p">.</span><span class="n">x</span>
-<span class="n">p</span><span class="p">.</span><span class="n">y</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p</span><span class="o">.</span><span class="na">x</span>
+<span class="n">p</span><span class="o">.</span><span class="na">y</span></code></pre></div>
 
 <p>이제 포인트 객체 p 의 x 속성에 10을, y 속성에 5를 부여합니다. 그래픽 리소스를 만들어서 그 위치에 놓을 수 있을 것입니다.</p>
 
@@ -207,17 +217,17 @@
 
 <p>좀더 복잡한 내용으로 넘어가 봅시다. 2개의 포인트를 만듭니다.</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">p0</span> <span class="o">=</span> <span class="p">{</span><span class="nl">x</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="mi">5</span><span class="p">};</span>
-<span class="n">p1</span> <span class="o">=</span> <span class="p">{</span><span class="nl">x</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="mi">6</span><span class="p">};</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p0</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">10</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">5</span><span class="o">};</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">12</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">6</span><span class="o">};</span></code></pre></div>
 
 <p>여기서 우리는 자신도 모르게 이미 첫번째 벡터를 만들었습니다. 의아해 하지 않아도 됩니다. 벡터를 접한 사람들이라면 누구에게나 일어날 수 있는 지극히 당연한 반응입니다. 벡터는 “시작점”이라 부르는 포인트 p<sub>0</sub> 와 “끝점” 포인트 p<sub>1</sub>, 이렇게 2 개의 포인트로 만들어 집니다. 벡터는 방향성을 갖고 있음을 기억해야 합니다. 벡터 p<sub>0</sub>→p<sub>1</sub> 는 벡터 p1→p0 는 다릅니다. 이 2개의 벡터는 같은 길이와 같은 포인트를 갖고 있어서 매우 닮았지만 반대방향을 갖고 있기 때문에 같은 벡터라고 할 수 없습니다. </p>
 
 <p>우리가 처음 만든 것을 아래와 같이 선언합니다.</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">v</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nl">p0</span><span class="p">:{</span><span class="nl">x</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span>
-    <span class="nl">p1</span><span class="p">:{</span><span class="nl">x</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="mi">6</span><span class="p">}</span>
-<span class="p">};</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nl">p0:</span><span class="o">{</span><span class="nl">x:</span><span class="mi">10</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">5</span><span class="o">},</span>
+    <span class="nl">p1:</span><span class="o">{</span><span class="nl">x:</span><span class="mi">12</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">6</span><span class="o">}</span>
+<span class="o">};</span></code></pre></div>
 
 <p>그리고 포인트를 이용해 벡터 v를 좌표평면에 그릴 수도 있습니다.</p>
 
@@ -225,11 +235,11 @@
 
 <p>지금까지 너무 쉽지만 이게 끝이 아닙니다. 벡터 v는 시작점과 방향 속성으로도 정의될 수 있습니다. 잠시만요, 그렇다고 아직은 점 p<sub>1</sub>이 의미가 없다고 버려두진 마십시요. 나중에 사용될 것입니다. 그렇다면, 끝점 p<sub>1</sub> 없이 어떻게 벡터를 만들어 낼까요? 쉽습니다.</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">v</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nl">p0</span><span class="p">:{</span><span class="nl">x</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span>
-    <span class="nl">vx</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
-    <span class="nl">vy</span><span class="p">:</span><span class="mi">1</span>
-<span class="p">};</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nl">p0:</span><span class="o">{</span><span class="nl">x:</span><span class="mi">10</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">5</span><span class="o">},</span>
+    <span class="nl">vx:</span><span class="mi">2</span><span class="o">,</span>
+    <span class="nl">vy:</span><span class="mi">1</span>
+<span class="o">};</span></code></pre></div>
 
 <blockquote>
   <p>위치와 속도로 정의한 벡터의 기본 정의이다.</p>
@@ -241,21 +251,19 @@
   <p>여기서 vx, vy요소는 변화의 크기를 말한다. 결국 속도의 개념이다. </p>
 </blockquote>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">v</span><span class="p">.</span><span class="n">p1</span> <span class="o">=</span> <span class="p">{};</span>
-<span class="n">v</span><span class="p">.</span><span class="n">p1</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">vx</span><span class="p">;</span>
-<span class="n">v</span><span class="p">.</span><span class="n">p1</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">vy</span><span class="p">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="o">{};</span>
+<span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
+<span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
 <p>그리고 2개의 포인트로 벡터를 만들었다면, 언제든 벡터의 vx, vy요소를 알아낼 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">v</span><span class="p">.</span><span class="n">vx</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">p1</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">v</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-<span class="n">v</span><span class="p">.</span><span class="n">vy</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">p1</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">v</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">y</span><span class="p">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
+<span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">;</span></code></pre></div>
 
 <p>이로써, 우리가 어떤 벡터에 대해 얘기 할 때마다, 벡터는 2개의 포인트(p<sub>0</sub>, p<sub>1</sub>)을 갖고 있으며, 포인트 또한 x / y 좌표를 갖고 있고, 벡터도 vx / vy 요소가 있음을 알 것입니다.
-이 벡터는 “빠르기”, “속력”, “운동량”, “이동” 같이 비슷한 의미의 다양한 이름으로 불려집니다. 이런 이름들 때문에 혼란스러워하지 마세요. 단지 물체를 vx와 vy 방향으로 이동시킬 뿐입니다. 주의할 것은 단 하나, 벡터는 방향과 빠르기를 동시에 나타낸다는 것니다. 예를 들어 우리는 속력과 속도를 다르게 정의한다. 속력은 단지 빠르기만 나타낼 뿐이죠. 벡터는 속도를 표현하는 방식인 것입니다.</p>
+이 벡터는 “빠르기”, “속력”, “운동량”, “이동” 같이 비슷한 의미의 다양한 이름으로 불려집니다. 이런 이름들 때문에 혼란스러워하지 마세요. 단지 물체를 vx와 vy 방향으로 이동시킬 뿐입니다. </p>
 
-<blockquote>
-
-</blockquote>
+<p>주의할 것은 단 하나, 벡터는 방향과 빠르기를 동시에 나타낸다는 것니다. 예를 들어 우리는 속력과 속도를 다르게 정의합니다. 속력은 단지 빠르기만 나타낼 뿐이고, 속도는 빠르기와 방향을 나타냅니다. 벡터는 속도를 표현하는 방식인 것입니다.</p>
 
 <p><br />
 <br />

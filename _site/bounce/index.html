@@ -90,6 +90,11 @@
 <ul>
     
     
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
 
 </ul>
 
@@ -162,6 +167,11 @@
 <ul>
     
     
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
 
 </ul>
 
@@ -209,35 +219,35 @@
 <p>투영이 무엇이고 어떻게 구하는지 잊어버렸다면, chapter 3 를 살펴보십시요.
 v1 은 운동 벡터입니다. v2 는 벽(방해물) 벡터입니다. v2의 왼쪽 노말은 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">v2</span><span class="o">.</span><span class="na">lx</span> <span class="o">=</span> <span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v2</span><span class="o">.</span><span class="na">lx</span> <span class="o">=</span> <span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
 <span class="n">v2</span><span class="o">.</span><span class="na">ly</span> <span class="o">=</span> <span class="o">-</span><span class="n">v2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span></code></pre></div>
 
 <p>v1 과 v2 의 내적은 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">dp1</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">dp1</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
 <p>v2 에 대한 운동 벡터의 투영은 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">proj1</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">dp1</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">proj1</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">dp1</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span>
 <span class="n">proj1</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">dp1</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span></code></pre></div>
 
 <p>v1 과 v2 노말 사이의 내적은 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">dp2</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">lx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">ly</span><span class="o">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">dp2</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">lx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">ly</span><span class="o">;</span></code></pre></div>
 
 <p>v2 노말에 대한 운동 벡터의 투영은(단위벡터를 이용하기 위해 왼쪽 노말을 길이로 나눈 점을 유념하세요) :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">proj2</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">dp</span><span class="o">*(</span><span class="n">v2</span><span class="o">.</span><span class="na">lx</span><span class="o">/</span><span class="n">v2</span><span class="o">.</span><span class="na">len</span><span class="o">);</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">proj2</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">dp</span><span class="o">*(</span><span class="n">v2</span><span class="o">.</span><span class="na">lx</span><span class="o">/</span><span class="n">v2</span><span class="o">.</span><span class="na">len</span><span class="o">);</span>
 <span class="n">proj2</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">dp</span><span class="o">*(</span><span class="n">v2</span><span class="o">.</span><span class="na">ly</span><span class="o">/</span><span class="n">v2</span><span class="o">.</span><span class="na">len</span><span class="o">);</span></code></pre></div>
 
 <p>노말에 대한 투영을 반전시킵니다 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">proj2</span><span class="o">.</span><span class="na">vx</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">proj2</span><span class="o">.</span><span class="na">vx</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
 <span class="n">proj2</span><span class="o">.</span><span class="na">vy</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span></code></pre></div>
 
 <p>투영들을 더해서 새로운 운동벡터 구하기 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">v1</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">proj1</span><span class="o">.</span><span class="na">vx</span><span class="o">+</span><span class="n">proj2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v1</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">proj1</span><span class="o">.</span><span class="na">vx</span><span class="o">+</span><span class="n">proj2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
 <span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">proj1</span><span class="o">.</span><span class="na">vy</span><span class="o">+</span><span class="n">proj2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
 <p>이 예제에서 점들을 움직여 보고, 운동벡터가 어떻게 변하는지 봅시다 :</p>
@@ -255,12 +265,12 @@ v1 은 운동 벡터입니다. v2 는 벽(방해물) 벡터입니다. v2의 왼�
 
 <p>실생활에서도 마찰과 에너지 감소 때문에 오브젝트가 끝없이 움직일 수 없으며, 같은 방식으로 반동 또한 실제 완전하지 않습니다. 완전한 반동은 충돌 후 운동 벡터의 길이가 충돌 이전의 것과 정확히 같을 때 일어납니다. 반동력, 마찰력 이란 두 개 변수를 각 객체에 적용함으로써 반동에서 에너지 감소를 계산해 낼 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">ob</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="mf">0.99</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ob</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="mf">0.99</span><span class="o">;</span>
 <span class="n">ob</span><span class="o">.</span><span class="na">f</span> <span class="o">=</span> <span class="mf">0.99</span><span class="o">;</span></code></pre></div>
 
 <p>새로운 운동 벡터를 구할 때 이제 우리는 두 물체의 b 와 f 를 각 투영에 곱할 것입니다. 반동력은 벽의 노말에 대한 투영에 영향을 주며, 마찰력은 벽 벡터의 투영에 영향을 줍니다.</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">v1</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">f</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">f</span><span class="o">*</span><span class="n">proj1</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">b</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">b</span><span class="o">*</span><span class="n">proj2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v1</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">f</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">f</span><span class="o">*</span><span class="n">proj1</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">b</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">b</span><span class="o">*</span><span class="n">proj2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
 <span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">f</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">f</span><span class="o">*</span><span class="n">proj1</span><span class="o">.</span><span class="na">vy</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">b</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">b</span><span class="o">*</span><span class="n">proj2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
 <p>물체의 b 와 f 가 1 이라면 어떨까? 그러면 완전한 반동이 일어납니다 - 충돌에서 아무것도 잃지 않고 운동은 같은 세기로 계속 유지됩니다. 예로 움직이는 물체나 벽이 반동력이 없다면(b=0) 충돌 후 운동 벡터는 벽과 평행하고 물체는 벽에 붙게 됩니다. 늪 또는 풀로 날아가는 공을 상상해 보십시요.</p>
@@ -280,7 +290,7 @@ v1 은 운동 벡터입니다. v2 는 벽(방해물) 벡터입니다. v2의 왼�
   <p>아래 그림으로 다시 설명하면, 새로운 위치 p1은 반동하는 벡터의 (1-t) 시간만큼 진행된 위치이다.</p>
 </blockquote>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">p1</span> <span class="o">=</span> <span class="p">{</span><span class="nl">x</span><span class="p">:</span> <span class="n">ip</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">newV</span><span class="p">.</span><span class="n">vx</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)),</span> <span class="nl">y</span><span class="p">:</span> <span class="n">ip</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="n">newV</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">))}</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p1</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span> <span class="n">ip</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="o">(</span><span class="n">newV</span><span class="o">.</span><span class="na">vx</span> <span class="o">*</span> <span class="o">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="o">)),</span> <span class="nl">y:</span> <span class="n">ip</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="o">(</span><span class="n">newV</span><span class="o">.</span><span class="na">y</span> <span class="o">*</span> <span class="o">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="o">))}</span></code></pre></div>
 
 <p><img src="../img/tut06_2.png" alt="Alt Real Bounce on Wall vector" /></p>
 

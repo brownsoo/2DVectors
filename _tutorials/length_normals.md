@@ -9,7 +9,7 @@ number: 1002
 
 2개의 포인트와 vx/vy 요소가 있어서 모든 벡터를 다루기에 충분히 만족스럽지만, 벡터는 더 유용한 속성들을 가지고 있습니다. 예를 들어, 벡터는 길이라는 속성이 있습니다. 벡터의 길이는 정확히 시작점과 끝점 사이의 거리입니다. 우리는 이미 벡터의 vx/vy 요소를 알고 있기 때문에, 매우 쉽게 그 길이를 계산할 수 있습니다.
 
-{% highlight cpp %}
+{% highlight java %}
 v.length = Math.sqrt(v.vx * v.vx + v.vy * v.vy);
 {% endhighlight %}
 
@@ -18,7 +18,7 @@ v.length = Math.sqrt(v.vx * v.vx + v.vy * v.vy);
 벡터를 사용하면 각도, 사인 그리고 다른 어려운 수학적인 것들을 다룰 필요가 없기 때문에 매우 좋습니다. 
 그런데 저는 많은 사람들이 여전히 각도를 좋아한다고 알고 있으며, 그 사람들을 위해 우리는 어떤 벡터도 각도/길이 형식으로 변환할 줄 알아야 합니다. 다행스럽게도 변환은 어렵지 않습니다. (옙, 모든게 쉽습니다)
 
-{% highlight cpp %}  
+{% highlight java %}  
 angle = Math.atan2(v.vy, v.vx); 
 {% endhighlight %}
 
@@ -26,16 +26,16 @@ angle = Math.atan2(v.vy, v.vx);
 
 보통 물리적 움직임을 계산하는 데 각도를 라디안으로 처리하기가 편리합니다. 그런데 필요에 따라 라디안을 360도계 각으로 바꿀 필요가 있습니다.
 
-{% highlight cpp %}
+{% highlight java %}
 angleDegree = angle * 180 / Math.PI;
 {% endhighlight %}
 
 >플래시에서 심볼의 rotation 값은 360계 각이다. 라디안은 주로 삼각함수 계산에서 사용하기 때문에 물리계산에서는 절대적으로 필요하다.
 
 때때로 각도와 길이를 알고 있을 때 이들 정보만으로 벡터를 만들어야 할 때도 있을 것입니다. 그 방법을 모른다면 걱정할 필요 없습니다. 
-많이 복잡하지 않습니다.(이번엔 쉽다라는 말은 사용하지 않았어요)
+많이 복잡하지 않습니다.
 
-{% highlight cpp %}  
+{% highlight java %}  
 v.vx = v.len * Math.cos(angle);
 v.vy = v.len * Math.sin(angle);
 {% endhighlight %}
@@ -55,7 +55,7 @@ v.vy = v.len * Math.sin(angle);
 놀랍겠지만 모든 벡터가 표준은 아닙니다. 다시 말해, 일부는 평균적이고 일부는 독특하듯이 사람들과 많이 닮았습니다. 
 사람들과 다른 것은 벡터는 평균화를 시킬 수 있습니다. 평균화를 시키면, 같은 방향이면서 길이는 1인 단위 벡터를 구할 수 있습니다.
 
-{% highlight cpp %}  
+{% highlight java %}  
 v.dx = v.vx / v.len;
 v.dy = v.vy / v.len; 
 {% endhighlight %}
@@ -77,7 +77,7 @@ v.dy = v.vy / v.len;
 
 오른쪽 방향과 왼쪽 방향 노멀은 이렇게 구할 수 있습니다.
 
-{% highlight cpp %}  
+{% highlight java %}  
 v.rx = -v.vy;
 v.ry = v.vx; 
 v.lx = v.vy;

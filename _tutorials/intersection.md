@@ -13,7 +13,7 @@ number: 2002
 
 먼저 그들이 교차하지 않는 경우를 봅시다. 벡터들이 평행하면 교차할 수 없습니다. 그리고 벡터의 단위벡터들이 같다면 그들은 평행합니다(같은 방향일 필요는 없으며, 반대 방향이여도 됩니다):
 
-{% highlight as3 %}  
+{% highlight java %}  
 (v1.dx==v2.dx and v1.dy==v2.dy)
 (v1.dx==-v2.dx and v1.dy==-v2.dy)
 {% endhighlight %}
@@ -24,35 +24,36 @@ number: 2002
 
 교차점(intersection point)은 이렇게 계산하여 구할 수 있습니다:
 
-{% highlight as3 %}  
+{% highlight java %}  
 v3 = {vx: v2.p0.x - v1.p0.x, vy: v2.p0.y - v1.p0.y};
-var t = perP(v3, v2) / perP(v1, v2);
+float t = perP(v3, v2) / perP(v1, v2);
 ip={};
 ip.x = v1.p0.x + v1.vx*t;
 ip.y = v1.p0.y + v1.vy*t;
 
-function perP(va, vb){
-    return va.vx*vb.vy - va.vy*vb.vx;
+//calculate perp product of 2 vectors
+float perP(Vector v0, Vector v1) {
+  return v0.vx*v1.vy - v0.vy*v1.vx;
 }
 {% endhighlight %}
 
 먼저 시작점 사이의 벡터 v3를 구합니다. 여기서 사용된 함수는 두 벡터의 Perp product을 구합니다. Perp product는 첫번째 벡터 대신에 그 노말을 사용한다는 점만 빼고 내적과 비슷합니다. 내적은 다음과 같습니다:
 
-{% highlight as3 %}  
+{% highlight java %}  
 dp = v1.vx*v2.vx + v1.vy*v2.vy;
 
 {% endhighlight %}
 
 그리고 노말은 이렇습니다 :
 
-{% highlight as3 %}  
+{% highlight java %}  
 v.rx = -v.vy;
 v.ry = v.vx;
 {% endhighlight %}
 
 그래서 v1을 노말로 변경하면 다음 식을 얻게 됩니다 :
 
-{% highlight as3 %}  
+{% highlight java %}  
 pp = -v1.vy*v2.vx + v1.vx*v2.vy;
 {% endhighlight %}
 
@@ -62,9 +63,9 @@ pp = -v1.vy*v2.vx + v1.vx*v2.vy;
 
 교차점이 어떤 벡터 위에 있는지 알고 싶다면 물론, v2의 t값 또한 알아내야 합니다:
 
-{% highlight cpp %}  
+{% highlight java %}  
 v3 = {vx:v1.p0.x-v2.p0.x, vy:v1.p0.y-v2.p0.y};
-var t = perP(v3, v1)/perP(v2, v1);
+float t = perP(v3, v1)/perP(v2, v1);
 {% endhighlight %}
 
 이 예제에서 점들을 움직여 보고 어디서 교차하는지 보세요:

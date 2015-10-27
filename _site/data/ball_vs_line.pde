@@ -1,8 +1,8 @@
 /**
- * Real Bounce 
+ * Ball vs Line 
  * by hyonsoo han
  *
- * Shows vector's real bounce.
+ * Simulates ball's real bounce inside the line box.
  * Checkout : brownsoo.github.io/vectors
  */
 
@@ -13,11 +13,9 @@ final int maxV = 10;
 
 boolean dragging = false;
 Vector[] vectors;
-Point ip;//intersection point
 Dragger[] draggers;
 Arrow[] arrows;
 float gravity = 0.5;
-float t2b = 1000000;//time to collide something big
 // Object to move
 Ball ball;
 //reset button
@@ -31,20 +29,21 @@ void setup() {
   } catch(Exception e){}
   
   //create object
-  ball = new Ball(0xffFF5252, 12);
-  ball.p0 = new Point(150, 100);
-  ball.vx = 1;
-  ball.vy = 0;
+  ball = new Ball(0xffFF5252, 20);
+  ball.p0 = new Point(150, 120);
+  ball.vx = 0;
+  ball.vy = -5;
   ball.airf = 0.99;
-  ball.b = 0.8;
-  ball.f = 0.8;
+  ball.b = 1;
+  ball.f = 1;
+  ball.lastTime = millis();
   
   //create wall vectors
   vectors = new Vector[4];
-  vectors[0] = new Vector(new Point(50, 50), new Point(250, 50), 1, 1);
-  vectors[1] = new Vector(new Point(250, 50), new Point(250, 200), 1, 1);
-  vectors[2] = new Vector(new Point(250, 200), new Point(50, 200), 1, 1);
-  vectors[3] = new Vector(new Point(50, 200), new Point(50, 50), 1, 1);
+  vectors[0] = new Vector(new Point(250, 50), new Point(50, 50), 1, 1);
+  vectors[1] = new Vector(new Point(250, 200), new Point(250, 50), 1, 1);
+  vectors[2] = new Vector(new Point(50, 200), new Point(250, 200), 1, 1);
+  vectors[3] = new Vector(new Point(50, 50), new Point(50, 200), 1, 1);
   
   //calculate all parameters for the vector and draw it
   for(int i=0; i<vectors.length; i++) {
@@ -73,13 +72,13 @@ class OnButtonClick implements ButtonCallback {
   void onClick(SimpleButton b) {
     //println(b.label + " click");
     ball.p0.x = 150;
-    ball.p0.y = 100;
-    ball.vx = 1;
-    ball.vy = 0;
-    vectors[0] = new Vector(new Point(50, 50), new Point(250, 50), 1, 1);
-    vectors[1] = new Vector(new Point(250, 50), new Point(250, 200), 1, 1);
-    vectors[2] = new Vector(new Point(250, 200), new Point(50, 200), 1, 1);
-    vectors[3] = new Vector(new Point(50, 200), new Point(50, 50), 1, 1);
+    ball.p0.y = 120;
+    ball.vx = 0;
+    ball.vy = -5;
+    vectors[0] = new Vector(new Point(250, 50), new Point(50, 50), 1, 1);
+    vectors[1] = new Vector(new Point(250, 200), new Point(250, 50), 1, 1);
+    vectors[2] = new Vector(new Point(50, 200), new Point(250, 200), 1, 1);
+    vectors[3] = new Vector(new Point(50, 50), new Point(50, 200), 1, 1);
     //calculate all parameters for the vector and draw it
     for(int i=0; i<vectors.length; i++) {
       updateVector(vectors[i]);
@@ -142,36 +141,21 @@ void runMe() {
   ball.vy = min(maxV, max(-maxV, ball.vy));
   //update the ball vector parameters
   updateBall(ball);
-  //time to collide something big
-  t2b = 1000000;
-  //no collision yet
-  Vector bouncedWall = null;
-  //find collisions with walls
+  //check the walls for collisions
   for(int i=0; i<4; i++) {
-    float t = findIntersection(ball, vectors[i]);
-    //if this has collision, save it
-    if(t < t2b) {
-      //which wall to collide with
-      bouncedWall = vectors[i];
-      //save time
-      t2b = t;
+    float pen = ball.r - findAxesHeight(ball, vectors[i]);
+    //if we have hit the wall
+    if(pen >= 0) {
+      //move object away from the wall
+      ball.p1.x += vectors[i].lx * pen;
+      ball.p1.y += vectors[i].ly * pen;
+      //change movement
+      Vector vb = bouncingBall(ball, vectors[i]);
+      ball.vx = vb.vx;
+      ball.vy = vb.vy;
     }
   }
-  //we have colliosion
-  if(bouncedWall != null) {
-    //set end point to intersection point
-    ball.p1.x = ball.p0.x + ball.vx * t2b;
-    ball.p1.y = ball.p0.y + ball.vy * t2b;
-    //bounce
-    Vector newV = bouncingVector(ball, bouncedWall);
-    ball.vx = newV.vx;
-    ball.vy = newV.vy;
-    //add new direction to end point
-    ball.p1.x += ball.vx * (1 - t2b);
-    ball.p1.y += ball.vy * (1 - t2b);
-    //save the time
-    t2b = 1 - t2b;
-  }
+  
   //reset object to other side if gone out of stage
   if (ball.p1.x > width) {
     ball.p1.x -= width;
@@ -258,49 +242,45 @@ void updateVector(Vector v) {
     v.dx = 0;
     v.dy = 0;
   }
+  /* Care this */
   //right hand normal
-  v.rx = -v.vy;
-  v.ry = v.vx;
+  v.rx = -v.dy;
+  v.ry = v.dx;
   //left hand normal
-  v.lx = v.vy;
-  v.ly = -v.vx;
+  v.lx = v.dy;
+  v.ly = -v.dx;
 }
 
 //function to find all parameters for the ball vector 
 //with using start point and vx/vy, time
-void updateBall(Ball v) {
+void updateBall(Ball b) {
   //find time passed from last update
   int thisTime = millis();
-  float time = (thisTime - v.lastTime)/1000f*scale;
+  float time = (thisTime - b.lastTime)/1000f*scale;
   //we use time, not frames to move so multiply movement vector with time passed
-  v.vx *= time;
-  v.vy *= time;
+  b.vx *= time;
+  b.vy *= time;
   //add gravity, also based on time
-  v.vy = v.vy + gravity * time;
+  b.vy = b.vy + gravity * time;
   //find end point coordinates
-  v.p1 = new Point();//new creation for changing point.
-  v.p1.x = v.p0.x + v.vx;
-  v.p1.y = v.p0.y + v.vy;
+  b.p1 = new Point();//new creation for changing point.
+  b.p1.x = b.p0.x + b.vx;
+  b.p1.y = b.p0.y + b.vy;
   //length of vector
-  v.length = sqrt(v.vx*v.vx+v.vy*v.vy);
+  b.length = sqrt(b.vx*b.vx + b.vy*b.vy);
   //normalized unit-sized components
-  if (v.length > 0) {
-    v.dx = v.vx/v.length;
-    v.dy = v.vy/v.length;
-  } else {
-    v.dx = 0;
-    v.dy = 0;
-  }
+  b.dx = b.vx/b.length;
+  b.dy = b.vy/b.length;
   //right hand normal
-  v.rx = -v.vy;
-  v.ry = v.vx;
+  b.rx = -b.vy;
+  b.ry = b.vx;
   //left hand normal
-  v.lx = v.vy;
-  v.ly = -v.vx;
+  b.lx = b.vy;
+  b.ly = -b.vx;
   //save the current time
-  v.lastTime = thisTime;
+  b.lastTime = thisTime;
   //save time passed
-  v.timeFrame = time;
+  b.timeFrame = time;
 }
 
 
@@ -315,87 +295,58 @@ Vector projectVector(Vector v1, float dx, float dy) {
   return proj;
 }
 
-//find intersection point of 2 vectors
-float findIntersection(Vector v0, Vector v1) {
-  //vector between starting points
-  Vector v = new Vector();
-  v.vx = v1.p0.x - v0.p0.x;
-  v.vy = v1.p0.y - v0.p0.y;
-  Vector v_ = new Vector();
-  v_.vx = v0.p0.x - v1.p0.x;
-  v_.vy = v0.p0.y - v1.p0.y;
-  
-  float t, t_;
-  if((v0.dx == v1.dx && v0.dy == v1.dy) ||
-    (v0.dx == -v1.dx && v0.dy == -v1.dy)) {
-    return 1000000;
-  }
-  else {
-    t = perP(v, v1) / perP(v0, v1);
-    t_ = perP(v_, v0) / perP(v1, v0);
-  }
-  
-  if(t>=0 && t<=1 && t_>=0 && t_<=1) {
-    return t;
-  }
-  else {
-    return 1000000;
-  }
+//find the axes height of v0(ball) on v1(wall)
+float findAxesHeight(Vector v0, Vector v1) {
+  //vector between center of ball to ending point of wall
+  Vector v3 = new Vector();
+  v3.vx = v0.p1.x - v1.p0.x;
+  v3.vy = v0.p1.y - v1.p0.y;
+  //project this vector on the normal of the wall
+  Vector v = projectVector(v3, v1.lx, v1.ly);
+  //find length of projection
+  v.length = sqrt(v.vx*v.vx + v.vy*v.vy);
+  return v.length;
 }
 
-//calculate perp  product of 2 vectors
-float perP(Vector v0, Vector v1) {
-  return v0.vx*v1.vy - v0.vy*v1.vx;
-}
-
-Vector bouncingVector(Vector v0, Vector v1) {
-  //projection of v0 on v1
-  Vector proj1 = projectVector(v0, v1.dx, v1.dy);
-  //projection of v0 on v1 normal
-  Vector proj2 = projectVector(v0, v1.lx/v1.length, v1.ly/v1.length);
+// find new vector bouncing from v1
+Vector bouncingBall(Ball b, Vector v1) {
+  //projection of b on v1
+  Vector proj1 = projectVector(b, v1.dx, v1.dy);
+  //projection of b on v1 normal
+  Vector proj2 = projectVector(b, v1.lx, v1.ly);//lx, ly is unit vector's normal
   //reverse projecton on v1 normal
-  proj2.vx *= -1;
-  proj2.vy *= -1;
+  proj2.length = sqrt(proj2.vx*proj2.vx + proj2.vy*proj2.vy);
+  proj2.vx = v1.lx * proj2.length;
+  proj2.vy = v1.ly * proj2.length;
   //add the projections
   Vector proj = new Vector();
-  proj.vx = v0.f*v1.f*proj1.vx + v0.b*v1.b*proj2.vx;
-  proj.vy = v0.f*v1.f*proj1.vy + v0.b*v1.b*proj2.vy;
+  proj.vx = b.f*v1.f*proj1.vx + b.b*v1.b*proj2.vx;
+  proj.vy = b.f*v1.f*proj1.vy + b.b*v1.b*proj2.vy;
   
   return proj;
 }
 
 
-//function to round up numbers to x.xx format
-//has nothing to do with vectors, only to show nice numbers in the example
-String roundMe(float num) {
-  String rnum = str(num);
-  String[] nums = split(rnum, ".");
-  if (nums[1] == null) {
-    nums[1] = "00";
-  }
-  return nums[0]+"." + nums[1].substring(0, min(nums[1].length(), 2));
-  
-}
-
-
-
 /** Ball Graphic */
 class Ball extends Vector {
- public float size = 10;//radian
+ public float r = 10; //radius
  public int c = 0;
  public int lastTime = 0;
  public float timeFrame = 0;
  
- Ball(int color0, float size0){
+ Ball(int color0, float radius0){
    super();
    this.c = color0;
-   this.size = size0 / 2;
+   this.r = radius0;
  }
  
  public void place() {
-   fill(c);
+   fill(0);
    noStroke();
-   ellipse(p1.x, p1.y, size, size);
+   ellipse(p1.x, p1.y, 4, 4);
+   noFill();
+   stroke(c);
+   ellipse(p1.x, p1.y, r*2, r*2);
  }
 }
 

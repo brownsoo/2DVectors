@@ -90,6 +90,11 @@
 <ul>
     
     
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
 
 </ul>
 
@@ -162,6 +167,11 @@
 <ul>
     
     
+    <li class="section">The ball</li>
+    <li>
+        <a href="/vectors/ball_vs_line/">Ball vs Line</a>
+    </li>
+    
 
 </ul>
 
@@ -195,7 +205,7 @@
 
 <p>먼저 그들이 교차하지 않는 경우를 봅시다. 벡터들이 평행하면 교차할 수 없습니다. 그리고 벡터의 단위벡터들이 같다면 그들은 평행합니다(같은 방향일 필요는 없으며, 반대 방향이여도 됩니다):</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="o">(</span><span class="n">v1</span><span class="o">.</span><span class="na">dx</span><span class="o">==</span><span class="n">v2</span><span class="o">.</span><span class="na">dx</span> <span class="n">and</span> <span class="n">v1</span><span class="o">.</span><span class="na">dy</span><span class="o">==</span><span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">)</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">(</span><span class="n">v1</span><span class="o">.</span><span class="na">dx</span><span class="o">==</span><span class="n">v2</span><span class="o">.</span><span class="na">dx</span> <span class="n">and</span> <span class="n">v1</span><span class="o">.</span><span class="na">dy</span><span class="o">==</span><span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">)</span>
 <span class="o">(</span><span class="n">v1</span><span class="o">.</span><span class="na">dx</span><span class="o">==-</span><span class="n">v2</span><span class="o">.</span><span class="na">dx</span> <span class="n">and</span> <span class="n">v1</span><span class="o">.</span><span class="na">dy</span><span class="o">==-</span><span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">)</span></code></pre></div>
 
 <p>벡터들이 평행하지 않으면 언젠가는 교차합니다. 초록선은 시작점 p0를 갖고 있는 운동 벡터이고, 빨간선은 시작점 p0 를 갖고 있는 벽입니다. 파란색은 시작점 간의 벡터입니다:</p>
@@ -204,28 +214,29 @@
 
 <p>교차점(intersection point)은 이렇게 계산하여 구할 수 있습니다:</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">v3</span> <span class="o">=</span> <span class="o">{</span><span class="n">vx</span><span class="o">:</span> <span class="n">v2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="n">vy</span><span class="o">:</span> <span class="n">v2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">};</span>
-<span class="n">var</span> <span class="n">t</span> <span class="o">=</span> <span class="n">perP</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">v2</span><span class="o">)</span> <span class="o">/</span> <span class="n">perP</span><span class="o">(</span><span class="n">v1</span><span class="o">,</span> <span class="n">v2</span><span class="o">);</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v3</span> <span class="o">=</span> <span class="o">{</span><span class="nl">vx:</span> <span class="n">v2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="nl">vy:</span> <span class="n">v2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">};</span>
+<span class="kt">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">perP</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">v2</span><span class="o">)</span> <span class="o">/</span> <span class="n">perP</span><span class="o">(</span><span class="n">v1</span><span class="o">,</span> <span class="n">v2</span><span class="o">);</span>
 <span class="n">ip</span><span class="o">={};</span>
 <span class="n">ip</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">t</span><span class="o">;</span>
 <span class="n">ip</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">t</span><span class="o">;</span>
 
-<span class="kd">function </span><span class="nf">perP</span><span class="o">(</span><span class="err">va,</span> <span class="err">vb</span><span class="o">){</span>
-    <span class="k">return</span> <span class="n">va</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">vb</span><span class="o">.</span><span class="na">vy</span> <span class="o">-</span> <span class="n">va</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">vb</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
+<span class="c1">//calculate perp product of 2 vectors</span>
+<span class="kt">float</span> <span class="nf">perP</span><span class="o">(</span><span class="n">Vector</span> <span class="n">v0</span><span class="o">,</span> <span class="n">Vector</span> <span class="n">v1</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">v0</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">-</span> <span class="n">v0</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
 <span class="o">}</span></code></pre></div>
 
 <p>먼저 시작점 사이의 벡터 v3를 구합니다. 여기서 사용된 함수는 두 벡터의 Perp product을 구합니다. Perp product는 첫번째 벡터 대신에 그 노말을 사용한다는 점만 빼고 내적과 비슷합니다. 내적은 다음과 같습니다:</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">dp</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">dp</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
 <p>그리고 노말은 이렇습니다 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">v</span><span class="o">.</span><span class="na">rx</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">rx</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
 <span class="n">v</span><span class="o">.</span><span class="na">ry</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span></code></pre></div>
 
 <p>그래서 v1을 노말로 변경하면 다음 식을 얻게 됩니다 :</p>
 
-<div class="highlight"><pre><code class="language-as3" data-lang="as3"><span class="n">pp</span> <span class="o">=</span> <span class="o">-</span><span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">pp</span> <span class="o">=</span> <span class="o">-</span><span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
 <p>이는 위 함수가 찾는 값입니다.</p>
 
@@ -233,8 +244,8 @@
 
 <p>교차점이 어떤 벡터 위에 있는지 알고 싶다면 물론, v2의 t값 또한 알아내야 합니다:</p>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">v3</span> <span class="o">=</span> <span class="p">{</span><span class="nl">vx</span><span class="p">:</span><span class="n">v1</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="n">v2</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="nl">vy</span><span class="p">:</span><span class="n">v1</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">y</span><span class="o">-</span><span class="n">v2</span><span class="p">.</span><span class="n">p0</span><span class="p">.</span><span class="n">y</span><span class="p">};</span>
-<span class="n">var</span> <span class="n">t</span> <span class="o">=</span> <span class="n">perP</span><span class="p">(</span><span class="n">v3</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span><span class="o">/</span><span class="n">perP</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="n">v1</span><span class="p">);</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v3</span> <span class="o">=</span> <span class="o">{</span><span class="nl">vx:</span><span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">-</span><span class="n">v2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="nl">vy:</span><span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">-</span><span class="n">v2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">};</span>
+<span class="kt">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">perP</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">v1</span><span class="o">)/</span><span class="n">perP</span><span class="o">(</span><span class="n">v2</span><span class="o">,</span> <span class="n">v1</span><span class="o">);</span></code></pre></div>
 
 <p>이 예제에서 점들을 움직여 보고 어디서 교차하는지 보세요:</p>
 

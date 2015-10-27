@@ -27,54 +27,50 @@ number: 2003
 투영이 무엇이고 어떻게 구하는지 잊어버렸다면, chapter 3 를 살펴보십시요.
 v1 은 운동 벡터입니다. v2 는 벽(방해물) 벡터입니다. v2의 왼쪽 노말은 :
 
-{% highlight as3 %}  
+{% highlight java %}  
 v2.lx = v2.vy;
 v2.ly = -v2.vx;
-
 {% endhighlight %}
 
 
 v1 과 v2 의 내적은 :
 
-{% highlight as3 %}  
+{% highlight java %}  
 dp1 = v1.vx*v2.vx + v1.vy*v2.vy;
-
 {% endhighlight %}
 
 
 v2 에 대한 운동 벡터의 투영은 :
 
-{% highlight as3 %}  
+{% highlight java %}  
 proj1.vx = dp1*v2.dx;
 proj1.vy = dp1*v2.dy;
-
 {% endhighlight %}
 
 
 v1 과 v2 노말 사이의 내적은 :
 
-{% highlight as3 %}  
+{% highlight java %}  
 dp2 = v1.vx*v2.lx + v1.vy*v2.ly;
-
 {% endhighlight %}
 
 v2 노말에 대한 운동 벡터의 투영은(단위벡터를 이용하기 위해 왼쪽 노말을 길이로 나눈 점을 유념하세요) :
 
-{% highlight as3 %}  
+{% highlight java %}  
 proj2.vx = dp*(v2.lx/v2.len);
 proj2.vy = dp*(v2.ly/v2.len);
 {% endhighlight %}
 
 노말에 대한 투영을 반전시킵니다 :
 
-{% highlight as3 %}  
+{% highlight java %}  
 proj2.vx *= -1;
 proj2.vy *= -1;
 {% endhighlight %}
 
 투영들을 더해서 새로운 운동벡터 구하기 :
 
-{% highlight as3 %}  
+{% highlight java %}  
 v1.vx = proj1.vx+proj2.vx;
 v1.vy = proj1.vy+proj2.vy;
 {% endhighlight %}
@@ -94,14 +90,14 @@ v1.vy = proj1.vy+proj2.vy;
 
 실생활에서도 마찰과 에너지 감소 때문에 오브젝트가 끝없이 움직일 수 없으며, 같은 방식으로 반동 또한 실제 완전하지 않습니다. 완전한 반동은 충돌 후 운동 벡터의 길이가 충돌 이전의 것과 정확히 같을 때 일어납니다. 반동력, 마찰력 이란 두 개 변수를 각 객체에 적용함으로써 반동에서 에너지 감소를 계산해 낼 수 있습니다.
 
-{% highlight as3 %}  
+{% highlight java %}  
 ob.b = 0.99;
 ob.f = 0.99;
 {% endhighlight %}
 
 새로운 운동 벡터를 구할 때 이제 우리는 두 물체의 b 와 f 를 각 투영에 곱할 것입니다. 반동력은 벽의 노말에 대한 투영에 영향을 주며, 마찰력은 벽 벡터의 투영에 영향을 줍니다.
 
-{% highlight as3 %}  
+{% highlight java %}  
 v1.vx = v1.f*v2.f*proj1.vx + v1.b*v2.b*proj2.vx;
 v1.vy = v1.f*v2.f*proj1.vy + v1.b*v2.b*proj2.vy;
 {% endhighlight %}
@@ -121,7 +117,7 @@ v1.vy = v1.f*v2.f*proj1.vy + v1.b*v2.b*proj2.vy;
 
 >아래 그림으로 다시 설명하면, 새로운 위치 p1은 반동하는 벡터의 (1-t) 시간만큼 진행된 위치이다.
 
-{% highlight cpp %}  
+{% highlight java %}  
 p1 = {x: ip.x + (newV.vx * (1-t)), y: ip.y + (newV.y * (1-t))}
 {% endhighlight %}
 

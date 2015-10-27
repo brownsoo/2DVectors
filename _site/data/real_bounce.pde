@@ -12,19 +12,10 @@ final int scale = 10;
 final int maxV = 10;
 
 boolean dragging = false;
-Vector vector1;
-Vector vector2;
-Vector vector3;
-Vector vector4;
 Vector[] vectors;
 Point ip;//intersection point
 Dragger[] draggers;
 Arrow[] arrows;
-Arrow arrow1;
-Arrow arrow2;
-Arrow arrow3;
-Arrow arrow4;
-boolean isBounce = false;
 float gravity = 0.5;
 float t2b = 1000000;//time to collide something big
 // Object to move
@@ -154,7 +145,6 @@ void runMe() {
   //time to collide something big
   t2b = 1000000;
   //no collision yet
-  isBounce = false;
   Vector bouncedWall = null;
   //find collisions with walls
   for(int i=0; i<4; i++) {
@@ -163,7 +153,6 @@ void runMe() {
     if(t < t2b) {
       //which wall to collide with
       bouncedWall = vectors[i];
-      isBounce = true;
       //save time
       t2b = t;
     }
