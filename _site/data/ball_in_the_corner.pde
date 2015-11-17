@@ -204,13 +204,16 @@ void updateVector(Vector v, boolean fromPoints) {
     v.dx = 0;
     v.dy = 0;
   }
-  /* Care this */
   //right hand normal
-  v.rx = -v.dy;
-  v.ry = v.dx;
+  v.rx = -v.vy;
+  v.ry = v.vx;
+  v.rdx = -v.dy;
+  v.rdy = v.dx;
   //left hand normal
-  v.lx = v.dy;
-  v.ly = -v.dx;
+  v.lx = v.vy;
+  v.ly = -v.vx;
+  v.ldx = v.dy;
+  v.ldy = -v.dx;
   
 }
 
@@ -238,7 +241,7 @@ Vector findBackwardVector(Vector b, Vector w) {
     else {
       //it hits the wall
       //project this vector on the normal of the wall
-      return projectVector(v3, w.lx, w.ly);
+      return projectVector(v3, w.ldx, w.ldy);
     }
   }
 }
@@ -349,14 +352,18 @@ class Point {
 class Vector {
   public Point p0;
   public Point p1;
-  public float vx;
-  public float vy;
-  public float rx;
-  public float ry;
-  public float lx;
-  public float ly;
-  public float dx;
-  public float dy;
+  public float vx = 0;
+  public float vy = 0;
+  public float rx = 0;
+  public float ry = 0;
+  public float lx = 0;
+  public float ly = 0;
+  public float dx = 0;
+  public float dy = 0;
+  public float rdx = 0;//right unit normal
+  public float rdy = 0;
+  public float ldx = 0;//left unit normal
+  public float ldy = 0;
   public float length;
   public float airf = 1;//air friction
   public float b = 1;//bounce
