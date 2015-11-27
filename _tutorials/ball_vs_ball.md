@@ -48,28 +48,31 @@ pen = v.length - (b1.r + b2.r)
 <canvas data-processing-sources="../data/ball_vs_ball_keep_it_in.pde"></canvas>
 <small>(소스파일 [pde](../data/ball_vs_ball_keep_it_in.pde)를 다운받을 수 있습니다.)</small>
 
-이 경우 큰 공은 b2 이고 작은 움직이는 공은 b1 입니다. 다음 조건에서 작은 공은 밖으로 움직입니다.
+이 경우 큰 공은 big 이고 작은 움직이는 공은 ball 입니다. 다음 조건에서 작은 공은 밖으로 움직입니다.
 
 {% highlight java %}  
-b2.r < (b1.r + v.len)
+big.r < (ball.r + v.len)
 {% endhighlight %}
 
 그런 일이 벌어진다면 우리는 공을 다음의 양만큼 뒤로 물려놓아야 합니다.
 
 {% highlight java %}  
-var pen = b2.r - (b1.r + v.len)
+float pen = big.r - (ball.r + v.length);
 {% endhighlight %}
 
 그리고, 반동에 사용되어질, 벡터 v의 노말의 방향을 반전시키는 것을 잊지 말아야 합니다 :
 
-{% highlight java %}  
-var vbounce = {dx:-v.dy, dy:v.dx, lx:-v.dx, ly:-v.dy};
+{% highlight java %}
+vbounce.dx = -v.dy;//v.ldx * -1
+vbounce.dy = v.dx;//v.ldy * -1
+vbounce.ldx = -v.dx;
+vbounce.ldy = -v.dy;
 {% endhighlight %}
 	
 
 
 <br>
 <br>
-다음 : [Moving ball vs ball]({{ "/moving_ball_vs_ball/" | prepend: site.baseurl }})
+다음 : [Ball vs Moving Ball]({{ "/ball_vs_moving_ball/" | prepend: site.baseurl }})
 
 

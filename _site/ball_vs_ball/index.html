@@ -105,6 +105,11 @@
         <a href="/Vectors-for-Animation/ball_vs_ball/">Ball vs Ball</a>
     </li>
     
+    
+    <li>
+        <a href="/Vectors-for-Animation/ball_vs_moving_ball/">Ball vs Moving Ball</a>
+    </li>
+    
 
 </ul>
 
@@ -192,6 +197,11 @@
         <a href="/Vectors-for-Animation/ball_vs_ball/">Ball vs Ball</a>
     </li>
     
+    
+    <li>
+        <a href="/Vectors-for-Animation/ball_vs_moving_ball/">Ball vs Moving Ball</a>
+    </li>
+    
 
 </ul>
 
@@ -257,21 +267,24 @@
 <canvas data-processing-sources="../data/ball_vs_ball_keep_it_in.pde"></canvas>
 <p><small>(소스파일 <a href="../data/ball_vs_ball_keep_it_in.pde">pde</a>를 다운받을 수 있습니다.)</small></p>
 
-<p>이 경우 큰 공은 b2 이고 작은 움직이는 공은 b1 입니다. 다음 조건에서 작은 공은 밖으로 움직입니다.</p>
+<p>이 경우 큰 공은 big 이고 작은 움직이는 공은 ball 입니다. 다음 조건에서 작은 공은 밖으로 움직입니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">b2</span><span class="o">.</span><span class="na">r</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">b1</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">len</span><span class="o">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">big</span><span class="o">.</span><span class="na">r</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">ball</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">len</span><span class="o">)</span></code></pre></div>
 
 <p>그런 일이 벌어진다면 우리는 공을 다음의 양만큼 뒤로 물려놓아야 합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">var</span> <span class="n">pen</span> <span class="o">=</span> <span class="n">b2</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="o">(</span><span class="n">b1</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">len</span><span class="o">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="n">pen</span> <span class="o">=</span> <span class="n">big</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="o">(</span><span class="n">ball</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span><span class="o">);</span></code></pre></div>
 
 <p>그리고, 반동에 사용되어질, 벡터 v의 노말의 방향을 반전시키는 것을 잊지 말아야 합니다 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">var</span> <span class="n">vbounce</span> <span class="o">=</span> <span class="o">{</span><span class="nl">dx:</span><span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">,</span> <span class="nl">dy:</span><span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">,</span> <span class="nl">lx:</span><span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">,</span> <span class="nl">ly:</span><span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">};</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">vbounce</span><span class="o">.</span><span class="na">dx</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span><span class="c1">//v.ldx * -1</span>
+<span class="n">vbounce</span><span class="o">.</span><span class="na">dy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span><span class="c1">//v.ldy * -1</span>
+<span class="n">vbounce</span><span class="o">.</span><span class="na">ldx</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span>
+<span class="n">vbounce</span><span class="o">.</span><span class="na">ldy</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span></code></pre></div>
 
 <p><br />
 <br />
-다음 : <a href="/Vectors-for-Animation/moving_ball_vs_ball/">Moving ball vs ball</a></p>
+다음 : <a href="/Vectors-for-Animation/ball_vs_moving_ball/">Ball vs Moving Ball</a></p>
 
 
   </article>

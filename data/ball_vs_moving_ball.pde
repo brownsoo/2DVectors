@@ -1,9 +1,9 @@
 /**
- * Ball vs Ball 
+ * Ball vs Moving Ball 
  * by hyonsoo han
  *
- * Shows the collision of two balls.
- * Checkout : brownsoo.github.io/vectors
+ * Shows how to find the collision position among two balls.
+ * Checkout : brownsoo.github.io/Vectors-for-Animation
  */
 
 final int _GREEN = 0xff4CAF50;
@@ -18,10 +18,15 @@ final float gravity = 0;
 
 boolean dragging = false;
 Dragger[] draggers;
-// Object to move
-Ball ball;
-//stopped balls
-Ball[] otherBalls;
+Arrow[] arrows;
+
+Ball ball1; // main movement ball 
+Ball ball2; // other ball
+Ball ball1a; // moved ball of ball1
+Vector vc;
+Vector vn;
+Vector v3;
+
 //reset button
 SimpleButton resetBt;
 
@@ -33,55 +38,56 @@ void setup() {
   } catch(Exception e){}
   
   //create object
-  ball = new Ball(new Point(150, 30), _BLUE, 20);
-  ball.lastTime = millis();
-  ball.vx = 5;
-  ball.vy = 5;
+  ball1 = new Ball(new Point(80, 130), _RED, 40);
+  ball1.p1 = new Point(250, 130);
+  updateVector(ball1, true);
+  ball2 = new Ball(new Point(200, 180), _BLUE, 40);
+  ball2.p1 = new Point(200, 150);
+  updateVector(ball2, true);
+  //ball at collison
+  ball1a = new Ball(_GREEN, 40);
   
-  //create stand balls
-  otherBalls = new Ball[4];
-  otherBalls[0] = new Ball(new Point(100, 100), _BLACK, 30);
-  otherBalls[1] = new Ball(new Point(200, 150), _BLACK, 40);
-  otherBalls[2] = new Ball(new Point(240, 40), _BLACK, 20);
-  otherBalls[3] = new Ball(new Point(60, 202), _BLACK, 15);
-  for(int i=0; i<otherBalls.length; i++) {
-    updateVector(otherBalls[i], false);
-  }
+  vc = new Vector();
+  vn = new Vector();
+  v3 = new Vector();
   
   //Dragging Handler
-  draggers = new Dragger[4];
+  draggers = new Dragger[3];
   for(int i=0; i<draggers.length; i++) {
     draggers[i] = new Dragger(12);
   }
+  
+  //Arrow graphics for vector
+  arrows = new Arrow[4];
+  arrows[0] = new Arrow(_RED);
+  arrows[1] = new Arrow(_GRAY);
+  arrows[2] = new Arrow(_GRAY);
+  arrows[3] = new Arrow(_RED);
   
   resetBt = new SimpleButton("Reset");
   resetBt.x = 10;
   resetBt.y = height - 50;
   resetBt.setCallback(new OnButtonClick());
   
+  runMe();
 }
 
 class OnButtonClick implements ButtonCallback {
   void onClick(SimpleButton b) {
     //println(b.label + " click");
-    ball.vx = 5;
-    ball.vy = 5;
-    ball.p1.x = 150;
-    ball.p1.y = 30;
-    
-    otherBalls[0] = new Ball(new Point(100, 100), _BLACK, 30);
-    otherBalls[1] = new Ball(new Point(200, 150), _BLACK, 40);
-    otherBalls[2] = new Ball(new Point(240, 40), _BLACK, 20);
-    otherBalls[3] = new Ball(new Point(60, 202), _BLACK, 15);
-    for(int i=0; i<otherBalls.length; i++) {
-      updateVector(otherBalls[i], false);
-    }
+    ball1 = new Ball(new Point(100, 80), _RED, 40);
+    ball1.p1 = new Point(250, 80);
+    updateVector(ball1, true);
+    ball2 = new Ball(new Point(200, 100), _BLUE, 40);
+    ball2.p1 = new Point(200, 80);
+    updateVector(ball2, true);
   }
 }
 
 void draw() {
-  runMe();
   resetBt.place();
+  if(!mousePressed) return; //redraw only when interacting
+  runMe();
 }
 
 void mousePressed() {
@@ -103,7 +109,7 @@ void mouseReleased() {
   for(int i=0; i<draggers.length; i++) {
     draggers[i].pressed = false;
   }
-  drawAll();
+  runMe();
 }
 
 //main function
@@ -113,59 +119,61 @@ void runMe() {
       if(draggers[i].pressed) {
         draggers[i].x = mouseX;
         draggers[i].y = mouseY;
-        otherBalls[i].p1.x = mouseX;
-        otherBalls[i].p1.y = mouseY;
       }
     }
+    
+    ball1.p0.x = draggers[0].x;
+    ball1.p0.y = draggers[0].y;
+    ball1.p1.x = draggers[1].x;
+    ball1.p1.y = draggers[1].y;
+    ball2.p0.x = draggers[2].x;
+    ball2.p0.y = draggers[2].y;
+    
   }
   // start to calculate movement
-  //dont let it go over max speed
-  ball.vx = min(maxV, max(-maxV, ball.vx));
-  ball.vy = min(maxV, max(-maxV, ball.vy));
-  //update the vector parameters
-  updateBall(ball);
-  //check the stopped balls for collisions
-  for(int i=0; i<otherBalls.length; i++) {
-    Ball w = otherBalls[i];
-    Vector v = ball2ball(ball, w);//v contains vx, vy, length, dx, dy
-    updateVector(v, false);
-    float pen = ball.r + w.r - v.length;
-    //if we have hit the ball
-    if(pen >= 0) {
-      //move ball away from the stopped ball
-      ball.p1.x += v.dx * pen;
-      ball.p1.y += v.dy * pen;
-      //cahnge movement, bounce off from the normal of v
-      Vector vbounce = new Vector();
-      vbounce.dx = v.dy;//v.ldx
-      vbounce.dy = -v.dx;//v.ldy
-      vbounce.ldx = v.dx;
-      vbounce.ldy = v.dy;
-      Vector vb = findBounceVector(ball, vbounce);
-      ball.vx = vb.vx;
-      ball.vy = vb.vy;
+  updateVector(ball1, true);
+  // vector between center points of two balls
+  vc.p0 = ball1.p0;
+  vc.p1 = ball2.p0;
+  updateVector(vc, true);
+  //projection of vc on movement vector
+  Vector vp = projectVector(vc, ball1.dx, ball1.dy);
+  //vector to center of ball2 in direction of movement vector's normal
+  vn.p0 = new Point(ball1.p0.x+vp.vx, ball1.p0.y+vp.vy);
+  vn.p1 = ball2.p0;
+  updateVector(vn, true);
+  //sum of radius
+  float sumRadius = ball1.r + ball2.r;
+  //check if vn is shorter then combined radiuses
+  float diff = sumRadius - vn.length;
+  if(diff > 0) {
+    //collision
+    //amount to move back moving ball
+    float moveBack = sqrt(sumRadius*sumRadius - vn.length*vn.length);
+    Point p3 = new Point();
+    p3.x = vn.p0.x - moveBack*ball1.dx;
+    p3.y = vn.p0.y - moveBack*ball1.dy;
+    v3.p0 = ball1.p0;
+    v3.p1 = p3;
+    updateVector(v3, true);
+    //check if p3 is on the movement vector
+    if(v3.length < ball1.length && dotP(v3, ball1) > 0) {
+      ball1a.p0 = p3;
+    } 
+    else {
+      //no collision
+      ball1a.p0 = ball1.p1;
+      v3.length = 0;
     }
   }
-  
-  //reset object to other side if gone out of stage
-  if (ball.p1.x > width + ball.r) {
-    ball.p1.x = -ball.r;
-  } else if (ball.p1.x < -ball.r) {
-    ball.p1.x = width + ball.r;
-  }
-  if (ball.p1.y > height + ball.r) {
-    ball.p1.y = -ball.r;
-  } else if (ball.p1.y < -ball.r) {
-    ball.p1.y = height + ball.r;
+  else {
+    //no collision
+    ball1a.p0 = ball1.p1;
+    v3.length = 0;
   }
   
   //draw it
   drawAll();
-  //make end point equal to starting point for next cycle
-  ball.p0 = ball.p1;
-  //save the movement without time(reset vx/vy based on 1 sec)
-  ball.vx /= ball.timeFrame;
-  ball.vy /= ball.timeFrame;
 }
 
 //function to draw the points, lines and show text
@@ -173,16 +181,78 @@ void runMe() {
 void drawAll() {
   //clear all
   background(255);
+  //Draw draggers
+  draggers[0].x = ball1.p0.x;
+  draggers[0].y = ball1.p0.y;
+  draggers[1].x = ball1.p1.x;
+  draggers[1].y = ball1.p1.y;
+  draggers[2].x = ball2.p0.x;
+  draggers[2].y = ball2.p0.y;
+  for(int i=0; i<draggers.length; i++) {
+    draggers[i].place();
+  }
   
-  //place ball
-  ball.place();
+  //place balls at its 0 point
+  ball1.placeAtP0();
+  ball2.placeAtP0();
+  ball1a.placeAtP0();
   
-  //Draw stopped balls
-  for(int i=0; i<otherBalls.length; i++) {
-    draggers[i].x = otherBalls[i].p1.x;
-    draggers[i].y = otherBalls[i].p1.y;
-    draggers[i].place();  
-    otherBalls[i].place();
+  noFill();
+  strokeWeight(1);
+  
+  //movement vector of ball1
+  stroke(arrows[0].c);
+  line(ball1.p0.x, ball1.p0.y, ball1.p1.x, ball1.p1.y);
+  arrows[0].x = ball1.p1.x;
+  arrows[0].y = ball1.p1.y;
+  arrows[0].rotation = atan2(ball1.vy, ball1.vx);
+  arrows[0].place();
+  
+  //vector between ball center points
+  stroke(arrows[1].c);
+  line(vc.p0.x, vc.p0.y, vc.p1.x, vc.p1.y);
+  arrows[1].x = vc.p1.x;
+  arrows[1].y = vc.p1.y;
+  arrows[1].rotation = atan2(vc.vy, vc.vx);
+  arrows[1].place();
+  
+  //vector to center of ball2 on the direction
+  //of movement vector's normal
+  stroke(arrows[2].c);
+  line(vn.p0.x, vn.p0.y, vn.p1.x, vn.p1.y);
+  arrows[2].x = vn.p1.x;
+  arrows[2].y = vn.p1.y;
+  arrows[2].rotation = atan2(vn.vy, vn.vx);
+  arrows[2].place();
+  
+  //v3: vector to collision position 
+  //on the direction of movement vector's normal
+  if(v3.length > 0) {
+    stroke(arrows[3].c);
+    strokeWeight(2);
+    line(v3.p0.x, v3.p0.y, v3.p1.x, v3.p1.y);
+    arrows[3].x = v3.p1.x;
+    arrows[3].y = v3.p1.y;
+    arrows[3].rotation = atan2(v3.vy,v3.vx);
+    arrows[3].place();
+  }
+  
+  //text
+  fill(0);
+  textAlign(CENTER);
+  text("ball1", ball1.p0.x, ball1.p0.y - ball1.r - 10);
+  text("ball1a", ball1a.p0.x, ball1a.p0.y - ball1a.r - 10);
+  text("ball2", ball2.p0.x, ball2.p0.y + ball1.r + 20);
+  text("vc", (vc.p0.x + vc.p1.x)/2, (vc.p0.y + vc.p1.y)/2);
+  text("vn", (vn.p0.x + vn.p1.x)/2, (vn.p0.y + vn.p1.y)/2);
+  text("p2", vn.p0.x, vn.p0.y - 10);
+  noStroke();
+  ellipse(vn.p0.x, vn.p0.y, 4, 4);
+  fill(ball1.c);
+  textAlign(LEFT);
+  text("red : main vector v", 15, 35);
+  if(v3.length > 0) {
+    text("v3", (v3.p0.x + v3.p1.x)/2, (v3.p0.y + v3.p1.y)/2);
   }
 }
 
@@ -222,74 +292,9 @@ void updateVector(Vector v, boolean fromPoints) {
   v.ldy = -v.dx;
 }
 
-void updateBall(Ball b) {
-  //find time passed from last update
-  int thisTime = millis();
-  float time = (thisTime - b.lastTime)/1000f*scale;
-  //we use time, not frames to move 
-  //so multiply movement vector with time passed
-  b.vx *= time;
-  b.vy *= time;
-  //add gravity, also based on time
-  b.vy = b.vy + gravity * time;
-  //find end point coordinates
-  b.p1 = new Point();//new creation for changing point.
-  b.p1.x = b.p0.x + b.vx;
-  b.p1.y = b.p0.y + b.vy;
-  //length of vector
-  b.length = sqrt(b.vx*b.vx + b.vy*b.vy);
-  //normalized unit-sized components
-  if(b.length > 0) {
-    b.dx = b.vx/b.length;
-    b.dy = b.vy/b.length;
-  }
-  else {
-    b.dx = 0;
-    b.dy = 0;
-  }
-  //right hand normal
-  b.rx = -b.vy;
-  b.ry = b.vx;
-  b.rdx = -b.dy;
-  b.rdy = b.dx;
-  //left hand normal
-  b.lx = b.vy;
-  b.ly = -b.vx;
-  b.ldx = b.dy;
-  b.ldy = -b.dx;
-  //save the current time
-  b.lastTime = thisTime;
-  //save time passed
-  b.timeFrame = time;
-}
-
-Vector ball2ball(Vector v1, Vector v2) {
-  //Vector between centers of balls
-  Vector v3 = new Vector();
-  v3.vx = v1.p1.x - v2.p1.x;
-  v3.vy = v1.p1.y - v2.p1.y;
-  v3.length = sqrt(v3.vx*v3.vx + v3.vy*v3.vy);
-  v3.dx = v3.vx / v3.length;
-  v3.dy = v3.vy / v3.length;
-  
-  return v3;
-}
-
-Vector findBounceVector(Vector v0, Vector v1) {
-  //projection of v0 on v1
-  Vector proj1 = projectVector(v0, v1.dx, v1.dy);
-  //projection of v0 on v1 normal
-  Vector proj2 = projectVector(v0, v1.ldx, v1.ldy);//use unit vector's normal
-  //reverse projecton on v1 normal
-  proj2.length = sqrt(proj2.vx*proj2.vx + proj2.vy*proj2.vy);
-  proj2.vx = v1.ldx * proj2.length;
-  proj2.vy = v1.ldy * proj2.length;
-  //add the projections
-  Vector proj = new Vector();
-  proj.vx = v0.f*v1.f*proj1.vx + v0.b*v1.b*proj2.vx;
-  proj.vy = v0.f*v1.f*proj1.vy + v0.b*v1.b*proj2.vy;
-  
-  return proj;
+//calculate dot product of 2 vectors
+float dotP(Vector v1, Vector v2) {
+ return v1.vx*v2.vx + v1.vy*v2.vy; 
 }
 
 //project vector of v1 on unit-sized vector dx/dy
@@ -330,12 +335,25 @@ class Ball extends Vector {
  }
  
  public void place() {
+   fill(c, 30);
+   strokeWeight(1);
+   stroke(c);
+   ellipse(p1.x, p1.y, r*2, r*2);
+   
    fill(0);
    noStroke();
    ellipse(p1.x, p1.y, 4, 4);
-   noFill();
+ }
+ 
+ public void placeAtP0() {
+   strokeWeight(1);
+   fill(c, 30);
    stroke(c);
-   ellipse(p1.x, p1.y, r*2, r*2);
+   ellipse(p0.x, p0.y, r*2, r*2);
+   
+   fill(0);
+   noStroke();
+   ellipse(p0.x, p0.y, 4, 4);
  }
  
 }

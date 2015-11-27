@@ -21,7 +21,7 @@ Dragger[] draggers;
 // Object to move
 Ball ball;
 //stopped balls
-Ball[] stoppedBalls;
+Ball[] otherBalls;
 //reset button
 SimpleButton resetBt;
 
@@ -39,13 +39,13 @@ void setup() {
   ball.vy = 5;
   
   //create stand balls
-  stoppedBalls = new Ball[4];
-  stoppedBalls[0] = new Ball(new Point(100, 100), _BLACK, 30);
-  stoppedBalls[1] = new Ball(new Point(200, 100), _BLACK, 40);
-  stoppedBalls[2] = new Ball(new Point(250, 50), _BLACK, 20);
-  stoppedBalls[3] = new Ball(new Point(50, 100), _BLACK, 15);
-  for(int i=0; i<stoppedBalls.length; i++) {
-    updateVector(stoppedBalls[i], false);
+  otherBalls = new Ball[4];
+  otherBalls[0] = new Ball(new Point(100, 100), _BLACK, 30);
+  otherBalls[1] = new Ball(new Point(200, 150), _BLACK, 40);
+  otherBalls[2] = new Ball(new Point(240, 40), _BLACK, 20);
+  otherBalls[3] = new Ball(new Point(60, 202), _BLACK, 15);
+  for(int i=0; i<otherBalls.length; i++) {
+    updateVector(otherBalls[i], false);
   }
   
   //Dragging Handler
@@ -69,12 +69,12 @@ class OnButtonClick implements ButtonCallback {
     ball.p1.x = 150;
     ball.p1.y = 30;
     
-    stoppedBalls[0] = new Ball(new Point(100, 100), _BLACK, 30);
-    stoppedBalls[1] = new Ball(new Point(200, 100), _BLACK, 40);
-    stoppedBalls[2] = new Ball(new Point(250, 50), _BLACK, 20);
-    stoppedBalls[3] = new Ball(new Point(50, 100), _BLACK, 15);
-    for(int i=0; i<stoppedBalls.length; i++) {
-      updateVector(stoppedBalls[i], false);
+    otherBalls[0] = new Ball(new Point(100, 100), _BLACK, 30);
+    otherBalls[1] = new Ball(new Point(200, 150), _BLACK, 40);
+    otherBalls[2] = new Ball(new Point(240, 40), _BLACK, 20);
+    otherBalls[3] = new Ball(new Point(60, 202), _BLACK, 15);
+    for(int i=0; i<otherBalls.length; i++) {
+      updateVector(otherBalls[i], false);
     }
   }
 }
@@ -113,8 +113,8 @@ void runMe() {
       if(draggers[i].pressed) {
         draggers[i].x = mouseX;
         draggers[i].y = mouseY;
-        stoppedBalls[i].p1.x = mouseX;
-        stoppedBalls[i].p1.y = mouseY;
+        otherBalls[i].p1.x = mouseX;
+        otherBalls[i].p1.y = mouseY;
       }
     }
   }
@@ -125,8 +125,8 @@ void runMe() {
   //update the vector parameters
   updateBall(ball);
   //check the stopped balls for collisions
-  for(int i=0; i<stoppedBalls.length; i++) {
-    Ball w = stoppedBalls[i];
+  for(int i=0; i<otherBalls.length; i++) {
+    Ball w = otherBalls[i];
     Vector v = ball2ball(ball, w);//v contains vx, vy, length, dx, dy
     updateVector(v, false);
     float pen = ball.r + w.r - v.length;
@@ -178,11 +178,11 @@ void drawAll() {
   ball.place();
   
   //Draw stopped balls
-  for(int i=0; i<stoppedBalls.length; i++) {
-    draggers[i].x = stoppedBalls[i].p1.x;
-    draggers[i].y = stoppedBalls[i].p1.y;
+  for(int i=0; i<otherBalls.length; i++) {
+    draggers[i].x = otherBalls[i].p1.x;
+    draggers[i].y = otherBalls[i].p1.y;
     draggers[i].place();  
-    stoppedBalls[i].place();
+    otherBalls[i].place();
   }
 }
 
