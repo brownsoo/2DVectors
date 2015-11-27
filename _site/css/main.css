@@ -88,6 +88,9 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
 #browser { background: #fff; padding: 0.5em 0 0.5em; font-size: small; line-height: 120%; }
 @media screen and (max-width: 800px) { #browser { padding-top: 0px; } }
 
+.alert { color: #663333; background: #ffcccc; font-size: small; line-height: 120%; padding: 10px 10px; }
+@media screen and (max-width: 800px) { .alert { padding-top: 0px; } }
+
 /** Site footer */
 .site-footer { border-top: 1px solid #e8e8e8; padding: 30px 0; }
 

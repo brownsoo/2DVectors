@@ -177,6 +177,18 @@
     }
 }
 
+.alert {
+    color: #663333;
+    background: #ffcccc;
+    font-size: small;
+    line-height: 120%;
+    padding: 10px 10px;
+    @include media-query($on-laptop) {
+        padding-top: 0px;
+        
+    }
+}
+
 
 
 /**
