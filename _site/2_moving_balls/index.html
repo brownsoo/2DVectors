@@ -264,18 +264,19 @@
 
 <p>공1 운동벡터에서 공2 운동벡터를 뺀, 공1을 시작 좌표로 하는 벡터 v3를 구합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v3</span><span class="o">={};</span>
-<span class="n">v3</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span>
-<span class="n">v3</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">vx</span><span class="o">-</span><span class="n">ball2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
-<span class="n">v3</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">vy</span><span class="o">-</span><span class="n">ball2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v3</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span>
+<span class="n">v3</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">vx</span> <span class="o">-</span> <span class="n">ball2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
+<span class="n">v3</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">vy</span> <span class="o">-</span> <span class="n">ball2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
-<p>이제 지난 단계에서 배운 충돌 계산을 수행하면, 공1은 벡터 v3만큼 움직이고 공2는 전혀 움직이지 않습니다. 공이 충돌하면 공1은 점 p4 좌표에 있습니다. 공1의 운동벡터에서 그 점까지의 새로운 벡터 v4 를 구합니다.</p>
+<p>이제 지난 단계에서 배운 충돌 계산을 수행하면, 공1은 벡터 v3만큼 움직이고 공2는 전혀 움직이지 않습니다. 
+공이 충돌하면 공1은 점 p4 좌표에 있습니다. 공1의 운동벡터에서 그 점까지의 새로운 벡터 v4를 구합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">game</span><span class="o">.</span><span class="na">v4</span> <span class="o">=</span> <span class="o">{</span><span class="nl">p0:</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="nl">p1:</span> <span class="n">p4</span><span class="o">};</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v4</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span>
+<span class="n">v4</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="n">p4</span><span class="o">;</span></code></pre></div>
 
 <p>여기서 v4 길이를 v3 길이로 나눈 변수 “t” 를 구할 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">t</span><span class="o">=</span><span class="n">v4</span><span class="o">.</span><span class="na">len</span><span class="o">/</span><span class="n">v3</span><span class="o">.</span><span class="na">len</span><span class="o">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">v4</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">v3</span><span class="o">.</span><span class="na">length</span><span class="o">;</span></code></pre></div>
 
 <p>변수 “t” 는 0 과 1 사이 입니다. 두 공이 같은 시간에 움직이고 있음을 알고 있기에, 다음과 같은 예상을 할 수 있습니다.</p>
 
@@ -284,18 +285,18 @@
   <li>값이 0이면 공들이 시작점에 있을 때 충돌이 일어납니다. </li>
 </ul>
 
-<p>충돌이 일어날때 공들의 위치를 알아내기 위해서 그들의 운동벡터에 t 곱해야 합니다.</p>
+<p>충돌이 일어날 때 공들의 위치를 알아내기 위해서 그들의 운동벡터에 t 곱해야 합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ball1</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">+</span><span class="n">t</span><span class="o">*</span><span class="n">ball1</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
-<span class="n">ball1</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">+</span><span class="n">t</span><span class="o">*</span><span class="n">ball1</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
-<span class="n">ball2</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">+</span><span class="n">t</span><span class="o">*</span><span class="n">ball2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
-<span class="n">ball2</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">+</span><span class="n">t</span><span class="o">*</span><span class="n">ball2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ball1</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">ball1</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
+<span class="n">ball1</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">ball1</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
+<span class="n">ball2</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">ball2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
+<span class="n">ball2</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">ball2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
-<p>그래서 moveBack 의 값만큼 p2에서 운동벡터 v의 반대방향으로 이동합니다. p3 가 벡터 v의 밖에 있는 것은 이번 운동 사이클 동안 충돌이 일어나지 않을 것이며, 과거에 일어났거나 미래에 일어날 것임을 의미합니다. 우리는 지금 충돌에 대해서만 다룰 것이기에 벡터 v 위에 p3 가 있는 것에 대해 검사해야 합니다 :</p>
+<p>p4가 벡터 v3의 밖에 있는 것은 이번 운동 사이클 동안 충돌이 일어나지 않을 것이며, 과거에 일어났거나 미래에 일어날 것임을 의미합니다. 
+우리는 지금 충돌에 대해서만 다룰 것이기에 벡터 v3 위에 p4가 있는 것에 대해 검사해야 합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">v3</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="n">ob</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">dotP</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">ob</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">){</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">v4</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="n">v3</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">dotP</span><span class="o">(</span><span class="n">v4</span><span class="o">,</span> <span class="n">ball1</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
   <span class="c1">//collision</span>
-  <span class="n">ob1</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">p3</span><span class="o">;</span>
 <span class="o">}</span></code></pre></div>
 
 <p>제가 두 공이 움직이는 예제를 만들었습니다:</p>
@@ -313,57 +314,23 @@
 
 <h1 id="bouncing-2-moving-balls">2 개의 움직이는 공을 반동시키기 (Bouncing 2 moving balls)</h1>
 
-<p>충돌위치가 발견된 이후 “Ball vs ball” and “Bounce” 단계에서 설명한 것처럼 그것들의 운동 벡터를 변경할 수 있습니다. 그런데 지금까지 오직 1개 공을 움직였고, 1개 움직이는 공이 벽으로부터 같은 속도로 (단지 운동 방향이 바뀐 채) 반동했습니다. 두 공이 움직일 때, 그들의 움직임은 다른 공에 역시 영향을 주고 운동벡터 결과는 두 운동벡터로부터 다시 계산되어야 합니다.</p>
+<p>충돌위치가 발견된 이후 “Ball vs ball” and “Bounce” 단계에서 설명한 것처럼 그것들의 운동 벡터를 변경할 수 있습니다. 그런데 지금까지 오직 1개 공을 움직였고, 1개의 움직이는 공이 벽으로부터 같은 속도로 (단지 운동 방향이 바뀐 채) 반동했습니다. 두 공이 움직일 때, 그들의 움직임은 다른 공에 역시 영향을 주고 운동벡터 결과는 두 운동벡터로부터 다시 계산되어야 합니다.</p>
 
-<p>반동은 두 공의 질량에 따라 달라집니다. 좀 간단히 만들기 위해 공들이 같은 질량을 갖고 있다고 가정합니다. 이런 경우 두 공들은 중심점 사이의 벡터 방향 상에 있는 운동벡터의 요소를 교환합니다.</p>
+<p>반동은 두 공의 질량에 따라 달라집니다. 좀 간단히 만들기 위해 공들이 같은 질량을 갖고 있다고 가정합니다. 
+이런 경우 두 공들은 중심점 사이의 벡터 방향 상에 있는 운동벡터의 요소를 교환합니다.</p>
 
 <p><img src="../img/tut11_5.gif" alt="Alt 움직이는 2 공의 충돌" /></p>
 
-<p>vc 는 공들의 중심점 사이 벡터이고, vcn 은 vc 의 노말입니다. 이제 운동 벡터 v1 과 v2 를 vc 와 vcn 에 투영시킵니다 :</p>
+<p>vc는 공들의 중심점 사이 벡터이고, vcn은 vc의 노말입니다. 이제 운동 벡터 v1 과 v2 를 vc와 vcn에 투영시킵니다.</p>
 
 <p><img src="../img/tut11_6.gif" alt="Alt 두 공의 벡터 요소 교환" /></p>
 
-<p>v1 은 v1a 와 v1b 요소로 분리되고, 같은 방법으로 v2는 v2a 와 v2b 로 분리됩니다. 결과 운동벡터를 구하기 위해 v1a 와 v2a 가 교환되어지고 공1 은 v1b 와 v2a 로부터 새로운 운동 벡터를 얻습니다. 반면 공2는 v1a 과 v2b 로부터 새로운 운동을 만듭니다.</p>
+<p>v1은 v1a와 v1b 요소로 분리되고, 같은 방법으로 v2는 v2a와 v2b로 분리됩니다. 결과적으로 운동벡터를 구하기 위해 v1a와 v2a가 교환되어지고 공1은 v1b 와 v2a로부터 새로운 운동 벡터를 얻습니다. 반면 공2는 v1a 과 v2b로부터 새로운 운동을 만듭니다.</p>
 
-<p>그리고 이 예제에서 몇몇 공들이 움직이고 반동합니다 :</p>
+<p>이런 방법으로 아래 예제에서 몇개 공들이 움직이고 반동합니다.</p>
 
-<div id="flashContent">
-    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="300" height="200" id="vect11a" align="middle">
-        <param name="movie" value="../data_old/vect11a.swf" />
-        <param name="quality" value="high" />
-        <param name="bgcolor" value="#ffffff" />
-        <param name="play" value="true" />
-        <param name="loop" value="true" />
-        <param name="wmode" value="opaque" />
-        <param name="scale" value="noborder" />
-        <param name="menu" value="false" />
-        <param name="devicefont" value="false" />
-        <param name="salign" value="" />
-        <param name="allowScriptAccess" value="sameDomain" />
-        <!--[if !IE]>-->
-        <object type="application/x-shockwave-flash" data="../data_old/vect11a.swf" width="300" height="200">
-            <param name="movie" value="../data_old/vect11a.swf" />
-            <param name="quality" value="high" />
-            <param name="bgcolor" value="#ffffff" />
-            <param name="play" value="true" />
-            <param name="loop" value="true" />
-            <param name="wmode" value="opaque" />
-            <param name="scale" value="noborder" />
-            <param name="menu" value="false" />
-            <param name="devicefont" value="false" />
-            <param name="salign" value="" />
-            <param name="allowScriptAccess" value="sameDomain" />
-        <!--<![endif]-->
-            <a href="http://www.adobe.com/go/getflash">
-                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-            </a>
-        <!--[if !IE]>-->
-        </object>
-        <!--<![endif]-->
-    </object>
-</div>
-
-<p>소스 <a href="vect11a.fla">fla</a>를 다운받을 수 있습니다. </p>
+<canvas data-processing-sources="../data/bouncing_2_moving_balls.pde"></canvas>
+<p><small>(소스파일 <a href="../data/bouncing_2_moving_balls.pde">pde</a>를 다운받을 수 있습니다.)</small></p>
 
 <p><br />
 <br />
