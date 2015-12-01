@@ -83,7 +83,7 @@ if(v3.length < ball1.length && dotP(v3, ball1) > 0) {
 
 <br>
 <br>
-다음 : [2 moving balls]({{ "/2_moving_balls/" | prepend: site.baseurl }})
+다음 : [2 Moving balls]({{ "/2_moving_balls/" | prepend: site.baseurl }})
 
 
 
