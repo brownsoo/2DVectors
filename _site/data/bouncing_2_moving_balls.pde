@@ -99,11 +99,10 @@ void runMe() {
     updateBall(ball1, false);
     
     for(int j=0; j<balls.length; j++) {
-      if(i == j) continue;
+      if(i == j) {continue;}
       ball2 = balls[j];
       
       //vector between center points of ball
-      if(vc == null || ball1 == null ) continue; 
       vc.p0 = ball1.p0;
       vc.p1 = ball2.p0;
       updateBall(vc, true);
@@ -158,7 +157,6 @@ void runMe() {
            ball1.p1 = new Point(ball1.p0.x + t*ball1.vx, ball1.p0.y + t*ball1.vy);
            ball2.p1 = new Point(ball2.p0.x + t*ball2.vx, ball2.p0.y + t*ball2.vy);
            //vector between centers of ball in the moment of colliosion
-           Ball vc = new Ball(0,0);
            vc.p0 = ball1.p1;
            vc.p1 = ball2.p1;
            updateBall(vc, true);
