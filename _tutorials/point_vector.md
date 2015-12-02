@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Point, Vector
+title: 1) Point, Vector
 section: Basics
 number: 1001
 ---

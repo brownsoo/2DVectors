@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Length, Normals
+title: 2) Length, Normals
 section: Basics
 number: 1002
 ---

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Adding, Projecting
+title: 3) Adding, Projecting
 section: Basics
 number: 1003
 ---

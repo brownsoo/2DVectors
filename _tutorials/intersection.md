@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Intersection
+title: 5) Intersection
 section: Using vectors
 number: 2002
 ---

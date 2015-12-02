@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Move, Accelerate
+title: 4) Move, Accelerate
 section: Using vectors
 number: 2001
 ---

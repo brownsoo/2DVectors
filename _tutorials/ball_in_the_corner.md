@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Ball in the Corner
+title: 9) Ball in the Corner
 section: The ball
 number: 3002
 ---
