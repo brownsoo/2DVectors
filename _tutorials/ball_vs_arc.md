@@ -62,7 +62,7 @@ v1.p1 = {
 우리는 공과 호가 붙어있는 점 p3를 찾아야 합니다. 이미 충돌이 일어날 때 움직이는 공의 중심 좌표를 알고 있기 때문에 충돌하는 순간 호의 중심에서 원의 중심까지 벡터 v2 를 그릴 수 있습니다:
 
 {% highlight java %}  
-v2 = {p0:arc.p0, p1:ball.p3};//FIXME ball.p0 
+v2 = {p0:arc.p0, p1:p3};
 {% endhighlight %}
 
 점 p3는 이 벡터 상에 있고 호의 중심으로부터 호의 반경과 같은 떨어진 거리에 있습니다.(또한 공의 중심에서 공의 반경 거리만큼 떨어져 있습니다)
@@ -100,11 +100,11 @@ if(dotP(v3, v1LeftNormal) >= 0){
 ballvsBall(ball, arc.p0, arc.r);
 {% endhighlight %}
 
-그리고 다음과 같이 호의 시작과 끝점 충돌을 생각할 수 있습니다.
+그리고 다음과 같이 호의 시작과 끝점 충돌을 생각할 수 있습니다. arc.edge는 호의 시작에서 끝점까지의 벡터입니다. 그림에서는 v1 입니다.
 
 {% highlight java %}  
-ballvsBall(ball, v1.p0, 0);
-ballvsBall(ball, v1.p1, 0);
+ballVsBall(ball, arc.edge.p0, 0);
+ballVsBall(ball, arc.edge.p1, 0);
 {% endhighlight %}
 
 호 안에서 공의 충돌에 대해서는 약간 수정한 외부 충돌 시스템을 사용합니다. 
@@ -112,11 +112,11 @@ ballvsBall(ball, v1.p1, 0);
 외부 충돌인 경우 :
 
 {% highlight java %}  
-r = arc.r + ball.r;
-moveBack = Math.sqrt(r*r - vn.length*vn.length);
-ball.p3 = {
-  x : ball.p2.x - moveBack * v.dx,
-  y : ball.p2.y - moveBack * v.dy
+float r = arc.r + ball.r;
+float moveBack = Math.sqrt(r*r - vn.length*vn.length);
+p3 = {
+  x : vn.p0.x - moveBack * ball.dx,
+  y : vn.p0.y - moveBack * ball.dy
 };
 {% endhighlight %}
 
@@ -124,12 +124,12 @@ ball.p3 = {
 내부 충돌인 경우 :
 
 {% highlight java %}  
-r = arc.r - ball.r;
-moveBack = Math.sqrt(r*r - vn.len*vn.len);
-ball.p3 = {
-	x : ball.p2.x + moveBack * v.dx,
-	y : ball.p2.y + moveBack * v.dy
-};
+float r = arc.r - ball.r;
+float moveForward = sqrt(r*r - vn.length * vn.length);
+p3 = {
+ x: vn.p0.x + moveForward * ball.dx;
+ y: vn.p0.y + moveForward * ball.dy;
+}
 {% endhighlight %}
 
 
@@ -137,40 +137,12 @@ ball.p3 = {
 
 다음 공과 호의 예제에서 즐겨봅시다.
 
-<div id="flashContent">
-    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="300" height="200" id="vect12" align="middle">
-        <param name="movie" value="../data_old/vect12.swf" />
-        <param name="quality" value="high" />
-        <param name="bgcolor" value="#ffffff" />
-        <param name="play" value="true" />
-        <param name="loop" value="true" />
-        <param name="wmode" value="opaque" />
-        <param name="scale" value="noborder" />
-        <param name="menu" value="false" />
-        <param name="devicefont" value="false" />
-        <param name="salign" value="" />
-        <param name="allowScriptAccess" value="sameDomain" />
-        <!--[if !IE]>-->
-        <object type="application/x-shockwave-flash" data="../data_old/vect12.swf" width="300" height="200">
-            <param name="movie" value="../data_old/vect12.swf" />
-            <param name="quality" value="high" />
-            <param name="bgcolor" value="#ffffff" />
-            <param name="play" value="true" />
-            <param name="loop" value="true" />
-            <param name="wmode" value="opaque" />
-            <param name="scale" value="noborder" />
-            <param name="menu" value="false" />
-            <param name="devicefont" value="false" />
-            <param name="salign" value="" />
-            <param name="allowScriptAccess" value="sameDomain" />
-        <!--<![endif]-->
-            <a href="http://www.adobe.com/go/getflash">
-                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-            </a>
-        <!--[if !IE]>-->
-        </object>
-        <!--<![endif]-->
-    </object>
-</div>
+<canvas data-processing-sources="../data/ball_vs_arc.pde"></canvas>
+<small>(소스파일 [pde](../data/ball_vs_arc.pde)를 다운받을 수 있습니다.)</small>
+
+
+<br>
+<br>
+끝.
 
 

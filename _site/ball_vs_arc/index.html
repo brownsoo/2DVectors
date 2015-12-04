@@ -304,7 +304,7 @@
 
 <p>우리는 공과 호가 붙어있는 점 p3를 찾아야 합니다. 이미 충돌이 일어날 때 움직이는 공의 중심 좌표를 알고 있기 때문에 충돌하는 순간 호의 중심에서 원의 중심까지 벡터 v2 를 그릴 수 있습니다:</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v2</span> <span class="o">=</span> <span class="o">{</span><span class="nl">p0:</span><span class="n">arc</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="nl">p1:</span><span class="n">ball</span><span class="o">.</span><span class="na">p3</span><span class="o">};</span><span class="c1">//FIXME ball.p0</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v2</span> <span class="o">=</span> <span class="o">{</span><span class="nl">p0:</span><span class="n">arc</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="nl">p1:</span><span class="n">p3</span><span class="o">};</span></code></pre></div>
 
 <p>점 p3는 이 벡터 상에 있고 호의 중심으로부터 호의 반경과 같은 떨어진 거리에 있습니다.(또한 공의 중심에서 공의 반경 거리만큼 떨어져 있습니다)</p>
 
@@ -333,70 +333,41 @@
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ballvsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span><span class="o">);</span></code></pre></div>
 
-<p>그리고 다음과 같이 호의 시작과 끝점 충돌을 생각할 수 있습니다.</p>
+<p>그리고 다음과 같이 호의 시작과 끝점 충돌을 생각할 수 있습니다. arc.edge는 호의 시작에서 끝점까지의 벡터입니다. 그림에서는 v1 입니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ballvsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-<span class="n">ballvsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">v1</span><span class="o">.</span><span class="na">p1</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ballVsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">edge</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="n">ballVsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">edge</span><span class="o">.</span><span class="na">p1</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span></code></pre></div>
 
 <p>호 안에서 공의 충돌에 대해서는 약간 수정한 외부 충돌 시스템을 사용합니다. </p>
 
 <p>외부 충돌인 경우 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">r</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">ball</span><span class="o">.</span><span class="na">r</span><span class="o">;</span>
-<span class="n">moveBack</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">r</span><span class="o">*</span><span class="n">r</span> <span class="o">-</span> <span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">*</span><span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
-<span class="n">ball</span><span class="o">.</span><span class="na">p3</span> <span class="o">=</span> <span class="o">{</span>
-  <span class="n">x</span> <span class="o">:</span> <span class="n">ball</span><span class="o">.</span><span class="na">p2</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">moveBack</span> <span class="o">*</span> <span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">,</span>
-  <span class="n">y</span> <span class="o">:</span> <span class="n">ball</span><span class="o">.</span><span class="na">p2</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">moveBack</span> <span class="o">*</span> <span class="n">v</span><span class="o">.</span><span class="na">dy</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="n">r</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">ball</span><span class="o">.</span><span class="na">r</span><span class="o">;</span>
+<span class="kt">float</span> <span class="n">moveBack</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">r</span><span class="o">*</span><span class="n">r</span> <span class="o">-</span> <span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">*</span><span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="n">x</span> <span class="o">:</span> <span class="n">vn</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">moveBack</span> <span class="o">*</span> <span class="n">ball</span><span class="o">.</span><span class="na">dx</span><span class="o">,</span>
+  <span class="n">y</span> <span class="o">:</span> <span class="n">vn</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">moveBack</span> <span class="o">*</span> <span class="n">ball</span><span class="o">.</span><span class="na">dy</span>
 <span class="o">};</span></code></pre></div>
 
 <p>내부 충돌인 경우 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">r</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="n">ball</span><span class="o">.</span><span class="na">r</span><span class="o">;</span>
-<span class="n">moveBack</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">r</span><span class="o">*</span><span class="n">r</span> <span class="o">-</span> <span class="n">vn</span><span class="o">.</span><span class="na">len</span><span class="o">*</span><span class="n">vn</span><span class="o">.</span><span class="na">len</span><span class="o">);</span>
-<span class="n">ball</span><span class="o">.</span><span class="na">p3</span> <span class="o">=</span> <span class="o">{</span>
-	<span class="n">x</span> <span class="o">:</span> <span class="n">ball</span><span class="o">.</span><span class="na">p2</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">moveBack</span> <span class="o">*</span> <span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">,</span>
-	<span class="n">y</span> <span class="o">:</span> <span class="n">ball</span><span class="o">.</span><span class="na">p2</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">moveBack</span> <span class="o">*</span> <span class="n">v</span><span class="o">.</span><span class="na">dy</span>
-<span class="o">};</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="n">r</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="n">ball</span><span class="o">.</span><span class="na">r</span><span class="o">;</span>
+<span class="kt">float</span> <span class="n">moveForward</span> <span class="o">=</span> <span class="n">sqrt</span><span class="o">(</span><span class="n">r</span><span class="o">*</span><span class="n">r</span> <span class="o">-</span> <span class="n">vn</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="o">{</span>
+ <span class="nl">x:</span> <span class="n">vn</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">moveForward</span> <span class="o">*</span> <span class="n">ball</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span>
+ <span class="nl">y:</span> <span class="n">vn</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">moveForward</span> <span class="o">*</span> <span class="n">ball</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span>
+<span class="o">}</span></code></pre></div>
 
 <p>공이 점 보다 호에 더 충돌할 가능이 있기에 모든 3가지 충돌이 발견된 후에는 공이 충돌로 가는 가장 짧은 길을 선택할 필요가 있습니다.</p>
 
 <p>다음 공과 호의 예제에서 즐겨봅시다.</p>
 
-<div id="flashContent">
-    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="300" height="200" id="vect12" align="middle">
-        <param name="movie" value="../data_old/vect12.swf" />
-        <param name="quality" value="high" />
-        <param name="bgcolor" value="#ffffff" />
-        <param name="play" value="true" />
-        <param name="loop" value="true" />
-        <param name="wmode" value="opaque" />
-        <param name="scale" value="noborder" />
-        <param name="menu" value="false" />
-        <param name="devicefont" value="false" />
-        <param name="salign" value="" />
-        <param name="allowScriptAccess" value="sameDomain" />
-        <!--[if !IE]>-->
-        <object type="application/x-shockwave-flash" data="../data_old/vect12.swf" width="300" height="200">
-            <param name="movie" value="../data_old/vect12.swf" />
-            <param name="quality" value="high" />
-            <param name="bgcolor" value="#ffffff" />
-            <param name="play" value="true" />
-            <param name="loop" value="true" />
-            <param name="wmode" value="opaque" />
-            <param name="scale" value="noborder" />
-            <param name="menu" value="false" />
-            <param name="devicefont" value="false" />
-            <param name="salign" value="" />
-            <param name="allowScriptAccess" value="sameDomain" />
-        <!--<![endif]-->
-            <a href="http://www.adobe.com/go/getflash">
-                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-            </a>
-        <!--[if !IE]>-->
-        </object>
-        <!--<![endif]-->
-    </object>
-</div>
+<canvas data-processing-sources="../data/ball_vs_arc.pde"></canvas>
+<p><small>(소스파일 <a href="../data/ball_vs_arc.pde">pde</a>를 다운받을 수 있습니다.)</small></p>
+
+<p><br />
+<br />
+끝.</p>
 
 
   </article>
