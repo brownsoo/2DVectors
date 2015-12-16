@@ -1,3 +1,8 @@
+@charset "utf-8";
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+$base-font-family: "Noto Sans", "Noto Sans CJK KR", sans-serif;
+
 /**
  * Reset some basic elements
  */
@@ -111,6 +116,7 @@ blockquote {
     border-left: 4px solid $grey-color-light;
     padding-left: $spacing-unit / 2;
     font-size: 1em;
+    font-weight: lighter;
     letter-spacing: -1px;
     font-style: normal;
 

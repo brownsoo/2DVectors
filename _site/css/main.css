@@ -1,8 +1,9 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 /** Reset some basic elements */
 body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure { margin: 0; padding: 0; }
 
 /** Basic styling */
-body { font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #111; background-color: #fdfdfd; -webkit-text-size-adjust: 100%; }
+body { font-family: "Noto Sans", "Noto Sans CJK KR", sans-serif; font-size: 16px; line-height: 1.5; color: #111; background-color: #fdfdfd; -webkit-text-size-adjust: 100%; }
 
 /** Set `margin-bottom` to maintain vertical rhythm */
 h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight { margin-bottom: 15px; }
@@ -29,7 +30,7 @@ a:visited { color: #1756a9; }
 a:hover { color: #111; text-decoration: underline; }
 
 /** Blockquotes */
-blockquote { color: #828282; border-left: 4px solid #e8e8e8; padding-left: 15px; font-size: 1em; letter-spacing: -1px; font-style: normal; }
+blockquote { color: #828282; border-left: 4px solid #e8e8e8; padding-left: 15px; font-size: 1em; font-weight: lighter; letter-spacing: -1px; font-style: normal; }
 blockquote > :last-child { margin-bottom: 0; }
 
 /** Code formatting */
