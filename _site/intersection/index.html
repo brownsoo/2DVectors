@@ -255,16 +255,16 @@
   <article class="post-content">
     <h1 id="intersection">교차하기 (Intersection)</h1>
 
-<p>이제 오브젝트를 움직이는 법을 알게 되었습니다. 그런데 움직이는 모든 오브젝트들은 언젠가 무언가와 충돌할 것입니다. 이동하는 물체가 예를 들어 당신이라면, 운이 좋게도 침대처럼 부드러운 것에 부딪힐 수도 있고 때론 딱딱한 소재 -돌벽, 시멘트 바닥, 닫힌 문에 충돌할 수도 있습니다. 현실에는 당신과 부딪히기만을 기다리거나 다른 움직이는 딱딱한 물체들이 많이 존재합니다. 그래서 미래에 어떤 물체가 나와 충돌할지 미리 아는 것은 현명하고 머리 건강에도 좋습니다.</p>
+<p>이제 오브젝트를 움직이는 법을 알게 되었습니다. 그런데 움직이는 모든 오브젝트들은 언젠가 무언가와 충돌할 것입니다. 이동하는 물체가 예를 들어 당신이라면, 운이 좋게도 침대처럼 부드러운 것에 부딪힐 수도 있고 때론 딱딱한 소재 -돌벽, 시멘트 바닥, 닫힌 문에 충돌할 수도 있습니다. 현실에는 당신과 부딪히기만을 기다리거나 움직이는 딱딱한 물체들이 많이 존재합니다. 그래서 미래에 어떤 물체가 나와 충돌할지 미리 아는 것은 현명하고 머리 건강에도 좋습니다.</p>
 
-<p>여기 객체의 운동 벡터와 벽을 만들고 있는 벡터가 있습니다. 우리는 객체가 벽에 부딪히는지, 그렇다면, 언제, 어디서 일어나는지 알고자 합니다. 이렇게 다시 질문합니다. “어디서 두 벡터가 교차할까요?”</p>
+<p>여기 객체의 운동 벡터와 벽을 만들고 있는 벡터가 있습니다. 우리는 객체가 벽에 부딪히는지, 그렇다면, 언제, 어디서 일어나는지 알고자 합니다. 이렇게 다시 질문합니다. “어디에서 두 벡터가 교차할까요?”</p>
 
-<p>먼저 그들이 교차하지 않는 경우를 봅시다. 벡터들이 평행하면 교차할 수 없습니다. 그리고 벡터의 단위벡터들이 같다면 그들은 평행합니다(같은 방향일 필요는 없으며, 반대 방향이여도 됩니다):</p>
+<p>먼저 그들이 교차하지 않는 경우를 봅시다. 벡터들이 평행하면 교차할 수 없습니다. 그리고 벡터의 단위벡터들이 같다면 그들은 평행합니다(같은 방향일 필요는 없으며, 반대 방향이여도 됩니다).</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">(</span><span class="n">v1</span><span class="o">.</span><span class="na">dx</span><span class="o">==</span><span class="n">v2</span><span class="o">.</span><span class="na">dx</span> <span class="n">and</span> <span class="n">v1</span><span class="o">.</span><span class="na">dy</span><span class="o">==</span><span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">)</span>
-<span class="o">(</span><span class="n">v1</span><span class="o">.</span><span class="na">dx</span><span class="o">==-</span><span class="n">v2</span><span class="o">.</span><span class="na">dx</span> <span class="n">and</span> <span class="n">v1</span><span class="o">.</span><span class="na">dy</span><span class="o">==-</span><span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">(</span><span class="n">v1</span><span class="o">.</span><span class="na">dx</span> <span class="o">==</span> <span class="n">v2</span><span class="o">.</span><span class="na">dx</span> <span class="n">and</span> <span class="n">v1</span><span class="o">.</span><span class="na">dy</span> <span class="o">==</span> <span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">)</span>
+<span class="o">(</span><span class="n">v1</span><span class="o">.</span><span class="na">dx</span> <span class="o">==</span> <span class="o">-</span><span class="n">v2</span><span class="o">.</span><span class="na">dx</span> <span class="n">and</span> <span class="n">v1</span><span class="o">.</span><span class="na">dy</span> <span class="o">==</span> <span class="o">-</span><span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">)</span></code></pre></div>
 
-<p>벡터들이 평행하지 않으면 언젠가는 교차합니다. 초록선은 시작점 p0를 갖고 있는 운동 벡터이고, 빨간선은 시작점 p0 를 갖고 있는 벽입니다. 파란색은 시작점 간의 벡터입니다:</p>
+<p>벡터들이 평행하지 않으면 언젠가는 교차합니다. 초록선은 시작점 p0를 갖고 있는 운동 벡터이고, 빨간선은 시작점 p0 를 갖고 있는 벽입니다. 파란색은 시작점 간의 벡터입니다.</p>
 
 <p><img src="../img/tut05_1.gif" alt="Alt 교차점" /></p>
 
@@ -281,16 +281,16 @@
   <span class="k">return</span> <span class="n">v0</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">-</span> <span class="n">v0</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
 <span class="o">}</span></code></pre></div>
 
-<p>먼저 시작점 사이의 벡터 v3를 구합니다. 여기서 사용된 함수는 두 벡터의 Perp product을 구합니다. Perp product는 첫번째 벡터 대신에 그 노말을 사용한다는 점만 빼고 내적과 비슷합니다. 내적은 다음과 같습니다:</p>
+<p>먼저 시작점 사이의 벡터 v3를 구합니다. 여기서 사용된 함수는 두 벡터의 Perp product을 구합니다. <a href="http://geomalgorithms.com/vector_products.html">Perp product</a>는 첫번째 벡터 대신에 그 오른쪽 노말(<a href="http://geomalgorithms.com/vector_products.html">perp vector</a>)을 사용한다는 점만 빼고 내적과 비슷합니다. 오른쪽 노멀은 90도 회전한 벡터를 말합니다. 내적은 다음과 같습니다:</p>
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">dp</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
-<p>그리고 노말은 이렇습니다 :</p>
+<p>그리고 오른쪽 노말은 이렇습니다.</p>
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">rx</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
 <span class="n">v</span><span class="o">.</span><span class="na">ry</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span></code></pre></div>
 
-<p>그래서 v1을 노말로 변경하면 다음 식을 얻게 됩니다 :</p>
+<p>그래서 v1을 노말로 변경하면 다음 식을 얻게 됩니다.</p>
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">pp</span> <span class="o">=</span> <span class="o">-</span><span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
 
@@ -319,7 +319,7 @@
 
 <h3 id="perp-product--">Perp product 공식의 이해</h3>
 
-<p>먼저 두 점(P<sub>0</sub>, P<sub>1</sub>)를 지나는 벡터 방정식을 매개변수로 표현한 방정식으로 표현하면, P(s) = P<sub>0</sub> + s(P<sub>1</sub> - P<sub>0</sub>) = P<sub>0</sub> + su(s는 실수, u는 벡터)로 정의할 수 있습니다. 이 표현을 빌리면, P(0) = P<sub>0</sub>, P(1) = P<sub>1</sub>, 0 &lt;= P(s) &lt;= 1 입니다. 아래와 같이 s값을 정리합니다.</p>
+<p>먼저 두 점(P<sub>0</sub>, P<sub>1</sub>)를 지나는 벡터 방정식을 매개변수로 표현한 방정식으로 표현하면, P(s) = P<sub>0</sub> + s(P<sub>1</sub> - P<sub>0</sub>) = P<sub>0</sub> + su(s는 실수, u는 벡터)로 정의할 수 있습니다. 이 표현을 빌리면, P(0) = P<sub>0</sub>, P(1) = P<sub>1</sub>, 0 &lt;= s &lt;= 1 입니다. 아래와 같이 s값을 정리합니다.</p>
 
 <pre><code>su = P(s) - P0
 s = (P(s) - P0) / u
@@ -329,7 +329,7 @@ s = d(P0, P(s)) / d(P0, P1)
 
 <p>벡터 d로 정리된 s값을 살펴보면, s가 0보다 작으면 P(s)는 P0의 바깥 쪽에 있고, s가 1 보다 크면 P(s)는 P<sub>1</sub>의 바깥 쪽에 있음을 알 수 있습니다.</p>
 
-<p>평행한 두 벡터 u(P<sub>1</sub> - P<sub>0</sub>), v(Q<sub>1</sub> - Q<sub>0</sub>)에 대해 u = Cv 가 성립됩니다.(C는 실수)
+<p>평행한 두 벡터 u(P<sub>1</sub> - P<sub>0</sub>), v(Q<sub>1</sub> - Q<sub>0</sub>)에 대해 u = Cv 가 성립됩니다(C는 실수).
 같은 의미로 u/v 값은 항상 같은 값을 유지하는데 u(1)/v(1) = u(k)/v(k) 으로 표현할 수 있습니다. <br /></p>
 
 <p><code>

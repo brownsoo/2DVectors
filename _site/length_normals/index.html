@@ -253,7 +253,7 @@
   </header>
 
   <article class="post-content">
-    <h1 id="section">벡터는 무엇을 갖고 있을까요?</h1>
+    <h1 id="section">벡터의 속성을 더 알아볼까요?</h1>
 
 <p>2개의 포인트와 vx/vy 요소는 벡터를 이루는 기본적인 요소가 되지만, 벡터에는 더 유용한 속성들이 있습니다. 예를 들어, 벡터는 길이라는 속성이 있습니다. 벡터의 길이는 정확히 시작점과 끝점 사이의 거리입니다. 우리는 이미 벡터의 vx/vy 요소를 알고 있기 때문에, 매우 쉽게 그 길이를 계산할 수 있습니다.</p>
 
@@ -328,31 +328,28 @@ x 성분의 제곱값과 y 성분의 제곱값을 더한 다음, 그 값의 제�
 벡터는 <a href="https://en.wikipedia.org/wiki/Normal_(geometry)">노멀(normals)</a> 이란 속성도 갖고 있는데, 노멀들은 벡터에 정확히 직교합니다. 360도계 표현이 빌리자면, 노멀들은 90도 회전되어 있는 것입니다. 벡터는 방향을 갖고 있기 때문에 오른쪽 방향과 왼쪽 방향의 2개 노멀을 갖고 있습니다. 잠깐 일어서서 벡터의 방향 쪽으로 얼굴을 바라보세요. 
 그리고 양 팔을 들어올리면, 여러분의 손은 각각 오른쪽, 왼쪽 노멀이 되는 셈입니다.</p>
 
-<p>오른쪽 방향과 왼쪽 방향 노멀은 이렇게 구할 수 있습니다.</p>
+<p>예제 코드에서 오른쪽 방향과 왼쪽 방향 노멀을 이렇게 구하고 있습니다.</p>
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">rx</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
 <span class="n">v</span><span class="o">.</span><span class="na">ry</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span> 
 <span class="n">v</span><span class="o">.</span><span class="na">lx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
 <span class="n">v</span><span class="o">.</span><span class="na">ly</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span></code></pre></div>
 
-<p><br /></p>
-
 <blockquote>
-  <p>노멀은 벡터의 좌우로 90도 회전한 것이다. 그래서 -90, 90도 회전한 좌표를 구하기 위해 아래 회전행렬을 이용할 수 있다.</p>
+  <p>노멀은 벡터의 좌우로 90도 회전한 것이다. 그래서 -90, 90도 회전한 좌표를 구하기 위해 아래 Arfken의 <a href="http://mathworld.wolfram.com/RotationMatrix.html">회전행렬</a>을 이용할 수 있다. Arfken의 회전행렬은 고정된 외부좌표계를 기준으로 오브젝트의 회전을 구하는 방법이 아니라, 오브젝트를 기준으로 만들어지는 좌표계를 회전시키는 방법으로 벡터를 기준으로한 좌우 노멀을 구할 수 있다.</p>
 
-  <p><img src="../img/my02_2.png" alt="Alt 회전행렬" /></p>
+  <p><img src="../img/matrix_rotation_of_coordinate.gif" alt="Alt 회전행렬" /></p>
 
   <p>오른쪽 노말에 대한 계산을 해보자. 코사인 90 은 값이 0 이고, 사인 90 은 1 이다. 그래서 90도 회전에 대한 행렬계산은 이렇게 정리된다.(x”, y” 은 x, y 의 회전 결과값)</p>
 </blockquote>
 
-<pre><code>x" = y; 
-y" = - x;
+<pre><code>x" = -y; 
+y" = x;
 </code></pre>
 
 <blockquote>
-  <p>그런데 행렬계산으로 나온 식은 위에서 말한 좌우 노멀과 비교해 좌우가 서로 바뀌어 있다. 이것은 화면에서 y 값이 반전된 좌표를 사용하고 있기 때문이다.</p>
 
-  <p>일반적인 평면좌표와 행렬계산에서는 각도가 시계방향으로 증가하는 반면, 플래시(또는 2D CG)에서는 반시계방향으로 증가한다. 그래서 자신이 작업하고 있는 좌표계가 어떻게 되어있는지 꼭 확인할 필요가 있다. 참고로 플래시에서 Matrix 의 rotation 함수는 위와 같은 행렬계산을 실행한다. 매트릭스를 심볼에 적용하게 되면 각도가 증가할 수록 심볼이 반시계 방향으로 돌 것 같지만, 시계방향으로 돌도록 내부적으로 바로 잡아준다.</p>
+  <p>일반적으로 각도가 반시계방향으로 증가하는 데, 반드시 반시계방향으로 증가하지 않는 환경도 존재한다. 그래서 자신이 작업하고 있는 좌표계가 어떻게 되어있는지 꼭 확인할 필요가 있다. 참고로 플래시에서 Matrix 의 rotation 함수는 위와 같은 행렬계산을 실행한다.</p>
 
   <p>사실 노멀은 이런 행렬계산까지 하지 않아도 우리가 알고 있는 평면좌표에 그려보면 공식을 알 수 있다.</p>
 </blockquote>
