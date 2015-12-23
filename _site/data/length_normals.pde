@@ -6,6 +6,11 @@
  * Checkout : brownsoo.github.io/vectors
  */
 
+final int _GREEN = 0xff4CAF50;
+final int _RED = 0xffFF5252;
+final int _BLUE = 0xff03A9F4;
+final int _GRAY = 0xff757575;
+final int _BLACK = 0xff212121;
 
 //scale is to convert between stage coordinates
 final int scale = 10;
@@ -51,10 +56,10 @@ void setup() {
   dragger2.y = scale * vector.p1.y;
   
   //Arrow graphics for vector
-  arrow1 = new Arrow(0xff212121);//black
-  arrow2 = new Arrow(0xff2196f3);//blue
-  arrow3 = new Arrow(0xff4caf50);//green
-  arrow4 = new Arrow(0xffff5252);//red
+  arrow1 = new Arrow(_BLACK);
+  arrow2 = new Arrow(_BLUE);
+  arrow3 = new Arrow(_GREEN);
+  arrow4 = new Arrow(_RED);
   
   //calculate all parameters for the vector and draw it
   updateVector(vector);

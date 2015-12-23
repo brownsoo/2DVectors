@@ -21,8 +21,8 @@ Dragger[] draggers;
 Dragger dragger;
 // Object to move
 Ball ball;
-//stopped balls
-Ball[] stoppedBalls;
+// Big ball
+Ball big;
 //reset button
 SimpleButton resetBt;
 
@@ -39,12 +39,9 @@ void setup() {
   ball.vx = 5;
   ball.vy = 5;
   
-  //create stand balls
-  stoppedBalls = new Ball[1];
-  stoppedBalls[0] = new Ball(new Point(160, 150), _BLACK, 80);
-  for(int i=0; i<stoppedBalls.length; i++) {
-   updateVector(stoppedBalls[i], false);
-  }
+  //create big ball
+  big = new Ball(new Point(160, 150), _BLACK, 80);
+  updateVector(big, false);
   
   //Dragging Handler
   draggers = new Dragger[1];
@@ -68,8 +65,8 @@ class OnButtonClick implements ButtonCallback {
     ball.p0.y = 150;
     updateVector(ball, false);
     
-    stoppedBalls[0].p1.x = 160;
-    stoppedBalls[0].p1.y = 150;
+    big.p1.x = 160;
+    big.p1.y = 150;
   }
 }
 
@@ -107,10 +104,10 @@ void runMe() {
       if(draggers[i].pressed) {
         draggers[i].x = mouseX;
         draggers[i].y = mouseY;
-        stoppedBalls[i].p1.x = mouseX;
-        stoppedBalls[i].p1.y = mouseY;
       }
     }
+    big.p1.x = mouseX;
+    big.p1.y = mouseY;
   }
   // start to calculate movement
   //dont let it go over max speed
@@ -119,27 +116,25 @@ void runMe() {
   //update the vector parameters
   updateBall(ball);
   //check the stopped balls for collisions
-  for(int i=0; i<stoppedBalls.length; i++) {
-    Ball w = stoppedBalls[i];
-    Vector v = ball2ball(ball, w);//v contains vx, vy, length, dx, dy
-    updateVector(v, false);
-    float pen = w.r - ball.r - v.length;
-    //if we have hit the ball
-    if(pen < 0) {
-      //move ball away from the stopped ball
-      ball.p1.x += v.dx * pen;
-      ball.p1.y += v.dy * pen;
-      //cahnge movement, bounce off from the normal of v
-      Vector vbounce = new Vector();
-      vbounce.dx = -v.dy;//v.ldx * -1
-      vbounce.dy = v.dx;//v.ldy * -1
-      vbounce.ldx = -v.dx;
-      vbounce.ldy = -v.dy;
-      Vector vb = findBounceVector(ball, vbounce);
-      ball.vx = vb.vx;
-      ball.vy = vb.vy;
-    }
+  Vector v = ball2ball(ball, big);//v contains vx, vy, length, dx, dy
+  updateVector(v, false);
+  float pen = big.r - (ball.r + v.length);
+  //if we have hit the ball
+  if(pen < 0) {
+    //move ball away from the stopped ball
+    ball.p1.x += v.dx * pen;
+    ball.p1.y += v.dy * pen;
+    //cahnge movement, bounce off from the normal of v
+    Vector vbounce = new Vector();
+    vbounce.dx = -v.dy;//right normal of v
+    vbounce.dy = v.dx;//right normal of v
+    vbounce.ldx = -v.dx;//left unit sized normal of vbounce * -1
+    vbounce.ldy = -v.dy;//left unit sized normal of vbounce * -1
+    Vector vb = findBounceVector(ball, vbounce);
+    ball.vx = vb.vx;
+    ball.vy = vb.vy;
   }
+  
   
   //reset object to other side if gone out of stage
   if (ball.p1.x > width + ball.r) {
@@ -170,12 +165,10 @@ void drawAll() {
   //place ball
   ball.place();
   //Draw big ball
-  for(int i=0; i<draggers.length; i++) {
-    draggers[i].x = stoppedBalls[i].p1.x;
-    draggers[i].y = stoppedBalls[i].p1.y;
-    draggers[i].place();
-    stoppedBalls[i].place();
-  }
+  draggers[0].x = big.p1.x;
+  draggers[0].y = big.p1.y;
+  draggers[0].place();
+  big.place();
 }
 
 

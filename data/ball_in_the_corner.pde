@@ -29,8 +29,8 @@ void setup() {
   } catch(Exception e){}
   
   //create object
-  ball = new Ball(_BLACK, 40);
-  ball.p1 = new Point(150, 80);
+  ball = new Ball(_BLACK, 60);
+  ball.p1 = new Point(150, 120);
   
   //create wall vectors
   vectors = new Vector[3];

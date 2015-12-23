@@ -159,8 +159,6 @@ void runMe() {
       Vector vbounce = new Vector();
       vbounce.dx = v.ldx;
       vbounce.dy = v.ldy;
-      vbounce.lx = v.dx;
-      vbounce.ly = v.dy;
       vbounce.ldx = v.dx;
       vbounce.ldy = v.dy;
       Vector vb = findBounceVector(ball, vbounce);
@@ -282,7 +280,8 @@ void updateBall(Ball b) {
   //find time passed from last update
   int thisTime = millis();
   float time = (thisTime - b.lastTime)/1000f*scale;
-  //we use time, not frames to move so multiply movement vector with time passed
+  //we use time, not frames to move 
+  //so multiply movement vector with time passed
   b.vx *= time;
   b.vy *= time;
   //add gravity, also based on time
@@ -381,7 +380,9 @@ Vector projectVector(Vector v1, float dx, float dy) {
 
 
 
-
+// ------------------------------------
+// -------------- CLASS ---------------
+// ------------------------------------
 
 
 
@@ -484,9 +485,9 @@ class Vector {
   public float ly = 0;
   public float dx = 0;
   public float dy = 0;
-  public float rdx = 0;
+  public float rdx = 0;//right unit normal
   public float rdy = 0;
-  public float ldx = 0;
+  public float ldx = 0;//left unit normal
   public float ldy = 0;
   public float length = 0;
   public float airf = 1;//air friction

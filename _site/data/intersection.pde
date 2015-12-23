@@ -247,7 +247,7 @@ void findIntersection(Vector v0, Vector v1) {
   ip.y = int(v0.p0.y + v0.vy*t);
 }
 
-//calculate perp  product of 2 vectors
+//calculate perp product of 2 vectors
 float perP(Vector v0, Vector v1) {
   return v0.vx*v1.vy - v0.vy*v1.vx;
 }

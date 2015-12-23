@@ -47,8 +47,8 @@ void setup() {
   ball2.p1 = new Point(240, 120);
   updateVector(ball2, true);
   //ball at collison
-  ball1a = new Ball(_RED&0x54ffffff, 40);
-  ball2a = new Ball(_BLUE&0x54ffffff, 40);
+  ball1a = new Ball(_RED&0x44ffffff, 40);
+  ball2a = new Ball(_BLUE&0x44ffffff, 40);
   
   vc = new Vector();
   vn = new Vector();

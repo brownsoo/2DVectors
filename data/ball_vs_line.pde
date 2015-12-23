@@ -41,9 +41,9 @@ void setup() {
   //create wall vectors
   vectors = new Vector[4];
   vectors[0] = new Vector(new Point(250, 50), new Point(50, 50), 1, 1);
-  vectors[1] = new Vector(new Point(250, 200), new Point(250, 50), 1, 1);
+  vectors[1] = new Vector(new Point(50, 50), new Point(50, 200), 1, 1);
   vectors[2] = new Vector(new Point(50, 200), new Point(250, 200), 1, 1);
-  vectors[3] = new Vector(new Point(50, 50), new Point(50, 200), 1, 1);
+  vectors[3] = new Vector(new Point(250, 200), new Point(250, 50), 1, 1);
   
   //calculate all parameters for the vector and draw it
   for(int i=0; i<vectors.length; i++) {
@@ -76,9 +76,9 @@ class OnButtonClick implements ButtonCallback {
     ball.vx = 0;
     ball.vy = -5;
     vectors[0] = new Vector(new Point(250, 50), new Point(50, 50), 1, 1);
-    vectors[1] = new Vector(new Point(250, 200), new Point(250, 50), 1, 1);
+    vectors[1] = new Vector(new Point(50, 50), new Point(50, 200), 1, 1);
     vectors[2] = new Vector(new Point(50, 200), new Point(250, 200), 1, 1);
-    vectors[3] = new Vector(new Point(50, 50), new Point(50, 200), 1, 1);
+    vectors[3] = new Vector(new Point(250, 200), new Point(250, 50), 1, 1);
     //calculate all parameters for the vector and draw it
     for(int i=0; i<vectors.length; i++) {
       updateVector(vectors[i]);
@@ -147,10 +147,10 @@ void runMe() {
     //if we have hit the wall
     if(pen >= 0) {
       //move object away from the wall
-      ball.p1.x += vectors[i].lx * pen;
-      ball.p1.y += vectors[i].ly * pen;
+      ball.p1.x += vectors[i].ldx * pen;
+      ball.p1.y += vectors[i].ldy * pen;
       //change movement
-      Vector vb = bouncingBall(ball, vectors[i]);
+      Vector vb = findBounceVector(ball, vectors[i]);
       ball.vx = vb.vx;
       ball.vy = vb.vy;
     }
@@ -242,13 +242,16 @@ void updateVector(Vector v) {
     v.dx = 0;
     v.dy = 0;
   }
-  /* Care this */
   //right hand normal
-  v.rx = -v.dy;
-  v.ry = v.dx;
+  v.rx = -v.vy;
+  v.ry = v.vx;
+  v.rdx = -v.dy;
+  v.rdy = v.dx;
   //left hand normal
-  v.lx = v.dy;
-  v.ly = -v.dx;
+  v.lx = v.vy;
+  v.ly = -v.vx;
+  v.ldx = v.dy;
+  v.ldy = -v.dx;
 }
 
 //function to find all parameters for the ball vector 
@@ -269,20 +272,63 @@ void updateBall(Ball b) {
   //length of vector
   b.length = sqrt(b.vx*b.vx + b.vy*b.vy);
   //normalized unit-sized components
-  b.dx = b.vx/b.length;
-  b.dy = b.vy/b.length;
+  if(b.length>0) {
+    b.dx = b.vx/b.length;
+    b.dy = b.vy/b.length;
+  }
+  else {
+    b.dx = 0;
+    b.dy = 0;
+  }
   //right hand normal
   b.rx = -b.vy;
   b.ry = b.vx;
+  b.rdx = -b.dy;
+  b.rdy = b.dx;
   //left hand normal
   b.lx = b.vy;
   b.ly = -b.vx;
+  b.ldx = b.dy;
+  b.ldy = -b.dx;
   //save the current time
   b.lastTime = thisTime;
   //save time passed
   b.timeFrame = time;
 }
 
+
+
+
+//find the axes height of v0(ball) on v1(wall)
+float findAxesHeight(Vector v0, Vector v1) {
+  //vector between center of ball to ending point of wall
+  Vector v3 = new Vector();
+  v3.vx = v0.p1.x - v1.p0.x;
+  v3.vy = v0.p1.y - v1.p0.y;
+  //project this vector on the unit-sized normal of the wall
+  Vector v = projectVector(v3, v1.ldx, v1.ldy);
+  //find length of projection
+  v.length = sqrt(v.vx*v.vx + v.vy*v.vy);
+  return v.length;
+}
+
+// find new vector of v0 bouncing from v1
+Vector findBounceVector(Vector v0, Vector v1) {
+  //projection of v0 on v1
+  Vector proj1 = projectVector(v0, v1.dx, v1.dy);
+  //projection of v0 on v1 normal
+  Vector proj2 = projectVector(v0, v1.ldx, v1.ldy);//use unit vector's normal
+  //reverse projecton on v1 normal
+  proj2.length = sqrt(proj2.vx*proj2.vx + proj2.vy*proj2.vy);
+  proj2.vx = v1.ldx * proj2.length;
+  proj2.vy = v1.ldy * proj2.length;
+  //add the projections
+  Vector proj = new Vector();
+  proj.vx = v0.f*v1.f*proj1.vx + v0.b*v1.b*proj2.vx;
+  proj.vy = v0.f*v1.f*proj1.vy + v0.b*v1.b*proj2.vy;
+  
+  return proj;
+}
 
 //project vector v1 on unit-sized vector dx/dy
 Vector projectVector(Vector v1, float dx, float dy) {
@@ -294,38 +340,6 @@ Vector projectVector(Vector v1, float dx, float dy) {
   proj.vy = dp*dy;
   return proj;
 }
-
-//find the axes height of v0(ball) on v1(wall)
-float findAxesHeight(Vector v0, Vector v1) {
-  //vector between center of ball to ending point of wall
-  Vector v3 = new Vector();
-  v3.vx = v0.p1.x - v1.p0.x;
-  v3.vy = v0.p1.y - v1.p0.y;
-  //project this vector on the normal of the wall
-  Vector v = projectVector(v3, v1.lx, v1.ly);
-  //find length of projection
-  v.length = sqrt(v.vx*v.vx + v.vy*v.vy);
-  return v.length;
-}
-
-// find new vector bouncing from v1
-Vector bouncingBall(Ball b, Vector v1) {
-  //projection of b on v1
-  Vector proj1 = projectVector(b, v1.dx, v1.dy);
-  //projection of b on v1 normal
-  Vector proj2 = projectVector(b, v1.lx, v1.ly);//lx, ly is unit vector's normal
-  //reverse projecton on v1 normal
-  proj2.length = sqrt(proj2.vx*proj2.vx + proj2.vy*proj2.vy);
-  proj2.vx = v1.lx * proj2.length;
-  proj2.vy = v1.ly * proj2.length;
-  //add the projections
-  Vector proj = new Vector();
-  proj.vx = b.f*v1.f*proj1.vx + b.b*v1.b*proj2.vx;
-  proj.vy = b.f*v1.f*proj1.vy + b.b*v1.b*proj2.vy;
-  
-  return proj;
-}
-
 
 /** Ball Graphic */
 class Ball extends Vector {
@@ -417,15 +431,19 @@ class Point {
 class Vector {
   public Point p0;
   public Point p1;
-  public float vx;
-  public float vy;
-  public float rx;
-  public float ry;
-  public float lx;
-  public float ly;
-  public float dx;
-  public float dy;
-  public float length;
+  public float vx = 0;
+  public float vy = 0;
+  public float rx = 0;
+  public float ry = 0;
+  public float lx = 0;
+  public float ly = 0;
+  public float dx = 0;
+  public float dy = 0;
+  public float rdx = 0;
+  public float rdy = 0;
+  public float ldx = 0;
+  public float ldy = 0;
+  public float length = 0;
   public float airf = 1;//air friction
   public float b = 1;//bounce
   public float f = 1;//friction
