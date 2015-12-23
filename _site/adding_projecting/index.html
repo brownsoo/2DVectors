@@ -7,24 +7,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>3) Adding, Projecting</title>
-  <meta name="description" content="운동 벡터에 대한 기초를 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
+  <meta name="description" content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
 
-  <link rel="stylesheet" href="/Vectors-for-Animation/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/Vectors-for-Animation/adding_projecting/">
-  <link rel="alternate" type="application/rss+xml" title="Vectors for Animation" href="http://brownsoo.github.io/Vectors-for-Animation/feed.xml" />
+  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/adding_projecting/" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="3) Adding, Projecting" />
+  <meta property="og:description"   content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다." />
 
-  <script src="/Vectors-for-Animation/js/processing.min.js"></script>
+  <link rel="stylesheet" href="/2DVectors/css/main.css">
+  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/adding_projecting/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors for Animation" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+
+  <script src="/2DVectors/js/processing.min.js"></script>
   
 </head>
 
 
   <body>
 
-    <header class="site-header">
+    
+<!-- Load Facebook SDK for JavaScript -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '426537534208003',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<header class="site-header">
 
   <div class="wrapper">
 
-    <a class="site-title" href="/Vectors-for-Animation/">Vectors for Animation</a>
+    <a class="site-title" href="/2DVectors/">Basic 2D Vectors for Animation</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -38,7 +64,7 @@
       <div class="trigger">
         
           
-          <a class="page-link" href="/Vectors-for-Animation/about/">About</a>
+          <a class="page-link" href="/2DVectors/about/">About</a>
           
         
           
@@ -54,17 +80,17 @@
     
     <li class="section">Basics</li>
     <li>
-        <a href="/Vectors-for-Animation/point_vector/">1) Point, Vector</a>
+        <a href="/2DVectors/point_vector/">1) Point, Vector</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/length_normals/">2) Length, Normals</a>
+        <a href="/2DVectors/length_normals/">2) Length, Normals</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/adding_projecting/">3) Adding, Projecting</a>
+        <a href="/2DVectors/adding_projecting/">3) Adding, Projecting</a>
     </li>
     
 </ul>
@@ -73,17 +99,17 @@
     
     <li class="section">Using vectors</li>
     <li>
-        <a href="/Vectors-for-Animation/move_accelerate/">4) Move, Accelerate</a>
+        <a href="/2DVectors/move_accelerate/">4) Move, Accelerate</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/intersection/">5) Intersection</a>
+        <a href="/2DVectors/intersection/">5) Intersection</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/bounce/">6) Bounce</a>
+        <a href="/2DVectors/bounce/">6) Bounce</a>
     </li>
     
 </ul>
@@ -92,32 +118,32 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
+        <a href="/2DVectors/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
+        <a href="/2DVectors/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
+        <a href="/2DVectors/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_moving_ball/">10) Ball vs Moving Ball</a>
+        <a href="/2DVectors/ball_vs_moving_ball/">10) Ball vs Moving Ball</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/moving_balls/">11) Moving balls</a>
+        <a href="/2DVectors/moving_balls/">11) Moving balls</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
+        <a href="/2DVectors/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
 </ul>
@@ -127,7 +153,7 @@
     
     <li class="section">Extras</li>
     <li>
-        <a href="/Vectors-for-Animation/download/">Downloads</a>
+        <a href="/2DVectors/download/">Downloads</a>
     </li>
     
 </ul>
@@ -143,6 +169,7 @@
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
+<br>
 <div class="alert">
 현재 모바일에서는 예제의 인터랙션이 어렵습니다. 이 문제는 추후 보완될 가능성이 있습니다.^^
 </div>
@@ -168,17 +195,17 @@
     
     <li class="section">Basics</li>
     <li>
-        <a href="/Vectors-for-Animation/point_vector/">1) Point, Vector</a>
+        <a href="/2DVectors/point_vector/">1) Point, Vector</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/length_normals/">2) Length, Normals</a>
+        <a href="/2DVectors/length_normals/">2) Length, Normals</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/adding_projecting/">3) Adding, Projecting</a>
+        <a href="/2DVectors/adding_projecting/">3) Adding, Projecting</a>
     </li>
     
 </ul>
@@ -187,17 +214,17 @@
     
     <li class="section">Using vectors</li>
     <li>
-        <a href="/Vectors-for-Animation/move_accelerate/">4) Move, Accelerate</a>
+        <a href="/2DVectors/move_accelerate/">4) Move, Accelerate</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/intersection/">5) Intersection</a>
+        <a href="/2DVectors/intersection/">5) Intersection</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/bounce/">6) Bounce</a>
+        <a href="/2DVectors/bounce/">6) Bounce</a>
     </li>
     
 </ul>
@@ -206,32 +233,32 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
+        <a href="/2DVectors/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
+        <a href="/2DVectors/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
+        <a href="/2DVectors/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_moving_ball/">10) Ball vs Moving Ball</a>
+        <a href="/2DVectors/ball_vs_moving_ball/">10) Ball vs Moving Ball</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/moving_balls/">11) Moving balls</a>
+        <a href="/2DVectors/moving_balls/">11) Moving balls</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
+        <a href="/2DVectors/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
 </ul>
@@ -241,7 +268,7 @@
     
     <li class="section">Extras</li>
     <li>
-        <a href="/Vectors-for-Animation/download/">Downloads</a>
+        <a href="/2DVectors/download/">Downloads</a>
     </li>
     
 </ul>
@@ -257,6 +284,7 @@
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
+<br>
 <div class="alert">
 현재 모바일에서는 예제의 인터랙션이 어렵습니다. 이 문제는 추후 보완될 가능성이 있습니다.^^
 </div>
@@ -397,10 +425,18 @@ Proj.y = (A·B / B·B) * B.y;
 
 <p><br />
 <br />
-다음 : <a href="/Vectors-for-Animation/move_accelerate/">Move, Accelerate</a></p>
+다음 : <a href="/2DVectors/move_accelerate/">Move, Accelerate</a></p>
 
 
   </article>
+
+  <!-- Your like button code -->
+	<div class="fb-like" 
+		data-href="http://brownsoo.github.io/2DVectors/adding_projecting/" 
+		data-layout="standard" 
+		data-action="like" 
+		data-show-faces="false">
+	</div>
 
 </div>
 
@@ -412,13 +448,13 @@ Proj.y = (A·B / B·B) * B.y;
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Vectors for Animation</h2>
+    <h2 class="footer-heading">Basic 2D Vectors for Animation</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
         <ul class="contact-list">
           <li>작업실장@<a href="http://blog.hansune.com">한수댁 작업실</a></li>
-          <li><a href="mailto:hansoo.lab@gmail.com">hansoo.lab@gmail.com</a></li>
+          <li><a href="mailto:hansune@me.com">hansune@me.com</a></li>
         </ul>
       </div>
 
@@ -443,7 +479,7 @@ Proj.y = (A·B / B·B) * B.y;
       </div>
 
       <div class="footer-col  footer-col-3">
-        <p class="text">운동 벡터에 대한 기초를 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.</p>
+        <p class="text">기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.</p>
       </div>
     </div>
 

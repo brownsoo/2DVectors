@@ -7,24 +7,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Downloads</title>
-  <meta name="description" content="운동 벡터에 대한 기초를 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
+  <meta name="description" content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
 
-  <link rel="stylesheet" href="/Vectors-for-Animation/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/Vectors-for-Animation/download/">
-  <link rel="alternate" type="application/rss+xml" title="Vectors for Animation" href="http://brownsoo.github.io/Vectors-for-Animation/feed.xml" />
+  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/download/" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Downloads" />
+  <meta property="og:description"   content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다." />
 
-  <script src="/Vectors-for-Animation/js/processing.min.js"></script>
+  <link rel="stylesheet" href="/2DVectors/css/main.css">
+  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/download/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors for Animation" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+
+  <script src="/2DVectors/js/processing.min.js"></script>
   
 </head>
 
 
   <body>
 
-    <header class="site-header">
+    
+<!-- Load Facebook SDK for JavaScript -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '426537534208003',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<header class="site-header">
 
   <div class="wrapper">
 
-    <a class="site-title" href="/Vectors-for-Animation/">Vectors for Animation</a>
+    <a class="site-title" href="/2DVectors/">Basic 2D Vectors for Animation</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -38,7 +64,7 @@
       <div class="trigger">
         
           
-          <a class="page-link" href="/Vectors-for-Animation/about/">About</a>
+          <a class="page-link" href="/2DVectors/about/">About</a>
           
         
           
@@ -54,17 +80,17 @@
     
     <li class="section">Basics</li>
     <li>
-        <a href="/Vectors-for-Animation/point_vector/">1) Point, Vector</a>
+        <a href="/2DVectors/point_vector/">1) Point, Vector</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/length_normals/">2) Length, Normals</a>
+        <a href="/2DVectors/length_normals/">2) Length, Normals</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/adding_projecting/">3) Adding, Projecting</a>
+        <a href="/2DVectors/adding_projecting/">3) Adding, Projecting</a>
     </li>
     
 </ul>
@@ -73,17 +99,17 @@
     
     <li class="section">Using vectors</li>
     <li>
-        <a href="/Vectors-for-Animation/move_accelerate/">4) Move, Accelerate</a>
+        <a href="/2DVectors/move_accelerate/">4) Move, Accelerate</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/intersection/">5) Intersection</a>
+        <a href="/2DVectors/intersection/">5) Intersection</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/bounce/">6) Bounce</a>
+        <a href="/2DVectors/bounce/">6) Bounce</a>
     </li>
     
 </ul>
@@ -92,32 +118,32 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
+        <a href="/2DVectors/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
+        <a href="/2DVectors/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
+        <a href="/2DVectors/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_moving_ball/">10) Ball vs Moving Ball</a>
+        <a href="/2DVectors/ball_vs_moving_ball/">10) Ball vs Moving Ball</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/moving_balls/">11) Moving balls</a>
+        <a href="/2DVectors/moving_balls/">11) Moving balls</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
+        <a href="/2DVectors/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
 </ul>
@@ -127,7 +153,7 @@
     
     <li class="section">Extras</li>
     <li>
-        <a href="/Vectors-for-Animation/download/">Downloads</a>
+        <a href="/2DVectors/download/">Downloads</a>
     </li>
     
 </ul>
@@ -143,6 +169,7 @@
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
+<br>
 <div class="alert">
 현재 모바일에서는 예제의 인터랙션이 어렵습니다. 이 문제는 추후 보완될 가능성이 있습니다.^^
 </div>
@@ -168,17 +195,17 @@
     
     <li class="section">Basics</li>
     <li>
-        <a href="/Vectors-for-Animation/point_vector/">1) Point, Vector</a>
+        <a href="/2DVectors/point_vector/">1) Point, Vector</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/length_normals/">2) Length, Normals</a>
+        <a href="/2DVectors/length_normals/">2) Length, Normals</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/adding_projecting/">3) Adding, Projecting</a>
+        <a href="/2DVectors/adding_projecting/">3) Adding, Projecting</a>
     </li>
     
 </ul>
@@ -187,17 +214,17 @@
     
     <li class="section">Using vectors</li>
     <li>
-        <a href="/Vectors-for-Animation/move_accelerate/">4) Move, Accelerate</a>
+        <a href="/2DVectors/move_accelerate/">4) Move, Accelerate</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/intersection/">5) Intersection</a>
+        <a href="/2DVectors/intersection/">5) Intersection</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/bounce/">6) Bounce</a>
+        <a href="/2DVectors/bounce/">6) Bounce</a>
     </li>
     
 </ul>
@@ -206,32 +233,32 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
+        <a href="/2DVectors/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
+        <a href="/2DVectors/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
+        <a href="/2DVectors/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_moving_ball/">10) Ball vs Moving Ball</a>
+        <a href="/2DVectors/ball_vs_moving_ball/">10) Ball vs Moving Ball</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/moving_balls/">11) Moving balls</a>
+        <a href="/2DVectors/moving_balls/">11) Moving balls</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
+        <a href="/2DVectors/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
 </ul>
@@ -241,7 +268,7 @@
     
     <li class="section">Extras</li>
     <li>
-        <a href="/Vectors-for-Animation/download/">Downloads</a>
+        <a href="/2DVectors/download/">Downloads</a>
     </li>
     
 </ul>
@@ -257,6 +284,7 @@
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
+<br>
 <div class="alert">
 현재 모바일에서는 예제의 인터랙션이 어렵습니다. 이 문제는 추후 보완될 가능성이 있습니다.^^
 </div>
@@ -271,31 +299,43 @@
   </header>
 
   <article class="post-content">
-    <h1 id="fla--">구 fla 파일 다운로드</h1>
+    <p>튜토리얼 과정에서 나온 예제코드를 모았습니다.</p>
 
-<p><a href="../data_old/flas.zip">모든 fla 파일들</a></p>
+<h1 id="processing-files">Processing Files:</h1>
 
-<h2 id="flash5-flas">Flash5 flas:</h2>
-<p><br /><a href="vect2.fla">Vector, its unit-sized vector and normals</a>.
-<br /><a href="vect3.fla">Pojecting vector</a>.
-<br /><a href="vect4.fla">Move</a>.
-<br /><a href="vect4a.fla">Accelerate</a>.
-<br /><a href="vect5.fla">Intersection</a>.
-<br /><a href="vect6.fla">Bounce</a>.
-<br /><a href="vect6a.fla">Bounce with multiple walls and gravity</a>.
-<br /><a href="vect7.fla">Ball vs line</a>.
-<br /><a href="vect8.fla">Ball in the corner</a>.
-<br /><a href="vect8a.fla">Ball in the corner, multiple walls and gravity</a>.
-<br /><a href="vect9.fla">Ball vs ball</a>.
-<br />
-<br />Flash8 flas:
-<br /><a href="vect9a.fla">Ball inside ball</a>.
-<br /><a href="vect10.fla">Moving ball vs ball</a>.
-<br /><a href="vect11.fla">2 moving balls</a>.
-<br /><a href="vect11a.fla">Bouncing 2 moving balls</a>.
-<br /><a href="vect12.fla">Ball vs arc</a>.</p>
+<p><a href="../data/length_normals.pde">Length and Normals</a><br />
+<a href="../data/adding_projecting.pde">Adding, Projecting</a><br />
+<a href="../data/moving_with_vector.pde">Moving with vector</a><br />
+<a href="../data/acceleration.pde">Acceleration</a><br />
+<a href="../data/intersection.pde">Intersection</a><br />
+<a href="../data/bounce.pde">Bounce</a><br />
+<a href="../data/real_bounce.pde">Real Bounce</a><br />
+<a href="../data/ball_vs_line.pde">Ball vs Line</a><br />
+<a href="../data/ball_in_the_corner.pde">Ball in the corner</a><br />
+<a href="../data/ball_in_the_box.pde">Ball in the corner, multiple walls and gravity</a><br />
+<a href="../data/ball_vs_ball.pde">Ball vs Ball</a><br />
+<a href="../data/ball_vs_ball_keep_it_in.pde">Ball vs Ball, Keep it in</a><br />
+<a href="../data/ball_vs_moving_ball.pde">Ball vs Moving ball</a><br />
+<a href="../data/two_moving_balls.pde">Moving balls, 2 moving balls</a><br />
+<a href="../data/bouncing_2_moving_balls.pde">Moving balls, Bouncing 2 moving balls</a><br />
+<a href="../data/ball_vs_arc.pde">Ball vs Arc</a></p>
+
+<h1 id="fla--">구 fla 파일 다운로드</h1>
+
+<p>제가 원본 사이트에 있던 플래시 fla 파일들입니다. AS1으로 작성되어 있는 데, 보기가 쉽지 않습니다. 다른 코드로 컨버전을 하려 한다면 Processing 코드를 참고하는 것이 좋겠습니다.</p>
+
+<p><a href="../data_old/flas.zip">flas.zip</a></p>
+
 
   </article>
+
+  <!-- Your like button code -->
+	<div class="fb-like" 
+		data-href="http://brownsoo.github.io/2DVectors/download/" 
+		data-layout="standard" 
+		data-action="like" 
+		data-show-faces="false">
+	</div>
 
 </div>
 
@@ -307,13 +347,13 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Vectors for Animation</h2>
+    <h2 class="footer-heading">Basic 2D Vectors for Animation</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
         <ul class="contact-list">
           <li>작업실장@<a href="http://blog.hansune.com">한수댁 작업실</a></li>
-          <li><a href="mailto:hansoo.lab@gmail.com">hansoo.lab@gmail.com</a></li>
+          <li><a href="mailto:hansune@me.com">hansune@me.com</a></li>
         </ul>
       </div>
 
@@ -338,7 +378,7 @@
       </div>
 
       <div class="footer-col  footer-col-3">
-        <p class="text">운동 벡터에 대한 기초를 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.</p>
+        <p class="text">기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.</p>
       </div>
     </div>
 

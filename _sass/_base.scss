@@ -2,6 +2,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 $base-font-family: "Noto Sans", "Noto Sans CJK KR", sans-serif;
+$brand-color: #607D8B;
 
 /**
  * Reset some basic elements
@@ -135,7 +136,7 @@ code {
     font-size: 15px;
     border: 1px solid $grey-color-light;
     border-radius: 3px;
-    background-color: #eef;
+    background-color: lightyellow;
 }
 
 code {
@@ -206,4 +207,9 @@ pre {
             fill: $grey-color;
         }
     }
+}
+
+
+canvas {
+    box-shadow: 0.1em 0.1em 0.5em lightgray;
 }
