@@ -27,23 +27,14 @@
 
     
 <!-- Load Facebook SDK for JavaScript -->
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '426537534208003',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.5&appId=426537534208003";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 <header class="site-header">
@@ -417,8 +408,10 @@ v1 은 운동 벡터입니다. v2 는 벽(방해물) 벡터입니다. v2의 왼�
   <!-- Your like button code -->
 	<div class="fb-like" 
 		data-href="http://brownsoo.github.io/2DVectors/bounce/" 
-		data-layout="standard" 
+		data-layout="button_count"
 		data-action="like" 
+		data-share="true"
+		data-width="300"
 		data-show-faces="false">
 	</div>
 
