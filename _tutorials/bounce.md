@@ -3,6 +3,7 @@ layout: page
 title: 6) Bounce
 section: Using vectors
 number: 2003
+image: tut06_1.gif
 ---
 
 # 반동 (Bounce)

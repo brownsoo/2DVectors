@@ -3,6 +3,7 @@ layout: page
 title: 1) Point, Vector
 section: Basics
 number: 1001
+image: tut01_1.gif
 ---
 
 # 벡터, 이것은 무엇일까요?

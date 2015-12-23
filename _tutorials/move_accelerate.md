@@ -3,6 +3,7 @@ layout: page
 title: 4) Move, Accelerate
 section: Using vectors
 number: 2001
+image: tut01_1.gif
 ---
 
 # 벡터로 움직이기

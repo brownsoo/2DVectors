@@ -3,6 +3,7 @@ layout: page
 title: 11) Moving balls
 section: The ball
 number: 3005
+image: tut11_3.gif
 ---
 
 # 2 개의 움직이는 공 (2 Moving balls)

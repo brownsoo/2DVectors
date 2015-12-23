@@ -3,6 +3,7 @@ layout: page
 title: 10) Ball vs Moving Ball
 section: The ball
 number: 3004
+image: tut10_2.gif
 ---
 
 # 움직이는 공에 충돌하기 (Collision with moving ball)

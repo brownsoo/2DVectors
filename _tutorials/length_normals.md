@@ -3,6 +3,7 @@ layout: page
 title: 2) Length, Normals
 section: Basics
 number: 1002
+image: my02_1.png
 ---
 
 # 벡터의 속성을 더 알아볼까요?

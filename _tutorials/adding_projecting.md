@@ -3,6 +3,7 @@ layout: page
 title: 3) Adding, Projecting
 section: Basics
 number: 1003
+image: my03_1.png
 ---
 
 # 여러 개의 백터 다루기<br>(Dealing with multiple vectors)
