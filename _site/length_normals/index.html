@@ -92,17 +92,17 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">8) Ball vs Line</a>
+        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">9) Ball in the Corner</a>
+        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">7) Ball vs Ball</a>
+        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
@@ -120,7 +120,16 @@
         <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
+</ul>
 
+<ul>
+    
+    
+    <li class="section">Extras</li>
+    <li>
+        <a href="/Vectors-for-Animation/download/">Downloads</a>
+    </li>
+    
 </ul>
 
 
@@ -197,17 +206,17 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">8) Ball vs Line</a>
+        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">9) Ball in the Corner</a>
+        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">7) Ball vs Ball</a>
+        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
@@ -225,7 +234,16 @@
         <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
+</ul>
 
+<ul>
+    
+    
+    <li class="section">Extras</li>
+    <li>
+        <a href="/Vectors-for-Animation/download/">Downloads</a>
+    </li>
+    
 </ul>
 
 
@@ -286,8 +304,8 @@ x 성분의 제곱값과 y 성분의 제곱값을 더한 다음, 그 값의 제�
 그 방법을 모른다면 걱정할 필요 없습니다. 
 많이 복잡하지 않습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">len</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="n">angle</span><span class="o">);</span>
-<span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">len</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">angle</span><span class="o">);</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="n">angle</span><span class="o">);</span>
+<span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">angle</span><span class="o">);</span></code></pre></div>
 
 <blockquote>
   <p>이 방법은 직각삼각형에서 빗변과 사이각을 통해 가로와 높이를 구하는 방법이다. 아래 직각삼각형에서 빨간선을 벡터라고 볼 때, vx 길이는 cos을 이용하고 vy 길이는 sin을 이용해서 구한다.</p>
@@ -306,8 +324,8 @@ x 성분의 제곱값과 y 성분의 제곱값을 더한 다음, 그 값의 제�
 <p>놀랍겠지만 모든 벡터가 표준은 아닙니다. 다시 말해, 일부는 평균적이고 일부는 독특하듯이 사람들과 많이 닮았습니다. 
 사람들과 다른 것은 벡터는 평균화를 시킬 수 있습니다. 평균화를 시키면, 같은 방향이면서 길이는 1인 <a href="https://en.wikipedia.org/wiki/Unit_vector">단위 벡터</a>를 구할 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">dx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">/</span> <span class="n">v</span><span class="o">.</span><span class="na">len</span><span class="o">;</span>
-<span class="n">v</span><span class="o">.</span><span class="na">dy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">/</span> <span class="n">v</span><span class="o">.</span><span class="na">len</span><span class="o">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">dx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">/</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+<span class="n">v</span><span class="o">.</span><span class="na">dy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">/</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span><span class="o">;</span></code></pre></div>
 
 <p>모든 벡터들은 vx, vy 속성을 길이로 나누면 일정 길이를 가진 단위 벡터를 구할 수 있으며, 2개 속성 dx,dy 를 갖습니다. 
 단위 벡터는 길이가 1 인데, 실제로 우리의 친구 피타고라스의 원리를 이용해 dx, dy 로부터 길이를 구할 수 있습니다. </p>

@@ -41,8 +41,8 @@ angleDegree = angle * 180 / Math.PI;
 많이 복잡하지 않습니다.
 
 {% highlight java %}  
-v.vx = v.len * Math.cos(angle);
-v.vy = v.len * Math.sin(angle);
+v.vx = v.length * Math.cos(angle);
+v.vy = v.length * Math.sin(angle);
 {% endhighlight %}
 
 > 이 방법은 직각삼각형에서 빗변과 사이각을 통해 가로와 높이를 구하는 방법이다. 아래 직각삼각형에서 빨간선을 벡터라고 볼 때, vx 길이는 cos을 이용하고 vy 길이는 sin을 이용해서 구한다.
@@ -61,8 +61,8 @@ v.vy = v.len * Math.sin(angle);
 사람들과 다른 것은 벡터는 평균화를 시킬 수 있습니다. 평균화를 시키면, 같은 방향이면서 길이는 1인 [단위 벡터](https://en.wikipedia.org/wiki/Unit_vector)를 구할 수 있습니다.
 
 {% highlight java %}  
-v.dx = v.vx / v.len;
-v.dy = v.vy / v.len; 
+v.dx = v.vx / v.length;
+v.dy = v.vy / v.length; 
 {% endhighlight %}
 
 모든 벡터들은 vx, vy 속성을 길이로 나누면 일정 길이를 가진 단위 벡터를 구할 수 있으며, 2개 속성 dx,dy 를 갖습니다. 

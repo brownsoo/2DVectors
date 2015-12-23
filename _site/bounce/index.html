@@ -92,17 +92,17 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">8) Ball vs Line</a>
+        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">9) Ball in the Corner</a>
+        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">7) Ball vs Ball</a>
+        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
@@ -120,7 +120,16 @@
         <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
+</ul>
 
+<ul>
+    
+    
+    <li class="section">Extras</li>
+    <li>
+        <a href="/Vectors-for-Animation/download/">Downloads</a>
+    </li>
+    
 </ul>
 
 
@@ -197,17 +206,17 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">8) Ball vs Line</a>
+        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">9) Ball in the Corner</a>
+        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">7) Ball vs Ball</a>
+        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
@@ -225,7 +234,16 @@
         <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
+</ul>
 
+<ul>
+    
+    
+    <li class="section">Extras</li>
+    <li>
+        <a href="/Vectors-for-Animation/download/">Downloads</a>
+    </li>
+    
 </ul>
 
 
@@ -354,7 +372,7 @@ v1 은 운동 벡터입니다. v2 는 벽(방해물) 벡터입니다. v2의 왼�
 
 <ol>
   <li>
-    <p>물체가 지난 타임에 스크린 상 시작점 p0 위치에 그려지고, 다음 타임에 끝점 p1 에 그려지기 때문에 사람의 눈은 물체가 벽 근처 교차점 ip 에 절대로 접근할 수 없음을 볼 수 없습니다. 아마도 p0에서 p1으로 바로 이동하는 물체를 보게 될 것입니다. 이런 상황이 틀렸음에도, 때때로 물체가 교차지점에 놓이게 되고 전체화면이 업데이트 되면서 눈에서는 물체가 벽을 치는 것으로 볼 수 있습니다.</p>
+    <p>물체가 지난 렌더링 타임에 스크린 상 시작점 p0 위치에 그려지고, 다음 타임에 끝점 p1에 그려지기 때문에 물체가 벽 근처 교차점 ip에 거의 접근할 수 없음을 유추할 수 습니다. 아마도 p0에서 p1으로 바로 이동하는 물체를 보게 될 것입니다. 이런 상황이 틀렸음에도, 때때로 물체가 교차지점 근처에 놓이게 한다면 눈에서는 물체가 벽을 치는 것을 볼 수 있을 것입니다.</p>
   </li>
   <li>
     <p>물체가 처음 벽 이후 다른 벽에 이어서 부딪힐 가능성이 있습니다. 예제는 가장 가까운 벽에서만 반동합니다. 정확히 하려면, 새로운 벡터가 구해진 후 모든 벽과 충돌 확인을 시작해야 할 것입니다. 이때 교차점에서 p1 으로 생긴 새로운 벡터(그림에서 파랑)에 대해서만 확인해야 합니다.</p>

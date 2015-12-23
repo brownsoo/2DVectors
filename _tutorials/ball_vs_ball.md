@@ -1,13 +1,11 @@
 ---
 layout: page
-title: 7) Ball vs Ball
+title: 9) Ball vs Ball
 section: The ball
 number: 3003
 ---
 
 # 공 vs 공
-
-우리는 지금까지 충분히 벽을 다루었고, 벽은 공을 잘 반동시키고 있으며 아담한 휴식을 받을 만합니다. 짝짝짝!
 
 이제 2개의 공이 충돌하는 것에 대해 알아보겠습니다. 역시 가정을 해봅니다. 공 하나는 계속 움직이고 있으며 그래서 운동벡터를 갖고 있지만, 다른 공은 움직이지 않습니다. 아마도 그 공은 바닥에 버젓이 놓여있거나, 아마도 천장에 붙어 있거나 아직 운동을 배우지 못했을 것입니다.
 
@@ -43,15 +41,15 @@ pen = v.length - (b1.r + b2.r)
 
 # 안에 가두기 (Keep it in)
 
-여러분은 아마 다른 (분명히 더 큰) 공 안에 움직이는 공을 가두기도 원할 것입니다.
+아마 다른 (분명히 더 큰) 공 안에 움직이는 공을 가두기도 원할 것입니다.
 
 <canvas data-processing-sources="../data/ball_vs_ball_keep_it_in.pde"></canvas>
 <small>(소스파일 [pde](../data/ball_vs_ball_keep_it_in.pde)를 다운받을 수 있습니다.)</small>
 
-이 경우 큰 공은 big 이고 작은 움직이는 공은 ball 입니다. 다음 조건에서 작은 공은 밖으로 움직입니다.
+예제에서 큰 공은 big 이고 작은 움직이는 공은 ball 입니다. 다음 조건에서 작은 공은 밖으로 움직입니다.
 
 {% highlight java %}  
-big.r < (ball.r + v.len)
+big.r < (ball.r + v.length)
 {% endhighlight %}
 
 그런 일이 벌어진다면 우리는 공을 다음의 양만큼 뒤로 물려놓아야 합니다.
@@ -63,10 +61,10 @@ float pen = big.r - (ball.r + v.length);
 그리고, 반동에 사용되어질, 벡터 v의 노말의 방향을 반전시키는 것을 잊지 말아야 합니다 :
 
 {% highlight java %}
-vbounce.dx = -v.dy;//v.ldx * -1
-vbounce.dy = v.dx;//v.ldy * -1
-vbounce.ldx = -v.dx;
-vbounce.ldy = -v.dy;
+vbounce.dx = -v.dy;//right normal of v
+vbounce.dy = v.dx;//right normal of v
+vbounce.ldx = -v.dx;//left unit sized normal of vbounce * -1
+vbounce.ldy = -v.dy;//left unit sized normal of vbounce * -1
 {% endhighlight %}
 	
 

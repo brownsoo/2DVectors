@@ -24,7 +24,16 @@
         <a href="{{ entry.url | prepend: site.baseurl }}">{{ entry.title }}</a>
     </li>
     {% endfor %}
+</ul>
 
+<ul>
+    {% assign level-1 = site.tutorials | where: "section", "Extras" | sort: "number"%}
+    {% for entry in level-1 %}
+    {% if forloop.first %}<li class="section">{{ entry.section }}</li>{% endif %}
+    <li>
+        <a href="{{ entry.url | prepend: site.baseurl }}">{{ entry.title }}</a>
+    </li>
+    {% endfor %}
 </ul>
 
 

@@ -92,17 +92,17 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">8) Ball vs Line</a>
+        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">9) Ball in the Corner</a>
+        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">7) Ball vs Ball</a>
+        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
@@ -120,7 +120,16 @@
         <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
+</ul>
 
+<ul>
+    
+    
+    <li class="section">Extras</li>
+    <li>
+        <a href="/Vectors-for-Animation/download/">Downloads</a>
+    </li>
+    
 </ul>
 
 
@@ -197,17 +206,17 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">8) Ball vs Line</a>
+        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">9) Ball in the Corner</a>
+        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">7) Ball vs Ball</a>
+        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
@@ -225,7 +234,16 @@
         <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
+</ul>
 
+<ul>
+    
+    
+    <li class="section">Extras</li>
+    <li>
+        <a href="/Vectors-for-Animation/download/">Downloads</a>
+    </li>
+    
 </ul>
 
 
@@ -255,9 +273,9 @@
   <article class="post-content">
     <h1 id="intersection">교차하기 (Intersection)</h1>
 
-<p>이제 오브젝트를 움직이는 법을 알게 되었습니다. 그런데 움직이는 모든 오브젝트들은 언젠가 무언가와 충돌할 것입니다. 이동하는 물체가 예를 들어 당신이라면, 운이 좋게도 침대처럼 부드러운 것에 부딪힐 수도 있고 때론 딱딱한 소재 -돌벽, 시멘트 바닥, 닫힌 문에 충돌할 수도 있습니다. 현실에는 당신과 부딪히기만을 기다리거나 움직이는 딱딱한 물체들이 많이 존재합니다. 그래서 미래에 어떤 물체가 나와 충돌할지 미리 아는 것은 현명하고 머리 건강에도 좋습니다.</p>
+<p>이제 오브젝트를 움직이는 법을 알게 되었습니다. 그런데 움직이는 모든 오브젝트들은 언젠가 무언가와 충돌할 것입니다. 이동하는 물체가 예를 들어 당신이라면, 운이 좋게도 침대처럼 부드러운 것에 부딪힐 수도 있고 때론 딱딱한 소재 -돌벽, 시멘트 바닥, 닫힌 문에 충돌할 수도 있습니다. 현실에는 당신과 부딪히기만을 기다리거나 움직이는 딱딱한 물체들이 많이 존재합니다. 그래서 미래에 어떤 물체가 나와 충돌할지 미리 아는 것은 현명하고 머리 건강에도(?) 좋습니다.</p>
 
-<p>여기 객체의 운동 벡터와 벽을 만들고 있는 벡터가 있습니다. 우리는 객체가 벽에 부딪히는지, 그렇다면, 언제, 어디서 일어나는지 알고자 합니다. 이렇게 다시 질문합니다. “어디에서 두 벡터가 교차할까요?”</p>
+<p>여기 오브젝트의 운동 벡터와 벽을 만들고 있는 벡터가 있습니다. 우리는 객체가 벽에 부딪히는지, 그렇다면, 언제, 어디서 일어나는지 알고자 합니다. 이렇게 다시 질문합니다. “어디에서 두 벡터가 교차할까요?”</p>
 
 <p>먼저 그들이 교차하지 않는 경우를 봅시다. 벡터들이 평행하면 교차할 수 없습니다. 그리고 벡터의 단위벡터들이 같다면 그들은 평행합니다(같은 방향일 필요는 없으며, 반대 방향이여도 됩니다).</p>
 

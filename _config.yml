@@ -24,8 +24,8 @@ collections:
 exclude: [
 .git,
 .gitignore,
-README.md,
-.sass-cashe
+.sass-cashe,
+README.md
 ]
 
 # serving

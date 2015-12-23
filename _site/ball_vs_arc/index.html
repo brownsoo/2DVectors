@@ -92,17 +92,17 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">8) Ball vs Line</a>
+        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">9) Ball in the Corner</a>
+        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">7) Ball vs Ball</a>
+        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
@@ -120,7 +120,16 @@
         <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
+</ul>
 
+<ul>
+    
+    
+    <li class="section">Extras</li>
+    <li>
+        <a href="/Vectors-for-Animation/download/">Downloads</a>
+    </li>
+    
 </ul>
 
 
@@ -197,17 +206,17 @@
     
     <li class="section">The ball</li>
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_line/">8) Ball vs Line</a>
+        <a href="/Vectors-for-Animation/ball_vs_line/">7) Ball vs Line</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_in_the_corner/">9) Ball in the Corner</a>
+        <a href="/Vectors-for-Animation/ball_in_the_corner/">8) Ball in the Corner</a>
     </li>
     
     
     <li>
-        <a href="/Vectors-for-Animation/ball_vs_ball/">7) Ball vs Ball</a>
+        <a href="/Vectors-for-Animation/ball_vs_ball/">9) Ball vs Ball</a>
     </li>
     
     
@@ -225,7 +234,16 @@
         <a href="/Vectors-for-Animation/ball_vs_arc/">12) Ball vs Arc</a>
     </li>
     
+</ul>
 
+<ul>
+    
+    
+    <li class="section">Extras</li>
+    <li>
+        <a href="/Vectors-for-Animation/download/">Downloads</a>
+    </li>
+    
 </ul>
 
 
@@ -255,7 +273,7 @@
   <article class="post-content">
     <h1 id="vs-ball-vs-arc">공 vs 호(Ball vs arc)</h1>
 
-<p>이제 움직이는 공을 호 형태와 다뤄야 한다면 어떤 상황이 벌어지는지 보도록 합시다. 호는 원의 부분이고, 원이 전체 360도인데, 호는 360도에 미치지 못합니다. 공 대 공의 충돌로 우리는 오직 1 개의 가능한 충돌 점이 있었습니다. 공 대 호에서는 하나만 있지 않고, 2 개, 4개의 가능한 충돌 점이 있습니다.</p>
+<p>이제 움직이는 공을 호 형태와 다뤄야 한다면 어떤 상황이 벌어지는지 보도록 합시다. 호는 원의 부분이고, 원이 전체 360도인데, 호는 360도에 미치지 못합니다. 공 대 공의 충돌로 우리는 오직 1 개의 가능한 충돌 점이 있었습니다. 공 대 호에서는 하나만 있지 않고, 3개 더 가능한 충돌 점이 있습니다.</p>
 
 <p><img src="../img/tut12_1.gif" alt="Alt 공과 호가 충돌하는 경우의 수" /></p>
 
@@ -325,9 +343,9 @@
   <span class="c1">//not on the arc</span>
 <span class="o">}</span></code></pre></div>
 
-<p>만약 충돌이 검출되고 공이 외부에서 호를 부딪히면 다른 3 개의 충돌 검사를 생략할 수 있습니다. 하지만 충돌 점이 호의 밖에 있었다면 우리는 공이 안쪽에서 호를 때리는지 호의 끝점을 때리는지 여부를 점검할 필요가 있습니다.</p>
+<p>만약 충돌이 검출되고 공이 외부에서 호를 부딪히면 다른 3 개의 충돌 검사를 생략할 수 있습니다. 하지만 충돌 점이 호의 밖(비어있는 원둘레)에 있었다면 우리는 공이 안쪽에서 호를 때리는지 호의 끝점을 때리는지 여부를 점검할 필요가 있습니다.</p>
 
-<p>끝 점들에 대해서, 끝점의 좌표에 반경이 0 인 보이지 않는 공이 있다고 상상하고, 움직이는 공 대 공 시스템과 같은 것을 사용할 수 있습니다. </p>
+<p>호의 끝 점들에 대해서, 끝점의 좌표에 반경이 0 인 보이지 않는 공이 있다고 상상하고, 움직이는 공 대 공 시스템과 같은 것을 사용할 수 있습니다. </p>
 
 <p>여기서 사용한 공 대 호에 대한 경우 :</p>
 
@@ -368,6 +386,9 @@
 <p><br />
 <br />
 끝.</p>
+
+<p>여기까지 준비한 내용을 마무리합니다.
+장담해드릴 순 없지만, 추후 더 추가될 수 있는 내용이 있으면 붙이도록 하겠습니다. 감사합니다.</p>
 
 
   </article>
