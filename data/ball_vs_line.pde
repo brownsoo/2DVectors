@@ -3,7 +3,8 @@
  * by hyonsoo han
  *
  * Simulates ball's real bounce inside the line box.
- * Checkout : brownsoo.github.io/vectors
+ * Checkout : brownsoo.github.io/2DVectors
+ * Apache License 2.0 - http://www.apache.org/licenses/LICENSE-2.0
  */
 
 //scale is to convert between stage coordinates

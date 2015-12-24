@@ -3,7 +3,8 @@
  * by hyonsoo han
  *
  * Show vector's length and normal vectors.
- * Checkout : brownsoo.github.io/vectors
+ * Checkout : brownsoo.github.io/2DVectors
+ * Apache License 2.0 - http://www.apache.org/licenses/LICENSE-2.0
  */
 
 final int _GREEN = 0xff4CAF50;
