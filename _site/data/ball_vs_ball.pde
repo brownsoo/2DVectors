@@ -3,7 +3,8 @@
  * by hyonsoo han
  *
  * Shows the collision of two balls.
- * Checkout : brownsoo.github.io/vectors
+ * Checkout : brownsoo.github.io/2DVectors
+ * Apache License 2.0 - http://www.apache.org/licenses/LICENSE-2.0
  */
 
 final int _GREEN = 0xff4CAF50;

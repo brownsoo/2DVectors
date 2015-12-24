@@ -3,7 +3,8 @@
  * by hyonsoo han
  *
  * Descripe vector's addtion and projection.
- * Checkout : brownsoo.github.io/vectors
+ * Checkout : brownsoo.github.io/2DVectors
+ * Apache License 2.0 - http://www.apache.org/licenses/LICENSE-2.0
  */
 
 //dragging is true when the point is being dragged

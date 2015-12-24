@@ -3,7 +3,8 @@
  * by hyonsoo han
  *
  * Shows how to find the collision position between a ball and arc.
- * Checkout : brownsoo.github.io/Vectors-for-Animation
+ * Checkout : brownsoo.github.io/2DVectors
+ * Apache License 2.0 - http://www.apache.org/licenses/LICENSE-2.0
  */
 
 final int _GREEN = 0xff4CAF50;
