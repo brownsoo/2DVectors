@@ -1,5 +1,8 @@
 # Basic 2D Vectors
-기초 2D 벡터를 소개하고 있습니다.
+2D 벡터를 사용하여 기초적인 애니메이션 구현과 충돌 알고리즘에 대해 소개하고 있습니다.
+
+[문서보기](http://brownsoo.github.io/2DVectors/)
+
 
 ---
 <small>문서이력</small>
