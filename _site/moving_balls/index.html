@@ -7,17 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>11) Moving balls</title>
-  <meta name="description" content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
+  <meta name="description" content="2 개의 움직이는 공 (2 Moving balls)">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/moving_balls/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/moving_balls/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="11) Moving balls" />
-  <meta property="og:description"   content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다." />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/tut11_3.gif" />
+  <meta property="og:description"   content="2 개의 움직이는 공 (2 Moving balls)" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/tut11_3.gif" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/moving_balls/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/moving_balls/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing.min.js"></script>
   
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">Basic 2D Vectors</a>
+    <a class="site-title" href="/2DVectors/">Basic 2D Vectors Algorithm</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -157,6 +157,18 @@
 <br>
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
+
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
 
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
@@ -273,6 +285,18 @@
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
 
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
+
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
@@ -291,7 +315,7 @@
   </header>
 
   <article class="post-content">
-    <h1 id="moving-balls">2 개의 움직이는 공 (2 Moving balls)</h1>
+    <h1 id="2-개의-움직이는-공-2-moving-balls">2 개의 움직이는 공 (2 Moving balls)</h1>
 
 <p>앞에서 한 개의 공을 자연스럽게 충돌시키는 방법을 익혔습니다. 
 그런데 다른 공이 한 곳에 멈춰있지 않고 움직인다면 어떤 일이 벌어질까요? 
@@ -312,40 +336,45 @@
 
 <p>공1 운동벡터에서 공2 운동벡터를 뺀, 공1을 시작 좌표로 하는 벡터 v3를 구합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v3</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">v3</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span>
 <span class="n">v3</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">vx</span> <span class="o">-</span> <span class="n">ball2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
-<span class="n">v3</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">vy</span> <span class="o">-</span> <span class="n">ball2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
+<span class="n">v3</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">vy</span> <span class="o">-</span> <span class="n">ball2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></figure>
 
 <p>이제 지난 단계에서 배운 충돌 계산을 수행하면, 공1은 벡터 v3만큼 움직이고 공2는 전혀 움직이지 않습니다. 
 공이 충돌하면 공1은 점 p4 좌표에 있습니다. 공1의 운동벡터에서 그 점까지의 새로운 벡터 v4를 구합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v4</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span>
-<span class="n">v4</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="n">p4</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">v4</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span>
+<span class="n">v4</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="n">p4</span><span class="o">;</span>     </code></pre></figure>
 
 <p>여기서 v4 길이를 v3 길이로 나눈 변수 “t” 를 구할 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">v4</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">v3</span><span class="o">.</span><span class="na">length</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kt">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">v4</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">v3</span><span class="o">.</span><span class="na">length</span><span class="o">;</span></code></pre></figure>
 
 <p>변수 “t” 는 0 과 1 사이 입니다. 두 공이 같은 시간에 움직이고 있음을 알고 있기에, 다음과 같은 예상을 할 수 있습니다.</p>
 
 <ul>
-  <li>값이 1이면 공1이 끝점에 도달하였을 때 충돌이 일어납니다. </li>
-  <li>값이 0이면 공들이 시작점에 있을 때 충돌이 일어납니다. </li>
+  <li>값이 1이면 공1이 끝점에 도달하였을 때 충돌이 일어납니다.</li>
+  <li>값이 0이면 공들이 시작점에 있을 때 충돌이 일어납니다.</li>
 </ul>
 
 <p>충돌이 일어날 때 공들의 위치를 알아내기 위해서 그들의 운동벡터에 t 곱해야 합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ball1</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">ball1</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">ball1</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">ball1</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
 <span class="n">ball1</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">ball1</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
 <span class="n">ball2</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">ball2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
-<span class="n">ball2</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">ball2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
+<span class="n">ball2</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">ball2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></figure>
 
 <p>p4가 벡터 v3의 밖에 있는 것은 이번 운동 사이클 동안 충돌이 일어나지 않을 것이며, 과거에 일어났거나 미래에 일어날 것임을 의미합니다. 
 우리는 지금 충돌에 대해서만 다룰 것이기에 벡터 v3 위에 p4가 있는 것에 대해 검사해야 합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">v4</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="n">v3</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">dotP</span><span class="o">(</span><span class="n">v4</span><span class="o">,</span> <span class="n">ball1</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="k">if</span><span class="o">(</span><span class="n">v4</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="n">v3</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">dotP</span><span class="o">(</span><span class="n">v4</span><span class="o">,</span> <span class="n">ball1</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
   <span class="c1">//collision</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <p>제가 두 공이 움직이는 예제를 만들었습니다:</p>
 
@@ -360,7 +389,7 @@
 
 <p><br /></p>
 
-<h1 id="brbouncing-2-moving-balls">2 개의 움직이는 공을 반동시키기<br />(Bouncing 2 moving balls)</h1>
+<h1 id="2-개의-움직이는-공을-반동시키기bouncing-2-moving-balls">2 개의 움직이는 공을 반동시키기<br />(Bouncing 2 moving balls)</h1>
 
 <p>충돌위치가 발견된 이후 “Ball vs ball” and “Bounce” 단계에서 설명한 것처럼 그것들의 운동 벡터를 변경할 수 있습니다. 그런데 지금까지 오직 1개 공을 움직였고, 1개의 움직이는 공이 벽으로부터 같은 속도로 (단지 운동 방향이 바뀐 채) 반동했습니다. 두 공이 움직일 때, 그들의 움직임은 다른 공에 역시 영향을 주고 운동벡터 결과는 두 운동벡터로부터 다시 계산되어야 합니다.</p>
 
@@ -389,7 +418,7 @@
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/moving_balls/" 
+		data-href="http://localhost:4000/2DVectors/moving_balls/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"
@@ -407,7 +436,7 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Basic 2D Vectors</h2>
+    <h2 class="footer-heading">Basic 2D Vectors Algorithm</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">

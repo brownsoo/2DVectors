@@ -7,17 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>9) Ball vs Ball</title>
-  <meta name="description" content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
+  <meta name="description" content="공 vs 공">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/ball_vs_ball/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/ball_vs_ball/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="9) Ball vs Ball" />
-  <meta property="og:description"   content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다." />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/tut09_1.gif" />
+  <meta property="og:description"   content="공 vs 공" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/tut09_1.gif" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/ball_vs_ball/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/ball_vs_ball/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing.min.js"></script>
   
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">Basic 2D Vectors</a>
+    <a class="site-title" href="/2DVectors/">Basic 2D Vectors Algorithm</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -157,6 +157,18 @@
 <br>
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
+
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
 
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
@@ -273,6 +285,18 @@
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
 
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
+
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
@@ -291,7 +315,7 @@
   </header>
 
   <article class="post-content">
-    <h1 id="vs-">공 vs 공</h1>
+    <h1 id="공-vs-공">공 vs 공</h1>
 
 <p>이제 2개의 공이 충돌하는 것에 대해 알아보겠습니다. 역시 가정을 해봅니다. 공 하나는 계속 움직이고 있으며 그래서 운동벡터를 갖고 있지만, 다른 공은 움직이지 않습니다. 아마도 그 공은 바닥에 버젓이 놓여있거나, 아마도 천장에 붙어 있거나 아직 운동을 배우지 못했을 것입니다.</p>
 
@@ -301,7 +325,8 @@
 
 <p>그림에서 공1(빨강)은 공2(파랑)와 충돌합니다. 두 공의 중심점들 사이의 벡터는 v(녹색)입니다. 벡터 v의 길이가 두 공의 반경을 더한 것보다 작을 때만, 충돌이 일어납니다. 우리는 움직이는 공을 다른 공 바로 옆으로 놓아야 하고 다음의 양(pen)만큼 v의 방향으로 공1을 이동시키면서 그렇게 할 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">pen</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="o">(</span><span class="n">b1</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">b2</span><span class="o">.</span><span class="na">r</span><span class="o">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">pen</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="o">(</span><span class="n">b1</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">b2</span><span class="o">.</span><span class="na">r</span><span class="o">)</span></code></pre></figure>
 
 <p>이제 공들이 훌륭하고 완벽하게 서로의 옆에 놓여졌으니 운동 벡터를 어떻게 변경해야 할지 알아내야 합니다. 보이지 않는 벽이 두 공 사이에 있다고 상상해보십시요. 그러면 그 벽의 방향은 정확히 공들의 중심점 사이의 벡터 노멀과 같습니다.</p>
 
@@ -322,7 +347,7 @@
 
 <p><br /></p>
 
-<h1 id="keep-it-in">안에 가두기 (Keep it in)</h1>
+<h1 id="안에-가두기-keep-it-in">안에 가두기 (Keep it in)</h1>
 
 <p>아마 다른 (분명히 더 큰) 공 안에 움직이는 공을 가두기도 원할 것입니다.</p>
 
@@ -331,18 +356,20 @@
 
 <p>예제에서 큰 공은 big 이고 작은 움직이는 공은 ball 입니다. 다음 조건에서 작은 공은 밖으로 움직입니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">big</span><span class="o">.</span><span class="na">r</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">ball</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span><span class="o">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">big</span><span class="o">.</span><span class="na">r</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">ball</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span><span class="o">)</span></code></pre></figure>
 
 <p>그런 일이 벌어진다면 우리는 공을 다음의 양만큼 뒤로 물려놓아야 합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="n">pen</span> <span class="o">=</span> <span class="n">big</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="o">(</span><span class="n">ball</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span><span class="o">);</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kt">float</span> <span class="n">pen</span> <span class="o">=</span> <span class="n">big</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="o">(</span><span class="n">ball</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span><span class="o">);</span></code></pre></figure>
 
 <p>그리고, 반동에 사용되어질, 벡터 v의 노말의 방향을 반전시키는 것을 잊지 말아야 합니다 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">vbounce</span><span class="o">.</span><span class="na">dx</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span><span class="c1">//right normal of v</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">vbounce</span><span class="o">.</span><span class="na">dx</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span><span class="c1">//right normal of v</span>
 <span class="n">vbounce</span><span class="o">.</span><span class="na">dy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span><span class="c1">//right normal of v</span>
 <span class="n">vbounce</span><span class="o">.</span><span class="na">ldx</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span><span class="c1">//left unit sized normal of vbounce * -1</span>
-<span class="n">vbounce</span><span class="o">.</span><span class="na">ldy</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span><span class="c1">//left unit sized normal of vbounce * -1</span></code></pre></div>
+<span class="n">vbounce</span><span class="o">.</span><span class="na">ldy</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span><span class="c1">//left unit sized normal of vbounce * -1</span></code></pre></figure>
 
 <p><br />
 <br />
@@ -353,7 +380,7 @@
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/ball_vs_ball/" 
+		data-href="http://localhost:4000/2DVectors/ball_vs_ball/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"
@@ -371,7 +398,7 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Basic 2D Vectors</h2>
+    <h2 class="footer-heading">Basic 2D Vectors Algorithm</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">

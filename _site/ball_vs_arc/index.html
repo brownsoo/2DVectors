@@ -7,17 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>12) Ball vs Arc</title>
-  <meta name="description" content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
+  <meta name="description" content="공 vs 호(Ball vs arc)">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/ball_vs_arc/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/ball_vs_arc/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="12) Ball vs Arc" />
-  <meta property="og:description"   content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다." />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/tut12_1.gif" />
+  <meta property="og:description"   content="공 vs 호(Ball vs arc)" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/tut12_1.gif" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/ball_vs_arc/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/ball_vs_arc/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing.min.js"></script>
   
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">Basic 2D Vectors</a>
+    <a class="site-title" href="/2DVectors/">Basic 2D Vectors Algorithm</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -157,6 +157,18 @@
 <br>
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
+
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
 
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
@@ -273,6 +285,18 @@
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
 
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
+
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
@@ -291,7 +315,7 @@
   </header>
 
   <article class="post-content">
-    <h1 id="vs-ball-vs-arc">공 vs 호(Ball vs arc)</h1>
+    <h1 id="공-vs-호ball-vs-arc">공 vs 호(Ball vs arc)</h1>
 
 <p>이제 움직이는 공을 호 형태와 다뤄야 한다면 어떤 상황이 벌어지는지 보도록 합시다. 호는 원의 부분이고, 원이 전체 360도인데, 호는 360도에 미치지 못합니다. 공 대 공의 충돌로 우리는 오직 1 개의 가능한 충돌 점이 있었습니다. 공 대 호에서는 하나만 있지 않고, 3개 더 가능한 충돌 점이 있습니다.</p>
 
@@ -305,17 +329,19 @@
 
 <p>호를 정의한 예시</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">arc</span> <span class="o">=</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">arc</span> <span class="o">=</span> <span class="o">{</span>
   <span class="nl">p0:</span><span class="o">{</span><span class="nl">x:</span><span class="mi">170</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">90</span><span class="o">},</span> 
   <span class="nl">r:</span><span class="mi">30</span><span class="o">,</span> 
   <span class="nl">ang1:</span><span class="mi">135</span><span class="o">,</span> 
   <span class="nl">ang2:</span><span class="mi">315</span>
-<span class="o">};</span></code></pre></div>
+<span class="o">};</span></code></pre></figure>
 
 <p>예시에서 호의 중심은 x=170, y=90 이고, 반경은 30, 시작점의 각은 135도 그리고 끝점의 각은 315 입니다. 
 위 정보를 알고 있으면, 아래와 같이 시작점과 끝점의 좌표를 구할 수 있습니다:</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ang1rad</span> <span class="o">=</span> <span class="n">ang1</span> <span class="o">*</span> <span class="n">PI</span><span class="o">/</span><span class="mi">180</span><span class="o">;</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">ang1rad</span> <span class="o">=</span> <span class="n">ang1</span> <span class="o">*</span> <span class="n">PI</span><span class="o">/</span><span class="mi">180</span><span class="o">;</span>
 <span class="n">ang2rad</span> <span class="o">=</span> <span class="n">ang2</span> <span class="o">*</span> <span class="n">PI</span><span class="o">/</span><span class="mi">180</span><span class="o">;</span>
 <span class="n">v1</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="o">{</span>
   <span class="nl">x:</span> <span class="n">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">cos</span><span class="o">(</span><span class="n">ang1rad</span><span class="o">),</span>
@@ -324,7 +350,7 @@
 <span class="n">v1</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="o">{</span>
   <span class="nl">x:</span> <span class="n">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">cos</span><span class="o">(</span><span class="n">ang2rad</span><span class="o">),</span>
   <span class="nl">y:</span> <span class="n">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">sin</span><span class="o">(</span><span class="n">ang2rad</span><span class="o">)</span>
-<span class="o">};</span></code></pre></div>
+<span class="o">};</span></code></pre></figure>
 
 <p>벡터 v1은 호의 시작과 끝 점 사이에 있습니다.</p>
 
@@ -334,7 +360,7 @@
 
 <p><br /></p>
 
-<h1 id="collisions">충돌 (Collisions)</h1>
+<h1 id="충돌-collisions">충돌 (Collisions)</h1>
 
 <p>우리는 먼저 단계 10 에서 다룬 움직이는 공 대 공의 충돌을 이용해 바깥 측면에서 공이 호를 부딪히는지 검사합니다. 또한 충돌이 일어나게 되면, 공이 호의 빈 부분이 아닌 부분에서 부딪히는지도 검사해야 합니다.</p>
 
@@ -342,59 +368,67 @@
 
 <p>우리는 공과 호가 붙어있는 점 p3를 찾아야 합니다. 이미 충돌이 일어날 때 움직이는 공의 중심 좌표를 알고 있기 때문에 충돌하는 순간 호의 중심에서 원의 중심까지 벡터 v2 를 그릴 수 있습니다:</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v2</span> <span class="o">=</span> <span class="o">{</span><span class="nl">p0:</span><span class="n">arc</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="nl">p1:</span><span class="n">p3</span><span class="o">};</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">v2</span> <span class="o">=</span> <span class="o">{</span><span class="nl">p0:</span><span class="n">arc</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="nl">p1:</span><span class="n">p3</span><span class="o">};</span></code></pre></figure>
 
 <p>점 p3는 이 벡터 상에 있고 호의 중심으로부터 호의 반경과 같은 떨어진 거리에 있습니다.(또한 공의 중심에서 공의 반경 거리만큼 떨어져 있습니다)</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p3</span> <span class="o">=</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">p3</span> <span class="o">=</span> <span class="o">{</span>
   <span class="n">x</span> <span class="o">:</span> <span class="n">arc</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">v2</span><span class="o">.</span><span class="na">dx</span> <span class="o">*</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span><span class="o">,</span>
   <span class="n">y</span> <span class="o">:</span> <span class="n">arc</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">v2</span><span class="o">.</span><span class="na">dy</span> <span class="o">*</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span>
-<span class="o">};</span></code></pre></div>
+<span class="o">};</span></code></pre></figure>
 
 <p>다음으로 호의 시작점에서 점 p3까지 벡터를 그립니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v3</span> <span class="o">=</span> <span class="o">{</span><span class="nl">p0:</span><span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="nl">p1:</span><span class="n">p3</span><span class="o">};</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">v3</span> <span class="o">=</span> <span class="o">{</span><span class="nl">p0:</span><span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="nl">p1:</span><span class="n">p3</span><span class="o">};</span></code></pre></figure>
 
 <p>점 p3는 v3와 v1의 왼쪽 노말의 내적이 0 보다 클 때 호 선상에 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">dotP</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">v1LeftNormal</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">){</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="k">if</span><span class="o">(</span><span class="n">dotP</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">v1LeftNormal</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">){</span>
   <span class="c1">//collision</span>
 <span class="o">}</span><span class="k">else</span><span class="o">{</span>
   <span class="c1">//not on the arc</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <p>만약 충돌이 검출되고 공이 외부에서 호를 부딪히면 다른 3 개의 충돌 검사를 생략할 수 있습니다. 하지만 충돌 점이 호의 밖(비어있는 원둘레)에 있었다면 우리는 공이 안쪽에서 호를 때리는지 호의 끝점을 때리는지 여부를 점검할 필요가 있습니다.</p>
 
-<p>호의 끝 점들에 대해서, 끝점의 좌표에 반경이 0 인 보이지 않는 공이 있다고 상상하고, 움직이는 공 대 공 시스템과 같은 것을 사용할 수 있습니다. </p>
+<p>호의 끝 점들에 대해서, 끝점의 좌표에 반경이 0 인 보이지 않는 공이 있다고 상상하고, 움직이는 공 대 공 시스템과 같은 것을 사용할 수 있습니다.</p>
 
 <p>여기서 사용한 공 대 호에 대한 경우 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ballvsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span><span class="o">);</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">ballvsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span><span class="o">);</span></code></pre></figure>
 
 <p>그리고 다음과 같이 호의 시작과 끝점 충돌을 생각할 수 있습니다. arc.edge는 호의 시작에서 끝점까지의 벡터입니다. 그림에서는 v1 입니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ballVsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">edge</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-<span class="n">ballVsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">edge</span><span class="o">.</span><span class="na">p1</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">ballVsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">edge</span><span class="o">.</span><span class="na">p0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="n">ballVsBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">arc</span><span class="o">.</span><span class="na">edge</span><span class="o">.</span><span class="na">p1</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span></code></pre></figure>
 
-<p>호 안에서 공의 충돌에 대해서는 약간 수정한 외부 충돌 시스템을 사용합니다. </p>
+<p>호 안에서 공의 충돌에 대해서는 약간 수정한 외부 충돌 시스템을 사용합니다.</p>
 
 <p>외부 충돌인 경우 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="n">r</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">ball</span><span class="o">.</span><span class="na">r</span><span class="o">;</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kt">float</span> <span class="n">r</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">ball</span><span class="o">.</span><span class="na">r</span><span class="o">;</span>
 <span class="kt">float</span> <span class="n">moveBack</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">r</span><span class="o">*</span><span class="n">r</span> <span class="o">-</span> <span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">*</span><span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
 <span class="n">p3</span> <span class="o">=</span> <span class="o">{</span>
   <span class="n">x</span> <span class="o">:</span> <span class="n">vn</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">moveBack</span> <span class="o">*</span> <span class="n">ball</span><span class="o">.</span><span class="na">dx</span><span class="o">,</span>
   <span class="n">y</span> <span class="o">:</span> <span class="n">vn</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">moveBack</span> <span class="o">*</span> <span class="n">ball</span><span class="o">.</span><span class="na">dy</span>
-<span class="o">};</span></code></pre></div>
+<span class="o">};</span></code></pre></figure>
 
 <p>내부 충돌인 경우 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="n">r</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="n">ball</span><span class="o">.</span><span class="na">r</span><span class="o">;</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kt">float</span> <span class="n">r</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="n">ball</span><span class="o">.</span><span class="na">r</span><span class="o">;</span>
 <span class="kt">float</span> <span class="n">moveForward</span> <span class="o">=</span> <span class="n">sqrt</span><span class="o">(</span><span class="n">r</span><span class="o">*</span><span class="n">r</span> <span class="o">-</span> <span class="n">vn</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
 <span class="n">p3</span> <span class="o">=</span> <span class="o">{</span>
  <span class="nl">x:</span> <span class="n">vn</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">moveForward</span> <span class="o">*</span> <span class="n">ball</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span>
  <span class="nl">y:</span> <span class="n">vn</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">moveForward</span> <span class="o">*</span> <span class="n">ball</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <p>공이 점 보다 호에 더 충돌할 가능이 있기에 모든 3가지 충돌이 발견된 후에는 공이 충돌로 가는 가장 짧은 길을 선택할 필요가 있습니다.</p>
 
@@ -415,7 +449,7 @@
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/ball_vs_arc/" 
+		data-href="http://localhost:4000/2DVectors/ball_vs_arc/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"
@@ -433,7 +467,7 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Basic 2D Vectors</h2>
+    <h2 class="footer-heading">Basic 2D Vectors Algorithm</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">

@@ -1,5 +1,5 @@
 # Site settings
-title: Basic 2D Vectors
+title: Basic 2D Vectors Algorithm
 email: hansune@me.com
 description:
   기초적인 2D 운동 벡터에 대해 배울 수 있습니다.
@@ -12,7 +12,7 @@ github_username:  brownsoo
 safe: true
 lsi: false
 source: .
-highlighter: pygments
+highlighter: rouge
 
 # Build settings
 markdown: kramdown

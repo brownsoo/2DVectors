@@ -7,17 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>4) Move, Accelerate</title>
-  <meta name="description" content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
+  <meta name="description" content="벡터로 움직이기">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/move_accelerate/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/move_accelerate/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="4) Move, Accelerate" />
-  <meta property="og:description"   content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다." />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/tut01_1.gif" />
+  <meta property="og:description"   content="벡터로 움직이기" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/tut01_1.gif" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/move_accelerate/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/move_accelerate/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing.min.js"></script>
   
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">Basic 2D Vectors</a>
+    <a class="site-title" href="/2DVectors/">Basic 2D Vectors Algorithm</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -157,6 +157,18 @@
 <br>
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
+
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
 
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
@@ -273,6 +285,18 @@
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
 
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
+
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
@@ -291,7 +315,7 @@
   </header>
 
   <article class="post-content">
-    <h1 id="section">벡터로 움직이기</h1>
+    <h1 id="벡터로-움직이기">벡터로 움직이기</h1>
 
 <p>기본 단계를 넘겼습니다. 이제 포인트가 무엇인지, 벡터가 무엇인지, 어떻게 벡터들의 다른 속성들을 계산해야 하는지 알게 되었습니다. 
 이제는 물체를 움직이기 위해 어떻게 벡터를 사용하는지 보도록 합시다.</p>
@@ -303,10 +327,11 @@
 
 <p>먼저 벡터 오브젝트를 선언합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">myOb</span> <span class="o">=</span> <span class="o">{};</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">myOb</span> <span class="o">=</span> <span class="o">{};</span>
 <span class="n">myOb</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">100</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">150</span><span class="o">};</span>
 <span class="n">myOb</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
-<span class="n">myOb</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span></code></pre></div>
+<span class="n">myOb</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span></code></pre></figure>
 
 <p>이 벡터의 시작점은 x=100, y=150 이고, 운동요소는 vx=3, vy=1 의 값을 가지고 있습니다. 오브젝트의 새로운 위치는 벡터의 끝점(p<sub>1</sub>)이며, 이는 예제 코드의 undateVector 함수에서 계산됩니다. 만약에 p<sub>1</sub>의 값을 어떻게 아는지 기억나지 않는다면, Point. Vector 페이지를 살펴보기 바랍니다. 
 오브젝트를 p<sub>1</sub> 위치에 놓은 다음, drawAll 함수에서 다음 계산을 위해 끝점 p<sub>1</sub>을 시작점으로 지정할 것입니다.</p>
@@ -319,16 +344,16 @@
 
 <p><br /></p>
 
-<h1 id="frame-or-time">프레임 또는 시간 (Frame or Time)</h1>
+<h1 id="프레임-또는-시간-frame-or-time">프레임 또는 시간 (Frame or Time)</h1>
 
 <p>updateVector 함수를 다시 살펴보면, 새로운 좌표로 끝점 p<sub>1</sub>을 찾는 방법을 볼 수 있습니다 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">thisTime</span> <span class="o">=</span> <span class="n">millis</span><span class="o">();</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">thisTime</span> <span class="o">=</span> <span class="n">millis</span><span class="o">();</span>
 <span class="kt">float</span> <span class="n">time</span> <span class="o">=</span> <span class="o">(</span><span class="n">thisTime</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="na">lastTime</span><span class="o">)/</span><span class="mi">1000</span><span class="n">f</span><span class="o">*</span><span class="n">scale</span><span class="o">;</span>
-<span class="n">v</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Point</span><span class="o">();</span>
+<span class="n">v</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">();</span>
 <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">+</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">time</span><span class="o">;</span>
 <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">+</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">time</span><span class="o">;</span>
-<span class="n">v</span><span class="o">.</span><span class="na">lastTime</span> <span class="o">=</span> <span class="n">thisTime</span><span class="o">;</span></code></pre></div>
+<span class="n">v</span><span class="o">.</span><span class="na">lastTime</span> <span class="o">=</span> <span class="n">thisTime</span><span class="o">;</span></code></pre></figure>
 
 <p>보통 움직임을 만들기 위해 어느 함수를 매우 빈번하게 호출하게 됩니다. 아시다시피 보통 1초 안에 화면을 몇번이나 갱신하는지를 따져 24fps, 30fps 와 같은 영상의 속성을 지정합니다. 어도비 플래시의 경우 프레임 기반 프로그램입니다. 정해 놓은 frameRate 만큼 모든 애니메이션과 액션스크립트 코드를 1초에 여러번 실행하려고 합니다. 모든 계산을 다루기 위해 enterFrame 함수를 사용하는 것이 보통인데, 이는 정말 좋은 방법은 아닙니다. 매 프레임마다 오브젝트의 x 좌표를 1 씩 증가하도록 코드를 작성했다고 가정해 봅시다. 만약 frameRate를 20으로 설정하였다면, 코드가 초당 20번씩 실행되어 오브젝트가 초당 20픽셀을 이동하는 결과를 낳습니다.</p>
 
@@ -336,18 +361,19 @@
 
 <p>플래시 뿐만 아니라 이런 식의 프레임 기반 코드는 동일한 문제를 일으킬 수 밖에 없습니다.</p>
 
-<p>“그게 어떻다는 거지?” 궁금할 것입니다. 여전히 작동되고, 좌표들도 계산 되어지고, 무비클립들 역시 잘 움직입니다. 그러나 더이상 우리는 우리가 만든 움직임을 제어 할 수 없습니다. 일정시간 후에 오브젝트가 어디에 있는지, 정확히 어떤 속도로 움직이는지 우리는 결코 확신할 수 없습니다. </p>
+<p>“그게 어떻다는 거지?” 궁금할 것입니다. 여전히 작동되고, 좌표들도 계산 되어지고, 무비클립들 역시 잘 움직입니다. 그러나 더이상 우리는 우리가 만든 움직임을 제어 할 수 없습니다. 일정시간 후에 오브젝트가 어디에 있는지, 정확히 어떤 속도로 움직이는지 우리는 결코 확신할 수 없습니다.</p>
 
 <p>또한, 만약 하드웨어적인 문제로 프레임 레이트가 50% 떨어져 낮은 프레임 속도에서 플래시 게임을 재생한 사람들은 (거의) 정상 프레임 속도에서 재생한 사람들보다 큰 잇점을 갖습니다. 이것은 플래시 게임에서 일반적인 부정 방법으로, 누구든 쉽게 무비를 느리게 할 수 있어서 게임에서 쉽게 이길 수 있습니다.</p>
 
-<p>이 과정의 해결책은 움직임 계산을 프레임 수를 기준으로 하지 말고, 실제 시간을 기준으로 하는 것입니다. 프레임 기반 게임에서 속도 vx=3을 선언하는 것은 프로그램이 코드를 실행할 수 있는 기회를 얻는 매시간마다 오브젝트를 3 픽셀씩 움직일 것임을 의미합니다. 시간 기반 게임에서 vx=3을 선언하는 것은 오브젝트가 매초마다 3픽셀씩 움직일 것임을 의미합니다. 시간 기반 게임에서는 프레임 레이트가 떨어지는 것으로 알 수 없는 결과를 만들지 않습니다. 1초 뒤에, 10초 뒤에 또는 1시간 뒤에 오브젝트가 어디에 있을지 정확히 알 수 있습니다. </p>
+<p>이 과정의 해결책은 움직임 계산을 프레임 수를 기준으로 하지 말고, 실제 시간을 기준으로 하는 것입니다. 프레임 기반 게임에서 속도 vx=3을 선언하는 것은 프로그램이 코드를 실행할 수 있는 기회를 얻는 매시간마다 오브젝트를 3 픽셀씩 움직일 것임을 의미합니다. 시간 기반 게임에서 vx=3을 선언하는 것은 오브젝트가 매초마다 3픽셀씩 움직일 것임을 의미합니다. 시간 기반 게임에서는 프레임 레이트가 떨어지는 것으로 알 수 없는 결과를 만들지 않습니다. 1초 뒤에, 10초 뒤에 또는 1시간 뒤에 오브젝트가 어디에 있을지 정확히 알 수 있습니다.</p>
 
 <p>시간 기반 게임에서 낮은 프레임 레이트는 움직임의 부드러움에 영향을 줍니다. 오브젝트는 매초마다 적은 횟수로 화면에 그려지고, 움직임은 ‘건너뛰듯이’ 보일 것입니다. 그렇지만 오브젝트는 매번 그려지고, 또한 매우 정확한 위치에 그려집니다.</p>
 
 <p>우리는 함수를 이용해 시간을 알아 낼 수 있습니다.(예: Processing에서 millis, 플래시에서 getTimer를 사용)</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">thisTime</span> <span class="o">=</span> <span class="n">millis</span><span class="o">();</span>
-<span class="kt">int</span> <span class="n">time</span> <span class="o">=</span> <span class="o">(</span><span class="n">thisTime</span><span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">lastTime</span><span class="o">)/</span><span class="mi">1000</span><span class="n">f</span><span class="o">*</span><span class="n">scale</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kt">int</span> <span class="n">thisTime</span> <span class="o">=</span> <span class="n">millis</span><span class="o">();</span>
+<span class="kt">int</span> <span class="n">time</span> <span class="o">=</span> <span class="o">(</span><span class="n">thisTime</span><span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">lastTime</span><span class="o">)/</span><span class="mi">1000</span><span class="n">f</span><span class="o">*</span><span class="n">scale</span><span class="o">;</span></code></pre></figure>
 
 <p>millis 함수는 프로세싱 무비가 시작한 시점으로부터 지난 시간을 1000분의 1초 단위로 반환합니다. 움직임 연산에서 우리는 마지막 계산한 시간을 저장해서 현재시간에서 그 시간을 빼줍니다. 그리고 시간이 밀리초로 계산되었기 때문에 초 단위의 시간을 얻기위해 우리는 1000으로 나눠야 합니다.
 다만 예제에서는 그렇게 하면 실질적으로 값이 매우 작아져서 그리드 스케일 만큼 곱했습니다.</p>
@@ -358,7 +384,8 @@
 
 <p>그러면 끝점의 새로운 좌표는 소요된 시간을 이용해 계산되어 집니다 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">time</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">time</span><span class="o">;</span></code></pre></figure>
 
 <p>실제로 잘 작동하는지 살펴봅시다. 무비클립이 x=150, y=100 에 있고, vx 가 1 이라고 가정합니다. 프레임 레이트를 20으로 놓으면, 상황에 따라 변수 time은 50ms 또는 그 이상 일 것입니다. 시간이 50 ms 이라고 고정해보면, v.p1.x = v.p0.x + 0.05 식을 얻게 됩니다. 1초 동안 20번 움직임을 한 오브젝트는 20*0.05=1 픽셀 이동합니다. 이것이 정확하게 우리가 원하는 속도 vx 입니다. 이제 time이 500이면, 무비클립은 1초에 단지 두번 새 좌표가 계산되고 그려집니다. 그렇지만 최종 위치는 역시 2*0.5=1 픽셀입니다.</p>
 
@@ -368,7 +395,7 @@
 
 <p><br /></p>
 
-<h1 id="acceleration">가속 (Acceleration)</h1>
+<h1 id="가속-acceleration">가속 (Acceleration)</h1>
 
 <p>속도 벡터가 오브젝트의 위치를 변경하듯이, 가속도 벡터는 오브젝트의 속도를 변경합니다.</p>
 
@@ -377,13 +404,15 @@
 
 <p>그래서 시작 시점에서 오브젝트의 가속도 벡터를 0으로 설정합니다 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">myOb</span><span class="o">.</span><span class="na">ax</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-<span class="n">myOb</span><span class="o">.</span><span class="na">ay</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">myOb</span><span class="o">.</span><span class="na">ax</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="n">myOb</span><span class="o">.</span><span class="na">ay</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span></code></pre></figure>
 
 <p>이제 방향키가 눌러질 때마다, 가속도 벡터의 x 나 y 성분을 변경합니다. update 함수에서 가속도 벡터를 속도 벡터에 더합니다. 가속도 벡터를 사용할 때는 주의해야 하는데, 여러분이 속도를 제한하지 않으면 시간이 흘러 속력이 계속 계속 커질 것입니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">ax</span><span class="o">;</span>
-<span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">ay</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">ax</span><span class="o">;</span>
+<span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">ay</span><span class="o">;</span></code></pre></figure>
 
 <p>게다가 완전히 오브젝트를 멈추고자 한다면 속도 벡터를 0으로 선정하는 것으로는 부족합니다. 가속도 벡터 또한 0 으로 설정해야 합니다. 그렇지 않으면 오브젝트는 움직임을 유지합니다.</p>
 
@@ -395,7 +424,7 @@
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/move_accelerate/" 
+		data-href="http://localhost:4000/2DVectors/move_accelerate/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"
@@ -413,7 +442,7 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Basic 2D Vectors</h2>
+    <h2 class="footer-heading">Basic 2D Vectors Algorithm</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">

@@ -7,17 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>7) Ball vs Line</title>
-  <meta name="description" content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
+  <meta name="description" content="공 vs 선 (Ball vs line)">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/ball_vs_line/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/ball_vs_line/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="7) Ball vs Line" />
-  <meta property="og:description"   content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다." />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/tut07_1.gif" />
+  <meta property="og:description"   content="공 vs 선 (Ball vs line)" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/tut07_1.gif" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/ball_vs_line/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/ball_vs_line/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing.min.js"></script>
   
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">Basic 2D Vectors</a>
+    <a class="site-title" href="/2DVectors/">Basic 2D Vectors Algorithm</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -157,6 +157,18 @@
 <br>
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
+
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
 
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
@@ -273,6 +285,18 @@
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
 
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
+
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
@@ -291,15 +315,16 @@
   </header>
 
   <article class="post-content">
-    <h1 id="vs--ball-vs-line">공 vs 선 (Ball vs line)</h1>
+    <h1 id="공-vs-선-ball-vs-line">공 vs 선 (Ball vs line)</h1>
 
 <p>지금까지 단 하나의 움직이는 점만 사용해서 아마 지루했을 것 같습니다. 움직이는 점에 문제가 있는 것은 아니고, 점은 완전하지만, 점은 점일 뿐입니다.
 현실에서 얼마나 많이 움직이는 점들을 볼 수 있나요? 많이 없을 것입니다. 결론적으로, 우리는 큰 걸음 앞으로 나아가 좀더 현실적인 - 공 같은 것을 움직이고자 합니다.^^;</p>
 
 <p>공은 너비를 갖습니다. 앞으로 예제에서 공은 원으로 표현되고 그것의 중앙에 좌표를 갖고, 반경 또한 갖습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ball</span> <span class="o">=</span> <span class="o">{</span><span class="nl">r:</span><span class="mi">10</span><span class="o">};</span>
-<span class="n">ball</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">150</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">100</span><span class="o">};</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">ball</span> <span class="o">=</span> <span class="o">{</span><span class="nl">r:</span><span class="mi">10</span><span class="o">};</span>
+<span class="n">ball</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">150</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">100</span><span class="o">};</span></code></pre></figure>
 
 <p>여기 움직이는 공은 반경이 10입니다. 이제 그 공의 중심 좌표, 운동 벡터, 반경을 알고, 어느 지점에서 벽에 충돌할 지 알기 원합니다.</p>
 
@@ -313,7 +338,7 @@
 
 <p><br /></p>
 
-<h1 id="axes-method">축 방법 (Axes method)</h1>
+<h1 id="축-방법-axes-method">축 방법 (Axes method)</h1>
 
 <p>선과 공의 교차점은 다른 방법으로도 구해질 수 있습니다. 좀더 간단하게 투영을 이용해 어떻게 공이 벽에 부딪히는지 판단하는지 보도록 합시다.</p>
 
@@ -321,16 +346,19 @@
 
 <p>그림에서 벽의 시작점(v2.p0)에서 공의 중심점까지 벡터(파랑)을 그립니다. 이제 이 새로운 벡터를 벽의 노말에 투영하여 벡터 v3(빨강)를 구합니다. 공을 벽 근처에 두기 위해서 다음 크기만큼 벽의 노말 방향으로 움직여야 합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ball</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="n">v3</span><span class="o">.</span><span class="na">length</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">ball</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="n">v3</span><span class="o">.</span><span class="na">length</span></code></pre></figure>
 
 <p>예제 코드에서 벽의 노말은 단위 벡터이여야 할 것입니다:</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">lx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span>
-<span class="n">v</span><span class="o">.</span><span class="na">ly</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">v</span><span class="o">.</span><span class="na">lx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span>
+<span class="n">v</span><span class="o">.</span><span class="na">ly</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span></code></pre></figure>
 
 <p>runMe 함수에서 모든 벽 벡터에 대한 검사를 수행합니다 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
   <span class="kt">float</span> <span class="n">pen</span> <span class="o">=</span> <span class="n">ball</span><span class="o">.</span><span class="na">r</span> <span class="o">-</span> <span class="n">findAxesHeight</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">vectors</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
   <span class="c1">//if we have hit the wall</span>
   <span class="k">if</span><span class="o">(</span><span class="n">pen</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
@@ -342,7 +370,7 @@
     <span class="n">ball</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">vb</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
     <span class="n">ball</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">vb</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
   <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <blockquote>
   <p>위 코드에서는 w.lx, w.ly가 단위벡터의 속성 크기이기 때문에 pen 값을 곱했다.</p>
@@ -352,9 +380,10 @@
 
 <p>벽에서부터 공의 중심까지 길이를 구하는 함수 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="nf">findAxesHeight</span><span class="o">(</span><span class="n">Vector</span> <span class="n">v0</span><span class="o">,</span> <span class="n">Vector</span> <span class="n">v1</span><span class="o">)</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kt">float</span> <span class="nf">findAxesHeight</span><span class="o">(</span><span class="n">Vector</span> <span class="n">v0</span><span class="o">,</span> <span class="n">Vector</span> <span class="n">v1</span><span class="o">)</span> <span class="o">{</span>
   <span class="c1">//vector between center of ball to ending point of wall</span>
-  <span class="n">Vector</span> <span class="n">v3</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Vector</span><span class="o">();</span>
+  <span class="n">Vector</span> <span class="n">v3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector</span><span class="o">();</span>
   <span class="n">v3</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v0</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
   <span class="n">v3</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v0</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">;</span>
   <span class="c1">//project this vector on the unit-sized normal of the wall</span>
@@ -362,7 +391,7 @@
   <span class="c1">//find length of projection</span>
   <span class="n">v</span><span class="o">.</span><span class="na">length</span> <span class="o">=</span> <span class="n">sqrt</span><span class="o">(</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">);</span>
   <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <p>다음 예제에서 벽의 점들 중 끝 점을 드래그 해보십시요 :</p>
 
@@ -370,7 +399,7 @@
 <p><small>(소스파일 <a href="../data/ball_vs_line.pde">pde</a>를 다운받을 수 있습니다.)</small></p>
 
 <p>이 예제는 벽의 길이를 다루지 않고 있으며, 벽의 벡터 방향이 이전 단계의 예제와 다름을 유념하세요. 모든 벽들은 끝없이 이어져 있는 것으로 간주합니다.
-그렇기 때문에, 이 예제는 박스 안에 공을 붙잡아 두는 데 사용할 수 있지만, 박스 밖에 잡아두지는 못합니다. </p>
+그렇기 때문에, 이 예제는 박스 안에 공을 붙잡아 두는 데 사용할 수 있지만, 박스 밖에 잡아두지는 못합니다.</p>
 
 <p>다음 단계에서는 코너에서 공이 어떻게 충돌을 하는지 보도록 할 것입니다.</p>
 
@@ -383,7 +412,7 @@
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/ball_vs_line/" 
+		data-href="http://localhost:4000/2DVectors/ball_vs_line/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"
@@ -401,7 +430,7 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Basic 2D Vectors</h2>
+    <h2 class="footer-heading">Basic 2D Vectors Algorithm</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">

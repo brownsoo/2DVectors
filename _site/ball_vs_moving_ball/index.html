@@ -7,17 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>10) Ball vs Moving Ball</title>
-  <meta name="description" content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
+  <meta name="description" content="움직이는 공에 충돌하기 (Collision with moving ball)">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/ball_vs_moving_ball/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/ball_vs_moving_ball/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="10) Ball vs Moving Ball" />
-  <meta property="og:description"   content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다." />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/tut10_2.gif" />
+  <meta property="og:description"   content="움직이는 공에 충돌하기 (Collision with moving ball)" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/tut10_2.gif" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/ball_vs_moving_ball/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/ball_vs_moving_ball/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing.min.js"></script>
   
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">Basic 2D Vectors</a>
+    <a class="site-title" href="/2DVectors/">Basic 2D Vectors Algorithm</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -157,6 +157,18 @@
 <br>
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
+
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
 
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
@@ -273,6 +285,18 @@
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
 
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
+
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
@@ -291,7 +315,7 @@
   </header>
 
   <article class="post-content">
-    <h1 id="collision-with-moving-ball">움직이는 공에 충돌하기 (Collision with moving ball)</h1>
+    <h1 id="움직이는-공에-충돌하기-collision-with-moving-ball">움직이는 공에 충돌하기 (Collision with moving ball)</h1>
 
 <p>지난 단계에서 2개 공의 충돌을 어떻게 확인하는지, 공의 반동 이후 움직임을 위한 새로운 방향을 찾는 법을 보았습니다. 
 이것으로도 훌륭한 작업이지만, 문제가 좀 있습니다. 공이 매우 빠르게 움직일 수 없다는 것입니다. 그렇지 않으면 충돌검사가 실패합니다. 여기 그런 상황을 묘사한 것이 있습니다.</p>
@@ -307,43 +331,47 @@
 
 <p>먼저 움직임 이전에 두 공의 중심 사이 벡터를 구합니다 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">vc</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span>
-<span class="n">vc</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">vc</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span>
+<span class="n">vc</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span></code></pre></figure>
 
 <p>이제 공 2와 운동 벡터에서 가장 가까운 점인 p2를 구합니다. 이 점은 벡터 vc 를 운동 벡터 v에 투영해서 쉽게 구할 수 있습니다. 점 p2에서 공 2의 중심으로 벡터를 그릴 수 있으며(vn), 이 벡터는 운동벡터 v의 노말과 같은 방향입니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//projection of vc on movement vector</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="c1">//projection of vc on movement vector</span>
 <span class="n">Vector</span> <span class="n">vp</span> <span class="o">=</span> <span class="n">projectVector</span><span class="o">(</span><span class="n">vc</span><span class="o">,</span> <span class="n">ball1</span><span class="o">.</span><span class="na">dx</span><span class="o">,</span> <span class="n">ball1</span><span class="o">.</span><span class="na">dy</span><span class="o">);</span>
-<span class="c1">//vector to center of ball2 in direction of movement vector&#39;s normal</span>
-<span class="n">vn</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Point</span><span class="o">(</span><span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">+</span><span class="n">vp</span><span class="o">.</span><span class="na">vx</span><span class="o">,</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">+</span><span class="n">vp</span><span class="o">.</span><span class="na">vy</span><span class="o">);</span>
-<span class="n">vn</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span></code></pre></div>
+<span class="c1">//vector to center of ball2 in direction of movement vector's normal</span>
+<span class="n">vn</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">+</span><span class="n">vp</span><span class="o">.</span><span class="na">vx</span><span class="o">,</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">+</span><span class="n">vp</span><span class="o">.</span><span class="na">vy</span><span class="o">);</span>
+<span class="n">vn</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span></code></pre></figure>
 
 <p>우리는 이제 두 공의 크기를 더한 것에 대해 vn의 길이를 검사합니다. 만약 vn이 반경을 더한 것보다 길면 충돌이 없습니다. 
 만약 vn의 길이가 그 것과 같으면 공1이 정확히 점 p2에 있을 때 충돌이 납니다. 
 vn이 짧다면, 공1이 p2를 도달하기 전에 충돌이 일어납니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="n">sumRadius</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">ball2</span><span class="o">.</span><span class="na">r</span><span class="o">;</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kt">float</span> <span class="n">sumRadius</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">ball2</span><span class="o">.</span><span class="na">r</span><span class="o">;</span>
 <span class="kt">float</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">sumRadius</span> <span class="o">-</span> <span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
 <span class="k">if</span><span class="o">(</span><span class="n">diff</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">){</span>
   <span class="c1">//collision</span>
 <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
   <span class="c1">//no collision</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <p>공 사이의 충돌을 한번 검출하면 공1을 점 p2에서 점 p3로 되돌려 놓아야 합니다. 그런데 p3는 어떻게 찾을까요? 위 그림에서 충돌하고 있는 공을 다시 살펴보면 여러분은 공2의 중심, p2, p3가 만드는 삼각형을 볼 수 있을 것입니다. 아마도 그 삼각형을 좋아할 정도는 아니지만, p3를 찾기 충분할 정도로 우리는 이미 이 삼각형에 대해 충분히 많이 알고 있습니다. 먼저, p2에서 공2의 중심까지 빗변 길이를 압니다. 이것은 벡터 vn이고 vn의 길이는 그 빗변의 길이입니다. 다음으로 우리는 또한 p3에서 공2의 중심까지 측면 길이를 압니다. 이것은 sumRadius와 같습니다. 이제 우리는 p2에서 p3까지 세번째 측면 길이를 구하기 위해 유용한 피타고라스 원리를 이용할 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">float</span> <span class="n">moveBack</span> <span class="o">=</span> <span class="n">sqrt</span><span class="o">(</span><span class="n">sumRadius</span><span class="o">*</span><span class="n">sumRadius</span> <span class="o">-</span> <span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">*</span><span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
-<span class="n">Point</span> <span class="n">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Point</span><span class="o">();</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="kt">float</span> <span class="n">moveBack</span> <span class="o">=</span> <span class="n">sqrt</span><span class="o">(</span><span class="n">sumRadius</span><span class="o">*</span><span class="n">sumRadius</span> <span class="o">-</span> <span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">*</span><span class="n">vn</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+<span class="n">Point</span> <span class="n">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">();</span>
 <span class="n">p3</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">vn</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">moveBack</span><span class="o">*</span><span class="n">ball1</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span>
 <span class="n">p3</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">vn</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">moveBack</span><span class="o">*</span><span class="n">ball1</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span>
 <span class="n">v3</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="na">p0</span><span class="o">;</span>
-<span class="n">v3</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="n">p3</span><span class="o">;</span></code></pre></div>
+<span class="n">v3</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="n">p3</span><span class="o">;</span></code></pre></figure>
 
 <p>그래서 moveBack 의 값만큼 p2에서 운동벡터 v의 반대방향으로 이동합니다. p3가 벡터 v의 밖에 있는 것은 이번 운동 사이클 동안 충돌이 일어나지 않을 것이며, 과거에 일어났거나 미래에 일어날 것임을 의미합니다. 우리는 지금 충돌에 대해서만 다룰 것이기에 벡터 v 위에 p3가 있는 것에 대해 검사해야 합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">v3</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="n">ball1</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">dotP</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">ball1</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="k">if</span><span class="o">(</span><span class="n">v3</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="n">ball1</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">dotP</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">ball1</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
   <span class="n">ball1a</span><span class="o">.</span><span class="na">p0</span> <span class="o">=</span> <span class="n">p3</span><span class="o">;</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span> </code></pre></figure>
 
 <p>먼저, 공1의 중심에서 p3 까지 벡터의 길이는 벡터 v의 길이보다 짧아야 합니다. 또한 두 벡터는 같은 방향일 필요가 있고, 이것은 두 벡터의 내적을 계산함으로써 구할 수 있습니다.</p>
 
@@ -365,7 +393,7 @@ vn이 짧다면, 공1이 p2를 도달하기 전에 충돌이 일어납니다.</p
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/ball_vs_moving_ball/" 
+		data-href="http://localhost:4000/2DVectors/ball_vs_moving_ball/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"
@@ -383,7 +411,7 @@ vn이 짧다면, 공1이 p2를 도달하기 전에 충돌이 일어납니다.</p
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Basic 2D Vectors</h2>
+    <h2 class="footer-heading">Basic 2D Vectors Algorithm</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">

@@ -7,17 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>1) Point, Vector</title>
-  <meta name="description" content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
+  <meta name="description" content="벡터, 이것은 무엇일까요?">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/point_vector/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/point_vector/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="1) Point, Vector" />
-  <meta property="og:description"   content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다." />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/tut01_1.gif" />
+  <meta property="og:description"   content="벡터, 이것은 무엇일까요?" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/tut01_1.gif" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/point_vector/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/point_vector/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing.min.js"></script>
   
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">Basic 2D Vectors</a>
+    <a class="site-title" href="/2DVectors/">Basic 2D Vectors Algorithm</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -157,6 +157,18 @@
 <br>
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
+
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
 
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
@@ -273,6 +285,18 @@
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
 
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
+
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
@@ -291,18 +315,18 @@
   </header>
 
   <article class="post-content">
-    <h1 id="section">벡터, 이것은 무엇일까요?</h1>
+    <h1 id="벡터-이것은-무엇일까요">벡터, 이것은 무엇일까요?</h1>
 
 <p>만약 어떤 게임을 만들려고 한다면, 화면에 오브젝트를 위치시키고 움직여야 합니다. 
 이미 알다시피, 화면에서 오브젝트는 x, y 라는 2차원 좌표값을 갖고 있습니다. 
 그래서 우리는 화면 상의 지점 p를 아래와 같이 선언할 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">10</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">5</span><span class="o">};</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">10</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">5</span><span class="o">};</span></code></pre></figure>
 
 <p>훌륭하죠, 한 줄로 “p” 라는 새 객체를 생성하고 선언 했을 뿐 아니라 “x”, “y” 2개의 속성도 부여했습니다. 화면 상의 어느 한 지점을 포인트(Point)라고 합니다. 아래와 같은 방법으로 각각의 속성을 접근할 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p</span><span class="o">.</span><span class="na">x</span>
-<span class="n">p</span><span class="o">.</span><span class="na">y</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p</span><span class="o">.</span><span class="na">x</span>
+<span class="n">p</span><span class="o">.</span><span class="na">y</span></code></pre></figure>
 
 <p>이제 포인트 객체 p의 x 속성에 10을, y 속성에 5를 부여합니다. 그래픽 요소를 만들어서 그 위치에 놓을 수 있을 것입니다.</p>
 
@@ -313,18 +337,18 @@
 
 <p>좀더 복잡한 내용으로 넘어가 봅시다. 2개의 포인트를 만듭니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p0</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">10</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">5</span><span class="o">};</span>
-<span class="n">p1</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">12</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">6</span><span class="o">};</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">p0</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">10</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">5</span><span class="o">};</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="o">{</span><span class="nl">x:</span><span class="mi">12</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">6</span><span class="o">};</span></code></pre></figure>
 
 <p>이렇게 우리는 첫번째 벡터를 만들었습니다. 의아해 하지 않아도 됩니다. 
-벡터는 “시작점”이라 부르는 포인트 p<sub>0</sub>와 “끝점” 포인트 p<sub>1</sub>, 이렇게 2 개의 포인트로 만들어 집니다. 벡터는 방향성을 갖고 있음을 기억해야 합니다. 벡터 p<sub>0</sub>→p<sub>1</sub> 는 벡터 p<sub>1</sub>→p<sub>0</sub> 는 다릅니다. 이 2개의 벡터는 같은 길이와 같은 포인트를 갖고 있어서 매우 닮았지만 반대방향을 갖고 있기 때문에 같은 벡터라고 할 수 없습니다. </p>
+벡터는 “시작점”이라 부르는 포인트 p<sub>0</sub>와 “끝점” 포인트 p<sub>1</sub>, 이렇게 2 개의 포인트로 만들어 집니다. 벡터는 방향성을 갖고 있음을 기억해야 합니다. 벡터 p<sub>0</sub>→p<sub>1</sub> 는 벡터 p<sub>1</sub>→p<sub>0</sub> 는 다릅니다. 이 2개의 벡터는 같은 길이와 같은 포인트를 갖고 있어서 매우 닮았지만 반대방향을 갖고 있기 때문에 같은 벡터라고 할 수 없습니다.</p>
 
 <p>우리가 앞서 만든 것을 아래와 같이 선언합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span> <span class="o">=</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span> <span class="o">=</span> <span class="o">{</span>
     <span class="nl">p0:</span><span class="o">{</span><span class="nl">x:</span><span class="mi">10</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">5</span><span class="o">},</span>
     <span class="nl">p1:</span><span class="o">{</span><span class="nl">x:</span><span class="mi">12</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">6</span><span class="o">}</span>
-<span class="o">};</span></code></pre></div>
+<span class="o">};</span></code></pre></figure>
 
 <p>그리고 포인트를 이용해 벡터 v를 좌표평면에 그릴 수도 있습니다.</p>
 
@@ -332,11 +356,11 @@
 
 <p>지금까지 너무 쉽지만 이게 끝이 아닙니다. 벡터 v는 시작점과 방향 속성으로도 정의될 수 있습니다. 잠시만요, 그렇다고 아직은 점 p<sub>1</sub>이 의미가 없다고 잊어버리진 마세요. 그렇다면, 끝점 p<sub>1</sub> 없이 어떻게 벡터를 만들어 낼까요? 쉽습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span> <span class="o">=</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span> <span class="o">=</span> <span class="o">{</span>
     <span class="nl">p0:</span><span class="o">{</span><span class="nl">x:</span><span class="mi">10</span><span class="o">,</span> <span class="nl">y:</span><span class="mi">5</span><span class="o">},</span>
     <span class="nl">vx:</span><span class="mi">2</span><span class="o">,</span>
     <span class="nl">vy:</span><span class="mi">1</span>
-<span class="o">};</span></code></pre></div>
+<span class="o">};</span></code></pre></figure>
 
 <blockquote>
   <p>위치와 속도로 정의한 벡터의 기본 정의이다.</p>
@@ -345,20 +369,20 @@
 <p>익숙한가요? 앞에서 만든 벡터와 정확히 같은 벡터입니다. 같은 시작점을 갖고 있으며, 2 값을 갖고 있는 vx 요소와 1 값을 갖고 있는 vy 요소를 만들었습니다. 이 벡터는 이렇게 말할 수 있습니다. “시작점 (x=10, y=5)에서 오른쪽으로 2칸 이동하고 아래로 1칸 이동한다”. 직접 이동시켜보면 정확히 점 p<sub>1</sub>에서 끝나게 됨을 알 수 있습니다. 그리고, 모든 벡터 끝점은 벡터의 시작점과 vx, vy 요소로 계산하여 알 수 있습니다.</p>
 
 <blockquote>
-  <p>여기서 vx, vy요소는 변화의 크기를 말한다. 결국 속도의 개념이다. </p>
+  <p>여기서 vx, vy요소는 변화의 크기를 말한다. 결국 속도의 개념이다.</p>
 </blockquote>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="o">{};</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">p1</span> <span class="o">=</span> <span class="o">{};</span>
 <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
-<span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
+<span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></figure>
 
 <p>그리고 2개의 포인트로 벡터를 만들었다면, 언제든 벡터의 vx, vy요소를 알아낼 수 있습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
-<span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
+<span class="n">v</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">;</span></code></pre></figure>
 
 <p>이로써, 우리가 어떤 벡터에 대해 얘기 할 때마다, 벡터는 2개의 포인트(p<sub>0</sub>, p<sub>1</sub>)을 갖고 있으며, 포인트 또한 x / y 좌표를 갖고 있고, 벡터도 vx / vy 요소가 있음을 알 것입니다.
-이 벡터는 “빠르기”, “속력”, “운동량”, “이동” 같이 비슷한 의미의 다양한 이름으로 불려집니다. 이런 이름들 때문에 혼란스러워하지 마세요. 단지 물체를 vx와 vy 방향으로 이동시킬 뿐입니다. </p>
+이 벡터는 “빠르기”, “속력”, “운동량”, “이동” 같이 비슷한 의미의 다양한 이름으로 불려집니다. 이런 이름들 때문에 혼란스러워하지 마세요. 단지 물체를 vx와 vy 방향으로 이동시킬 뿐입니다.</p>
 
 <p>주의할 것은 단 하나, 벡터는 방향과 빠르기를 동시에 나타낸다는 것니다. 예를 들어 우리는 속력과 속도를 다르게 정의합니다. 속력은 단지 빠르기만 나타낼 뿐이고, 속도는 빠르기와 방향을 나타냅니다. 벡터는 속도를 표현하는 방식인 것입니다.</p>
 
@@ -371,7 +395,7 @@
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/point_vector/" 
+		data-href="http://localhost:4000/2DVectors/point_vector/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"
@@ -389,7 +413,7 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Basic 2D Vectors</h2>
+    <h2 class="footer-heading">Basic 2D Vectors Algorithm</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">

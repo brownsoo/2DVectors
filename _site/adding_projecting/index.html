@@ -7,17 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>3) Adding, Projecting</title>
-  <meta name="description" content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.">
+  <meta name="description" content="여러 개의 백터 다루기(Dealing with multiple vectors)">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/adding_projecting/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/adding_projecting/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="3) Adding, Projecting" />
-  <meta property="og:description"   content="기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다." />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/my03_1.png" />
+  <meta property="og:description"   content="여러 개의 백터 다루기(Dealing with multiple vectors)" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/my03_1.png" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/adding_projecting/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/adding_projecting/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing.min.js"></script>
   
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">Basic 2D Vectors</a>
+    <a class="site-title" href="/2DVectors/">Basic 2D Vectors Algorithm</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -157,6 +157,18 @@
 <br>
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
+
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
 
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
@@ -273,6 +285,18 @@
 이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 2.0 일반 라이선스</a>에 따라 이용할 수 있습니다.
 </div>
 
+
+<!-- Facebook like button code -->
+<div class="fb-like" 
+    data-href="http://localhost:4000/2DVectors" 
+    data-layout="button_count"
+    data-action="like" 
+    data-share="true"
+    data-width="300"
+    data-show-faces="false">
+</div>
+
+
 <div id="browser">
 본 사이트는 <b>HTML5</b> 를 지원하는 브라우저를 권장합니다.
 </div>
@@ -291,15 +315,16 @@
   </header>
 
   <article class="post-content">
-    <h1 id="brdealing-with-multiple-vectors">여러 개의 백터 다루기<br />(Dealing with multiple vectors)</h1>
+    <h1 id="여러-개의-백터-다루기dealing-with-multiple-vectors">여러 개의 백터 다루기<br />(Dealing with multiple vectors)</h1>
 
 <p>한 개의 벡터를 다루는 것은 어렵지 않습니다. 그러나 한 개의 벡터만 다루는 일을 별로 없고, 두세개 혹은 더 많은 수의 벡터들을 다룹니다. 그래서 다수의 벡터를 다루는 방법을 알아야 합니다.</p>
 
 <p>무엇보다, 물체에 영향을 주는 벡터가 1개 이상인 일이 빈번합니다. 간단한 예가 중력입니다. 물체가 움직이고 있을 때, 동시에 중력은 오브젝트를 땅으로 끌어당기고 있습니다. 중력도 당연히 여타의 힘처럼 벡터로 선언할 수 있습니다(그것은 항상 땅 쪽으로 향하고 있고, 옆에서 보는 게임에서는 바로 아래 방향이 됩니다). 여기 2개의 벡터가 있고 그 결과 벡터를 구해야 오브젝트를 움직일 수 있습니다. 벡터를 더하기 위해서 벡터들의 vx, vy 속성을 각각 더합니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">resultv</span> <span class="o">=</span> <span class="o">{};</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">resultv</span> <span class="o">=</span> <span class="o">{};</span>
 <span class="n">resultv</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v2</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
-<span class="n">resultv</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">+</span> <span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
+<span class="n">resultv</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">+</span> <span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></figure>
 
 <p>그리고 보다 많은 벡터가 있다면, 같은 방법으로 벡터들을 더하면 됩니다.</p>
 
@@ -313,11 +338,11 @@
 
 <p><br /></p>
 
-<h1 id="projection">투영 (Projection)</h1>
+<h1 id="투영-projection">투영 (Projection)</h1>
 
 <p>가끔식 2개의 벡터가 어떤 방향을 향하고 있는지 알면 유용합니다. 벡터가 같은 방향으로 오브젝트를 보내고 있는지, 아니면 하나는 동쪽으로 다른 하나는 서쪽으로 향하고 있는지 알면 좋습니다.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">dp</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">dp</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">vx</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span> </code></pre></figure>
 
 <p>우리는 두 벡터의 vx와 vy 속성끼리 곱한 다음 결과를 더합니다. 이 변수 dp를 ‘벡터 v1과 v2의 내적’이라고 부릅니다. dp는 벡터가 아니고 단지 숫자 입니다. 이 값이 양수이면 2개의 벡터는 같은 방향을 향하고 있고, 음수이면 서로 반대방향을 향하고 있는 것입니다.</p>
 
@@ -325,8 +350,9 @@
   <p>내적(Dot Product)은 A·B 으로 표시한다. 그리고 벡터 A, B 에 대한 내적의 정의는 이렇다.</p>
 </blockquote>
 
-<pre><code>A·B = |A||B|cosθ
+<div class="highlighter-rouge"><pre class="highlight"><code>A·B = |A||B|cosθ
 </code></pre>
+</div>
 
 <blockquote>
   <p>θ는 두 벡터의 사이각이고 |A| 는 A 벡터의 크기이다. 식을 보면 내적은 A벡터의 크기와 벡터 B의 A방향 성분 크기를 곱한 값이다. 그래서 B 벡터가 A 벡터와 다른 방향이면 B 벡터의 A 방향 성분이 음수이기 때문에 내적이 음수가 나온다. 그리고 내적이 0 이면 직교한다는 것을 알 수 있다. 내적의 정의로부터 위에 나오는 식을 도출해보자.</p>
@@ -336,13 +362,14 @@
   <p>벡터 A, B 가 사이각 θ 를 두고 있다. θ 는 θa - θb 으로 치환할 수 있다.</p>
 </blockquote>
 
-<pre><code>A·B
+<div class="highlighter-rouge"><pre class="highlight"><code>A·B
 = |A||B|cosθ
 = |A||B|cos(θa - θb)
 = |A||B|(cosθa cosθb + sinθa sinθb)
 = |A| cosθa |B| cosθb + |A| sinθa |B| sinθb
 = Ax Bx + Ay By
 </code></pre>
+</div>
 
 <blockquote>
   <p>그리고 내적은 이런 계산이 가능하다.</p>
@@ -355,42 +382,46 @@ A·(B+C) = A·B + A·C
 |A·B| &lt;= |A||B|
 </pre>
 
-<p>지금 하나의 물체에 영향을 미치는 2개의 백터가 있다고 봅시다. 벡터 v1을 벡터 v2에 투영했을 때 벡터 v1은 어떻게 보여질지 알고 싶습니다. 이렇게 벡터를 다른 좌표계로 변환할 수 있으면 정말 유용합니다(벡터 v2와 그 노멀이 하나의 좌표계를 만듭니다). 그렇게 투영된 요소들은 독립적으로 변경할 수 있습니다. </p>
+<p>지금 하나의 물체에 영향을 미치는 2개의 백터가 있다고 봅시다. 벡터 v1을 벡터 v2에 투영했을 때 벡터 v1은 어떻게 보여질지 알고 싶습니다. 이렇게 벡터를 다른 좌표계로 변환할 수 있으면 정말 유용합니다(벡터 v2와 그 노멀이 하나의 좌표계를 만듭니다). 그렇게 투영된 요소들은 독립적으로 변경할 수 있습니다.</p>
 
 <p>벡터 v2 에 투영한 벡터 v1의 <a href="https://en.wikipedia.org/wiki/Vector_projection">투영벡터</a>를 계산하기 :</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">proj</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span>
-<span class="n">proj</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  
+<span class="n">proj</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">dx</span><span class="o">;</span>
+<span class="n">proj</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">*</span> <span class="n">v2</span><span class="o">.</span><span class="na">dy</span><span class="o">;</span></code></pre></figure>
 
 <p>투영벡터 또한 벡터이고, 이것을 구하기 위해서는 두 벡터의 내적과 벡터 v2의 단위 벡터(dx/dy)를 곱합니다.</p>
 
 <blockquote>
-  <p>투영벡터는 내적을 구하는 부분에서도 나왔는데, v2 대신에 v2의 단위벡터에 대한 v1의 투영벡터를 구해도 된다. 그런데 단위벡터의 길이가 1 이기 때문에 v1과 v2 단위벡터의 내적은 곧 투영벡터의 길이가 된다(<code>|v1||v2|cosθ = |v1|cosθ</code>). 여기에 위 식처럼 v2의 단위벡터를 곱하면 투영벡터를 구할 수 있다.</p>
+  <p>투영벡터는 내적을 구하는 부분에서도 나왔는데, v2 대신에 v2의 단위벡터에 대한 v1의 투영벡터를 구해도 된다. 그런데 단위벡터의 길이가 1 이기 때문에 v1과 v2 단위벡터의 내적은 곧 투영벡터의 길이가 된다(<code class="highlighter-rouge">|v1||v2|cosθ = |v1|cosθ</code>). 여기에 위 식처럼 v2의 단위벡터를 곱하면 투영벡터를 구할 수 있다.</p>
 
   <p>그리고 투영벡터는 다음과 같이 구할 수 있다.</p>
 
   <p>벡터 A를 벡터 B에 투영시킨 벡터 Proj 는 자신의 크기와 단위벡터의 곱이다.</p>
 </blockquote>
 
-<pre><code>Proj = |Proj|unitProj
+<div class="highlighter-rouge"><pre class="highlight"><code>Proj = |Proj|unitProj
 </code></pre>
+</div>
 
 <blockquote>
   <p>그리고 투영벡터의 크기는 내적에서 배웠듯이 사이각을 이용할 수 있다.</p>
 </blockquote>
 
-<pre><code>|Proj|
+<div class="highlighter-rouge"><pre class="highlight"><code>|Proj|
  = |A|cosθ
  = |A||B|cosθ / |B|
  = A·B / |B|
 </code></pre>
+</div>
 
 <blockquote>
   <p>그리고 투영 단위벡터는 :</p>
 </blockquote>
 
-<pre><code>unitProj = B / |B|
+<div class="highlighter-rouge"><pre class="highlight"><code>unitProj = B / |B|
 </code></pre>
+</div>
 
 <blockquote>
   <p>다시 투영벡터를 정리해본다.</p>
@@ -424,7 +455,7 @@ Proj.y = (A·B / B·B) * B.y;
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/adding_projecting/" 
+		data-href="http://localhost:4000/2DVectors/adding_projecting/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"
@@ -442,7 +473,7 @@ Proj.y = (A·B / B·B) * B.y;
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Basic 2D Vectors</h2>
+    <h2 class="footer-heading">Basic 2D Vectors Algorithm</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
