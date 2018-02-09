@@ -42,9 +42,9 @@ void setup() {
   vector2.p1 = new Point(150, 50);
   
   //Dragging Handler
-  dragger1 = new Dragger(12);
-  dragger2 = new Dragger(12);
-  dragger3 = new Dragger(12);
+  dragger1 = new Dragger();
+  dragger2 = new Dragger();
+  dragger3 = new Dragger();
   
   //Arrow graphics for vector
   arrow1 = new Arrow(0xff212121);//black: vector 1
@@ -124,9 +124,8 @@ void runMe() {
     //find projections
     proj1 = projectVector(vector1, vector2.dx, vector2.dy);
     proj2 = projectVector(vector1, vector2.lx/vector2.length, vector2.ly/vector2.length);
-    drawAll();
-    
   }
+  drawAll();
 }
 
 //function to draw the points, lines and show text
@@ -249,35 +248,6 @@ String roundMe(float num) {
   
 }
 
-/** Handler to drag the points */
-class Dragger {
-  public float x;
-  public float y;
-  private int size;
-  public boolean pressed = false;
-  public Dragger(int size0) {
-    this.size = int(size0 / 2);
-  }
-  public void place() {
-    
-    noStroke();
-    fill(50, 76);
-    rect(x -size -2, y -size -2, size + size + 4, size + size + 4);
-    if(!pressed) fill(255, 50);
-    else fill(204, 102, 45, 200);
-    rect(x - size, y - size, size + size, size + size);
-    
-  }
-  public boolean contains(float x0, float y0) {
-    if(x0 < x - size || x0 > x + size 
-      || y0 < y - size || y0 > y + size) {
-      return false;
-    }
-    return true;
-  }
-}
-
-
 /** Arrow Graphic definition */
 class Arrow {
  public float x;
@@ -329,5 +299,41 @@ class Vector {
   public Vector() {
     p0 = new Point();
     p1 = new Point();
+  }
+}
+
+/** Handler to drag the points */
+class Dragger {
+  public float x;
+  public float y;
+  public boolean pressed = false;
+  private float size;
+  private float degree = 0;
+  private float expend = 0;
+  private float maxExpend = 6;
+
+  public Dragger() {
+    this(20);
+  }
+  public Dragger(int size0) {
+    this.size = size0;
+  }
+  public void place() {
+    degree = degree > 180 ? 0 : degree + 5;
+    noStroke();
+    fill(50, 76);
+    expend = sin(radians(degree)) * maxExpend;
+    ellipse(x, y, size + expend, size + expend);
+    if(pressed) {
+      fill(135, 181, 255, 200);
+      ellipse(x, y, size + maxExpend * 6, size + maxExpend * 6);
+    }
+  }
+  public boolean contains(float x0, float y0) {
+    if(x0 < x - size/2 - maxExpend || x0 > x + size/2 + maxExpend 
+      || y0 < y - size/2 - maxExpend || y0 > y + size/2 + maxExpend) {
+      return false;
+    }
+    return true;
   }
 }

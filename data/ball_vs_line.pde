@@ -54,7 +54,7 @@ void setup() {
   //Dragging Handler
   draggers = new Dragger[4];
   for(int i=0; i<draggers.length; i++) {
-    draggers[i] = new Dragger(12);
+    draggers[i] = new Dragger();
   }
   //Arrow graphics for vector
   arrows = new Arrow[4];
@@ -365,28 +365,37 @@ class Ball extends Vector {
  }
 }
 
+
 /** Handler to drag the points */
 class Dragger {
   public float x;
   public float y;
-  private int size;
   public boolean pressed = false;
+  private float size;
+  private float degree = 0;
+  private float expend = 0;
+  private float maxExpend = 6;
+
+  public Dragger() {
+    this(20);
+  }
   public Dragger(int size0) {
-    this.size = int(size0 / 2);
+    this.size = size0;
   }
   public void place() {
-    
+    degree = degree > 180 ? 0 : degree + 5;
     noStroke();
     fill(50, 76);
-    rect(x -size -2, y -size -2, size + size + 4, size + size + 4);
-    if(!pressed) fill(255, 50);
-    else fill(204, 102, 45, 200);
-    rect(x - size, y - size, size + size, size + size);
-    
+    expend = sin(radians(degree)) * maxExpend;
+    ellipse(x, y, size + expend, size + expend);
+    if(pressed) {
+      fill(135, 181, 255, 200);
+      ellipse(x, y, size + maxExpend * 6, size + maxExpend * 6);
+    }
   }
   public boolean contains(float x0, float y0) {
-    if(x0 < x - size || x0 > x + size 
-      || y0 < y - size || y0 > y + size) {
+    if(x0 < x - size/2 - maxExpend || x0 > x + size/2 + maxExpend 
+      || y0 < y - size/2 - maxExpend || y0 > y + size/2 + maxExpend) {
       return false;
     }
     return true;
