@@ -71,8 +71,15 @@ float t = perP(v3, v1)/perP(v2, v1);
 
 이 예제에서 점들을 움직여 보고 어디서 교차하는지 보세요:
 
-<canvas data-processing-sources="../data/intersection.pde"></canvas>
+<canvas id="touchzone" data-processing-sources="../data/intersection.pde"></canvas>
 <small>(소스파일 [pde](../data/intersection.pde)를 다운받을 수 있습니다.)</small>
+
+<script>
+    var touchzone = document.getElementById("touchzone");
+    touchzone.addEventListener("touchmove", function(event){
+        event.preventDefault();
+    }, false);
+</script>
 
 >교차 알고리즘이 어떻게 만들어지는지 실제 방법에 관심있다면, [여기](http://geomalgorithms.com/a05-_intersect-1.html)를 참고할 만하다.
 
