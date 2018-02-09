@@ -20,26 +20,7 @@
   <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing-v1_6_6.js"></script>
-  
-  <script>
-      // Prevent scrolling when touching the canvas
-      document.body.addEventListener("touchstart", function (e) {
-        if (e.target == canvas) {
-          e.preventDefault();
-        }
-      }, false);
-      document.body.addEventListener("touchend", function (e) {
-        if (e.target == canvas) {
-          e.preventDefault();
-        }
-      }, false);
-      document.body.addEventListener("touchmove", function (e) {
-        if (e.target == canvas) {
-          e.preventDefault();
-        }
-      }, false);
-  </script>
-  
+
 </head>
 
 
@@ -478,6 +459,25 @@ vn이 짧다면, 공1이 p2를 도달하기 전에 충돌이 일어납니다.</p
   ga('create', 'UA-38112441-1', 'auto');
   ga('send', 'pageview');
 
+</script>
+
+<script>
+    // Prevent scrolling when touching the canvas
+    document.body.addEventListener("touchstart", function (e) {
+      if (e.target.tagName == 'canvas') {
+        e.preventDefault();
+      }
+    }, false);
+    document.body.addEventListener("touchend", function (e) {
+      if (e.target.tagName == 'canvas') {
+        e.preventDefault();
+      }
+    }, false);
+    document.body.addEventListener("touchmove", function (e) {
+      if (e.target.tagName == 'canvas') {
+        e.preventDefault();
+      }
+    }, false);
 </script>
 
 

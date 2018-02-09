@@ -17,24 +17,5 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <script src="{{ "/js/processing-v1_6_6.js" | prepend: site.baseurl }}"></script>
-  
-  <script>
-      // Prevent scrolling when touching the canvas
-      document.body.addEventListener("touchstart", function (e) {
-        if (e.target == canvas) {
-          e.preventDefault();
-        }
-      }, false);
-      document.body.addEventListener("touchend", function (e) {
-        if (e.target == canvas) {
-          e.preventDefault();
-        }
-      }, false);
-      document.body.addEventListener("touchmove", function (e) {
-        if (e.target == canvas) {
-          e.preventDefault();
-        }
-      }, false);
-  </script>
-  
+
 </head>
