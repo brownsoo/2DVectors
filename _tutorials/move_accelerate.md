@@ -13,7 +13,8 @@ image: tut01_1.gif
 
 이 예제에서 빨간 점이 우리의 오브젝트입니다. 예제 블럭을 선택하고, 방향키를 이용해 운동 벡터의 vx, vy 요소를 바꿀 수 있습니다.
 
-<canvas data-processing-sources="../data/moving_with_vector.pde"></canvas>
+<div id="canvasHolder1"></div>
+<script src="../data/moving_with_vector.js"></script>
 <small>(소스파일 [pde](../data/moving_with_vector.pde)를 다운받을 수 있습니다.)</small>
 
 먼저 벡터 오브젝트를 선언합니다.
@@ -93,7 +94,8 @@ v.p1.x = v.p0.x + v.vx*time;
 
 속도 벡터가 오브젝트의 위치를 변경하듯이, 가속도 벡터는 오브젝트의 속도를 변경합니다.
 
-<canvas data-processing-sources="../data/acceleration.pde"></canvas>
+<div id="canvasHolder2"></div>
+<script src="../data/acceleration.js"></script>
 <small>(소스파일 [pde](../data/acceleration.pde)를 다운받을 수 있습니다.)</small>
 
 그래서 시작 시점에서 오브젝트의 가속도 벡터를 0으로 설정합니다 :

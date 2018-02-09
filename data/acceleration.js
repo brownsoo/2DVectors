@@ -1,0 +1,171 @@
+/**
+ * Acceleration 
+ * by hyonsoo han
+ *
+ * Shows how to use vector to move object with acceleration.
+ * Checkout : brownsoo.github.io/2DVectors
+ * Apache License 2.0 - http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+function setup() {
+  var myCanvas = createCanvas(windowWidth * 0.96, windowWidth * 0.96);
+  myCanvas.x = windowWidth * 0.02;
+  myCanvas.parent('canvasHolder2')
+  // Pulling the display's density dynamically
+  try {
+    pixelDensity(displayDensity());
+  } catch(e){}
+  background(255);
+  //create object
+  ball = new Ball(color('#ff5252'), 20);
+  //point p0 is its starting point in the coordinates x/y
+  ball.p0 = new Point(150, 100);
+  //vector x/y components
+  ball.vx = 0;
+  ball.vy = 0;
+  ball.ax = 0;
+  ball.ay = 0;
+  
+  resetBt = new SimpleButton('reset')
+  resetBt.x = 10;
+  resetBt.y = 50;
+  resetBt.setCallback(resetBall)
+}
+
+function draw() {
+  //update the vector parameters
+  updateBall(ball);
+  
+  //reset object to other side if gone out of stage
+  if (ball.p1.x > width) {
+    ball.p1.x -= width;
+  } else if (ball.p1.x < 0) {
+    ball.p1.x += width;
+  }
+  if (ball.p1.y > height) {
+    ball.p1.y -= height;
+  } else if (ball.p1.y < 0) {
+    ball.p1.y += height;
+  }
+  
+  //draw it
+  drawAll();
+  resetBt.place();
+}
+
+function resetBall(sender) {
+    //println(b.label + " click");
+    ball.p0.x = 150;
+    ball.p0.y = 100;
+    ball.vx = 0;
+    ball.vy = 0;
+    ball.ax = 0;
+    ball.ay = 0;
+}
+
+
+function keyPressed() {
+  if(keyCode == LEFT_ARROW && ball.ax > -maxA) {
+    //reduce x acceleration
+    ball.ax -= 0.01;
+  }
+  else if(keyCode == RIGHT_ARROW && ball.ax < maxA) {
+    //increase x acceleration
+    ball.ax += 0.01;
+  }
+  else if (keyCode == UP_ARROW && ball.ay > -maxA) {
+    //reduce y acceleration
+    ball.ay -= 0.01;
+  } 
+  else if (keyCode == DOWN_ARROW && ball.ay < maxA) {
+    //increase y acceleration
+    ball.ay += 0.01;
+  } 
+  return false; // prevent default
+}
+
+
+//function to draw the points, lines and show text
+//this is only needed for the example to illustrate
+function drawAll() {
+  //clear all
+  background(255);
+  
+  //draw grid
+  stroke(208);
+  noFill();
+  for(var i=0; i<width; i+=segments) {
+    if(i%(10*segments)==0 && i>0) strokeWeight(2);
+    else strokeWeight(1);
+    line(i, 0, i, height);
+  }
+  for(var j=0; j<height; j+=segments) {
+    if(j%(10*segments)==0 && j>0) strokeWeight(2);
+    else strokeWeight(1);
+    line(0, j, width, j);  
+  }
+  
+  //place object
+  ball.place();
+  //make end point equal to starting point for next cycle
+  ball.p0 = ball.p1;
+  //show the vectors components
+  noStroke();
+  fill(25);
+  text("vx:"+roundMe(ball.vx) + " vy:" + roundMe(ball.vy), 10, 20);
+  text("ax:"+roundMe(ball.ax) + " ay:" + roundMe(ball.ay), 10, 35);
+}
+
+//function to find all parameters for the ball vector 
+//with using start point and vx/vy, time
+function updateBall(v) {
+  //update the speed vector with acceleration
+  if(abs(v.vx+v.ax) < maxV) {
+    v.vx = v.vx + v.ax;
+  }
+  if(abs(v.vy+v.ay) < maxV) {
+    v.vy = v.vy + v.ay;
+  }
+  
+  //find time passed from last update
+  var thisTime = millis();
+  var time = (thisTime - v.lastTime) / 1000.0 * segments;
+  //find end point coordinates
+  v.p1 = new Point();//new creation for changing point.
+  v.p1.x = v.p0.x + v.vx * time;
+  v.p1.y = v.p0.y + v.vy * time;
+  //length of vector
+  v.length = sqrt(v.vx*v.vx+v.vy*v.vy);
+  //normalized unit-sized components
+  if (v.length > 0) {
+    v.dx = v.vx/v.length;
+    v.dy = v.vy/v.length;
+  } else {
+    v.dx = 0;
+    v.dy = 0;
+  }
+  //right hand normal
+  v.rx = -v.vy;
+  v.ry = v.vx;
+  //left hand normal
+  v.lx = v.vy;
+  v.ly = -v.vx;
+  //save the current time
+  v.lastTime = thisTime;
+}
+
+
+//function to round up numbers to x.xx format
+//has nothing to do with vectors, only to show nice numbers in the example
+function roundMe(num) {
+  if(abs(num) < 0.001) {
+    return "0";
+  }
+  var rnum = str(num);
+  var nums = split(rnum, ".");
+  if (nums[1] == null) {
+    nums[1] = "00";
+  }
+  return nums[0]+"." + nums[1].substring(0, min(nums[1].length, 2));
+}
+

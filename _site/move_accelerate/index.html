@@ -21,6 +21,12 @@
 
   <script src="/2DVectors/js/processing-v1_6_6.js"></script>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.sound.js"></script>
+  <script src="../data/simple-button.js"></script>
+  <script src="../data/base-primative.js"></script>
+  
 </head>
 
 
@@ -322,7 +328,9 @@
 
 <p>이 예제에서 빨간 점이 우리의 오브젝트입니다. 예제 블럭을 선택하고, 방향키를 이용해 운동 벡터의 vx, vy 요소를 바꿀 수 있습니다.</p>
 
-<canvas data-processing-sources="../data/moving_with_vector.pde"></canvas>
+<div id="canvasHolder1"></div>
+<script src="../data/moving_with_vector.js"></script>
+
 <p><small>(소스파일 <a href="../data/moving_with_vector.pde">pde</a>를 다운받을 수 있습니다.)</small></p>
 
 <p>먼저 벡터 오브젝트를 선언합니다.</p>
@@ -399,7 +407,9 @@
 
 <p>속도 벡터가 오브젝트의 위치를 변경하듯이, 가속도 벡터는 오브젝트의 속도를 변경합니다.</p>
 
-<canvas data-processing-sources="../data/acceleration.pde"></canvas>
+<div id="canvasHolder2"></div>
+<script src="../data/acceleration.js"></script>
+
 <p><small>(소스파일 <a href="../data/acceleration.pde">pde</a>를 다운받을 수 있습니다.)</small></p>
 
 <p>그래서 시작 시점에서 오브젝트의 가속도 벡터를 0으로 설정합니다 :</p>
