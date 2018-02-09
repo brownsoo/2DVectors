@@ -20,5 +20,6 @@ permalink: /about/
 
 <small>문서이력</small>
 
+- 2018년 초봄 : 모바일 브라우저 터치 이벤트 오류 수정
 - 2015년 가을 : Basic 2D Vectors 로 이름변경, github로 변경, jekyll사용, Processing으로 코드변경
 - 2012년 여름 : Vectors for Flash 한글용 사이트 제작
