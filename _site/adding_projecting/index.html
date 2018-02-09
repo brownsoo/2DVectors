@@ -9,17 +9,17 @@
   <title>3) Adding, Projecting</title>
   <meta name="description" content="여러 개의 백터 다루기(Dealing with multiple vectors)">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/adding_projecting/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/adding_projecting/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="3) Adding, Projecting" />
   <meta property="og:description"   content="여러 개의 백터 다루기(Dealing with multiple vectors)" />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/my03_1.png" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/my03_1.png" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/adding_projecting/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/adding_projecting/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
-  <script src="/2DVectors/js/processing.min.js"></script>
+  <script src="/2DVectors/js/processing-v1_6_6.js"></script>
   
 </head>
 
@@ -161,7 +161,7 @@
 
 <!-- Facebook like button code -->
 <div class="fb-like" 
-    data-href="http://brownsoo.github.io/2DVectors" 
+    data-href="http://localhost:4000/2DVectors" 
     data-layout="button_count"
     data-action="like" 
     data-share="true"
@@ -288,7 +288,7 @@
 
 <!-- Facebook like button code -->
 <div class="fb-like" 
-    data-href="http://brownsoo.github.io/2DVectors" 
+    data-href="http://localhost:4000/2DVectors" 
     data-layout="button_count"
     data-action="like" 
     data-share="true"
@@ -350,9 +350,8 @@
   <p>내적(Dot Product)은 A·B 으로 표시한다. 그리고 벡터 A, B 에 대한 내적의 정의는 이렇다.</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>A·B = |A||B|cosθ
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A·B = |A||B|cosθ
+</code></pre></div></div>
 
 <blockquote>
   <p>θ는 두 벡터의 사이각이고 |A| 는 A 벡터의 크기이다. 식을 보면 내적은 A벡터의 크기와 벡터 B의 A방향 성분 크기를 곱한 값이다. 그래서 B 벡터가 A 벡터와 다른 방향이면 B 벡터의 A 방향 성분이 음수이기 때문에 내적이 음수가 나온다. 그리고 내적이 0 이면 직교한다는 것을 알 수 있다. 내적의 정의로부터 위에 나오는 식을 도출해보자.</p>
@@ -362,14 +361,13 @@
   <p>벡터 A, B 가 사이각 θ 를 두고 있다. θ 는 θa - θb 으로 치환할 수 있다.</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>A·B
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A·B
 = |A||B|cosθ
 = |A||B|cos(θa - θb)
 = |A||B|(cosθa cosθb + sinθa sinθb)
 = |A| cosθa |B| cosθb + |A| sinθa |B| sinθb
 = Ax Bx + Ay By
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>그리고 내적은 이런 계산이 가능하다.</p>
@@ -400,28 +398,25 @@ A·(B+C) = A·B + A·C
   <p>벡터 A를 벡터 B에 투영시킨 벡터 Proj 는 자신의 크기와 단위벡터의 곱이다.</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Proj = |Proj|unitProj
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Proj = |Proj|unitProj
+</code></pre></div></div>
 
 <blockquote>
   <p>그리고 투영벡터의 크기는 내적에서 배웠듯이 사이각을 이용할 수 있다.</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>|Proj|
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|Proj|
  = |A|cosθ
  = |A||B|cosθ / |B|
  = A·B / |B|
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>그리고 투영 단위벡터는 :</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>unitProj = B / |B|
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unitProj = B / |B|
+</code></pre></div></div>
 
 <blockquote>
   <p>다시 투영벡터를 정리해본다.</p>
@@ -455,7 +450,7 @@ Proj.y = (A·B / B·B) * B.y;
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/adding_projecting/" 
+		data-href="http://localhost:4000/2DVectors/adding_projecting/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"

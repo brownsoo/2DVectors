@@ -46,7 +46,13 @@ $side-nav-width: 170px;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
-        "base",
-        "layout",
-        "syntax-highlighting"
+    "base",
+    "layout",
+    "syntax-highlighting"
 ;
+
+
+canvas {
+	outline: none;
+	touch-action: none;
+}

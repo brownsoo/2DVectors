@@ -204,3 +204,5 @@ canvas { box-shadow: 0.1em 0.1em 0.5em lightgray; }
 .highlight .vg { color: #008080; }
 .highlight .vi { color: #008080; }
 .highlight .il { color: #099; }
+
+canvas { outline: none; touch-action: none; }

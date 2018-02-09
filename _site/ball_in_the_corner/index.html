@@ -9,17 +9,17 @@
   <title>8) Ball in the Corner</title>
   <meta name="description" content="코너에 있는 공 (Ball in the Corner)">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/ball_in_the_corner/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/ball_in_the_corner/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="8) Ball in the Corner" />
   <meta property="og:description"   content="코너에 있는 공 (Ball in the Corner)" />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/tut08.png" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/tut08.png" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/ball_in_the_corner/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/ball_in_the_corner/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
-  <script src="/2DVectors/js/processing.min.js"></script>
+  <script src="/2DVectors/js/processing-v1_6_6.js"></script>
   
 </head>
 
@@ -161,7 +161,7 @@
 
 <!-- Facebook like button code -->
 <div class="fb-like" 
-    data-href="http://brownsoo.github.io/2DVectors" 
+    data-href="http://localhost:4000/2DVectors" 
     data-layout="button_count"
     data-action="like" 
     data-share="true"
@@ -288,7 +288,7 @@
 
 <!-- Facebook like button code -->
 <div class="fb-like" 
-    data-href="http://brownsoo.github.io/2DVectors" 
+    data-href="http://localhost:4000/2DVectors" 
     data-layout="button_count"
     data-action="like" 
     data-share="true"
@@ -341,7 +341,7 @@
 <p>v3는 벽 벡터와 시작점이 같기 때문에, 만약 내적이 음수이면 공은 시작점에 더 가깝습니다. 그리고 공을 뒤로 움직여놓을 벡터는 벡터 v3 입니다.</p>
 
 <figure class="highlight"><pre><code class="language-as3" data-lang="as3">  
-<span class="k">if</span><span class="p">(</span><span class="nx">dp</span> <span class="o">&lt;</span> <span class="err">0</span><span class="p">){</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">dp</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
   <span class="k">return</span> <span class="nx">v3</span><span class="o">;</span>
 <span class="p">}</span></code></pre></figure>
 
@@ -361,7 +361,7 @@
 <p>만약 내적이 양수이면 공이 끝점을 먼저 때리고 v4는 공을 떨어뜨려 놓는데 사용됩니다.</p>
 
 <figure class="highlight"><pre><code class="language-as3" data-lang="as3">  
-<span class="k">if</span><span class="p">(</span><span class="nx">dp</span> <span class="o">&gt;</span> <span class="err">0</span><span class="p">){</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">dp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
   <span class="k">return</span> <span class="nx">v4</span><span class="o">;</span>
 <span class="p">}</span></code></pre></figure>
 
@@ -394,7 +394,7 @@
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/ball_in_the_corner/" 
+		data-href="http://localhost:4000/2DVectors/ball_in_the_corner/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"

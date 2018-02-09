@@ -9,17 +9,17 @@
   <title>5) Intersection</title>
   <meta name="description" content="교차하기 (Intersection)">
 
-  <meta property="og:url"           content="http://brownsoo.github.io/2DVectors/intersection/" />
+  <meta property="og:url"           content="http://localhost:4000/2DVectors/intersection/" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="5) Intersection" />
   <meta property="og:description"   content="교차하기 (Intersection)" />
-  <meta property="og:image"         content="http://brownsoo.github.io/2DVectors/img/tut05_1.gif" />
+  <meta property="og:image"         content="http://localhost:4000/2DVectors/img/tut05_1.gif" />
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
-  <link rel="canonical" href="http://brownsoo.github.io/2DVectors/intersection/">
-  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://brownsoo.github.io/2DVectors/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2DVectors/intersection/">
+  <link rel="alternate" type="application/rss+xml" title="Basic 2D Vectors Algorithm" href="http://localhost:4000/2DVectors/feed.xml" />
 
-  <script src="/2DVectors/js/processing.min.js"></script>
+  <script src="/2DVectors/js/processing-v1_6_6.js"></script>
   
 </head>
 
@@ -161,7 +161,7 @@
 
 <!-- Facebook like button code -->
 <div class="fb-like" 
-    data-href="http://brownsoo.github.io/2DVectors" 
+    data-href="http://localhost:4000/2DVectors" 
     data-layout="button_count"
     data-action="like" 
     data-share="true"
@@ -288,7 +288,7 @@
 
 <!-- Facebook like button code -->
 <div class="fb-like" 
-    data-href="http://brownsoo.github.io/2DVectors" 
+    data-href="http://localhost:4000/2DVectors" 
     data-layout="button_count"
     data-action="like" 
     data-share="true"
@@ -389,21 +389,19 @@
 
 <p>먼저 두 점(P<sub>0</sub>, P<sub>1</sub>)를 지나는 벡터 방정식을 매개변수로 표현한 방정식으로 표현하면, P(s) = P<sub>0</sub> + s(P<sub>1</sub> - P<sub>0</sub>) = P<sub>0</sub> + su(s는 실수, u는 벡터)로 정의할 수 있습니다. 이 표현을 빌리면, P(0) = P<sub>0</sub>, P(1) = P<sub>1</sub>, 0 &lt;= s &lt;= 1 입니다. 아래와 같이 s값을 정리합니다.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>su = P(s) - P0
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su = P(s) - P0
 s = (P(s) - P0) / u
 s = (P(s) - P0) / (P1 - P0)
 s = d(P0, P(s)) / d(P0, P1)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>벡터 d로 정리된 s값을 살펴보면, s가 0보다 작으면 P(s)는 P0의 바깥 쪽에 있고, s가 1 보다 크면 P(s)는 P<sub>1</sub>의 바깥 쪽에 있음을 알 수 있습니다.</p>
 
 <p>평행한 두 벡터 u(P<sub>1</sub> - P<sub>0</sub>), v(Q<sub>1</sub> - Q<sub>0</sub>)에 대해 u = Cv 가 성립됩니다(C는 실수).
 같은 의미로 u/v 값은 항상 같은 값을 유지하는데 u(1)/v(1) = u(k)/v(k) 으로 표현할 수 있습니다. <br /></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>u(1)v(k) - u(k)v(1) = 0
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>u(1)v(k) - u(k)v(1) = 0
+</code></pre></div></div>
 
 <p>이때 u=(u1, u2) 이고 v=(v1, v2)에 대해 u1v2 - u2v1 = 0 임을 Perp product라고 합니다. 기호로 u⊥·v = 0, (u가 (u1, u2) 일 때, u⊥ = (-u2, u1) 입니다. ⊥ 는 perp operator, 직교 연산자)</p>
 
@@ -415,10 +413,9 @@ s = d(P0, P(s)) / d(P0, P1)
 
 <p>그림에서 v 와 u 의 교차점 P(si)를 구하고자 합니다. 벡터 w 는 w = P<sub>0</sub> - Q<sub>0</sub> 일 때, P(s) - Q<sub>0</sub> = w + su 입니다. 그리고 교차점을 지나는 벡터 P(si) - Q<sub>0</sub> 는 v⊥와 직교합니다. perp product 공식을 적용합니다.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>v⊥·(w+si u) = 0
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v⊥·(w+si u) = 0
 v⊥·w + v⊥·si u = 0
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="../img/my05_2.gif" alt="Alt Vector Intersection" /></p>
 
@@ -439,7 +436,7 @@ v⊥·w + v⊥·si u = 0
 
   <!-- Your like button code -->
 	<div class="fb-like" 
-		data-href="http://brownsoo.github.io/2DVectors/intersection/" 
+		data-href="http://localhost:4000/2DVectors/intersection/" 
 		data-layout="button_count"
 		data-action="like" 
 		data-share="true"
