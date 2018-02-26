@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 2) Length, Normals
+title: 2) 길이, 노멀
+englishTitle: length, Normal
 section: Basics
 number: 1002
 image: my02_1.png

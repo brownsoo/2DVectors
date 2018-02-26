@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 12) Ball vs Arc
+title: 12) 공 vs 호
+englishTitle: Ball vs Arc
 section: The ball
 number: 3006
 image: tut12_1.gif

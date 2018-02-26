@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 10) Ball vs Moving Ball
+title: 10) 공 vs 움직이는 공
+englishTitle: Ball vs Moving Ball
 section: The ball
 number: 3004
 image: tut10_2.gif

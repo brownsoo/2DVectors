@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 6) Bounce
+title: 6) 반동
+englishTitle: Bounce
 section: Using vectors
 number: 2003
 image: tut06_1.gif

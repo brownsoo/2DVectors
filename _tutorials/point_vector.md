@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 1) Point, Vector
+title: 1) 포인트, 벡터
+englishTitle: Point, Vector
 section: Basics
 number: 1001
 image: tut01_1.gif

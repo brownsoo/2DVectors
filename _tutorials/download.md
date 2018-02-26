@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Downloads
+title: 다운로드
+englishTitle: Downloads
 section: Extras
 number: 4001
 ---

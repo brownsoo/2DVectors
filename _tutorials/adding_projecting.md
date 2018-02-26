@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 3) Adding, Projecting
+title: 3) 더하고, 투영하기
+englishTitle: Adding, Projecting
 section: Basics
 number: 1003
 image: my03_1.png

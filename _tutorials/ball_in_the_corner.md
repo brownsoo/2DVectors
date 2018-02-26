@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 8) Ball in the Corner
+title: 8) 코너에 있는 공
+englishTitle: Ball in the Corner
 section: The ball
 number: 3002
 image: tut08.png

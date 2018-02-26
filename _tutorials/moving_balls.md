@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 11) Moving balls
+title: 11) 움직이는 공들
+englishTitle: Moving Balls
 section: The ball
 number: 3005
 image: tut11_3.gif

@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 7) Ball vs Line
+title: 7) 공 vs 선
+englishTitle: Ball vs Line
 section: The ball
 number: 3001
 image: tut07_1.gif

@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 4) Move, Accelerate
+title: 4) 이동, 가속
+englishTitle: Move, Accelerate
 section: Using vectors
 number: 2001
 image: tut01_1.gif

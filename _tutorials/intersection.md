@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 5) Intersection
+title: 5) 교차
+englishTitle: Intersection
 section: Using vectors
 number: 2002
 image: tut05_1.gif

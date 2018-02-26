@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 9) Ball vs Ball
+title: 9) 공 vs 공
+englishTitle: Ball vs Ball
 section: The ball
 number: 3003
 image: tut09_1.gif
