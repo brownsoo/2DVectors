@@ -17,7 +17,7 @@
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
   <link rel="canonical" href="http://localhost:4000/2DVectors/intersection/">
-  <link rel="alternate" type="application/rss+xml" title="2D 벡터 알고리즘 기초" href="http://localhost:4000/2DVectors/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="2D 벡터의 이해, 그리고 애니메이션" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing-v1_6_6.js"></script>
 
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">2D 벡터 알고리즘 기초</a>
+    <a class="site-title" href="/2DVectors/">2D 벡터의 이해, 그리고 애니메이션</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -343,7 +343,7 @@
 <span class="n">ip</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">v1</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">t</span><span class="o">;</span>
 
 <span class="c1">//calculate perp product of 2 vectors</span>
-<span class="kt">float</span> <span class="nf">perP</span><span class="o">(</span><span class="n">Vector</span> <span class="n">v0</span><span class="o">,</span> <span class="n">Vector</span> <span class="n">v1</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">float</span> <span class="nf">perP</span><span class="o">(</span><span class="nc">Vector</span> <span class="n">v0</span><span class="o">,</span> <span class="nc">Vector</span> <span class="n">v1</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="n">v0</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v1</span><span class="o">.</span><span class="na">vy</span> <span class="o">-</span> <span class="n">v0</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v1</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
 <span class="o">}</span></code></pre></figure>
 
@@ -391,7 +391,7 @@
 
 <p>먼저 두 점(P<sub>0</sub>, P<sub>1</sub>)를 지나는 벡터 방정식을 매개변수로 표현한 방정식으로 표현하면, P(s) = P<sub>0</sub> + s(P<sub>1</sub> - P<sub>0</sub>) = P<sub>0</sub> + su(s는 실수, u는 벡터)로 정의할 수 있습니다. 이 표현을 빌리면, P(0) = P<sub>0</sub>, P(1) = P<sub>1</sub>, 0 &lt;= s &lt;= 1 입니다. 아래와 같이 s값을 정리합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su = P(s) - P0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su = P(s) - P0
 s = (P(s) - P0) / u
 s = (P(s) - P0) / (P1 - P0)
 s = d(P0, P(s)) / d(P0, P1)
@@ -402,7 +402,7 @@ s = d(P0, P(s)) / d(P0, P1)
 <p>평행한 두 벡터 u(P<sub>1</sub> - P<sub>0</sub>), v(Q<sub>1</sub> - Q<sub>0</sub>)에 대해 u = Cv 가 성립됩니다(C는 실수).
 같은 의미로 u/v 값은 항상 같은 값을 유지하는데 u(1)/v(1) = u(k)/v(k) 으로 표현할 수 있습니다. <br /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>u(1)v(k) - u(k)v(1) = 0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>u(1)v(k) - u(k)v(1) = 0
 </code></pre></div></div>
 
 <p>이때 u=(u1, u2) 이고 v=(v1, v2)에 대해 u1v2 - u2v1 = 0 임을 Perp product라고 합니다. 기호로 u⊥·v = 0, (u가 (u1, u2) 일 때, u⊥ = (-u2, u1) 입니다. ⊥ 는 perp operator, 직교 연산자)</p>
@@ -415,7 +415,7 @@ s = d(P0, P(s)) / d(P0, P1)
 
 <p>그림에서 v 와 u 의 교차점 P(si)를 구하고자 합니다. 벡터 w 는 w = P<sub>0</sub> - Q<sub>0</sub> 일 때, P(s) - Q<sub>0</sub> = w + su 입니다. 그리고 교차점을 지나는 벡터 P(si) - Q<sub>0</sub> 는 v⊥와 직교합니다. perp product 공식을 적용합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v⊥·(w+si u) = 0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v⊥·(w+si u) = 0
 v⊥·w + v⊥·si u = 0
 </code></pre></div></div>
 
@@ -456,7 +456,7 @@ v⊥·w + v⊥·si u = 0
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">2D 벡터 알고리즘 기초</h2>
+    <h2 class="footer-heading">2D 벡터의 이해, 그리고 애니메이션</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
@@ -486,7 +486,7 @@ v⊥·w + v⊥·si u = 0
       </div>
 
       <div class="footer-col  footer-col-3">
-        <p class="text">Basic 2D Vectors Algorithm 기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.</p>
+        <p class="text">기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.</p>
       </div>
     </div>
 

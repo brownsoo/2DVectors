@@ -17,7 +17,7 @@
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
   <link rel="canonical" href="http://localhost:4000/2DVectors/adding_projecting/">
-  <link rel="alternate" type="application/rss+xml" title="2D 벡터 알고리즘 기초" href="http://localhost:4000/2DVectors/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="2D 벡터의 이해, 그리고 애니메이션" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing-v1_6_6.js"></script>
 
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">2D 벡터 알고리즘 기초</a>
+    <a class="site-title" href="/2DVectors/">2D 벡터의 이해, 그리고 애니메이션</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -352,7 +352,7 @@
   <p>내적(Dot Product)은 A·B 으로 표시한다. 그리고 벡터 A, B 에 대한 내적의 정의는 이렇다.</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A·B = |A||B|cosθ
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A·B = |A||B|cosθ
 </code></pre></div></div>
 
 <blockquote>
@@ -363,7 +363,7 @@
   <p>벡터 A, B 가 사이각 θ 를 두고 있다. θ 는 θa - θb 으로 치환할 수 있다.</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A·B
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A·B
 = |A||B|cosθ
 = |A||B|cos(θa - θb)
 = |A||B|(cosθa cosθb + sinθa sinθb)
@@ -393,21 +393,21 @@ A·(B+C) = A·B + A·C
 <p>투영벡터 또한 벡터이고, 이것을 구하기 위해서는 두 벡터의 내적과 벡터 v2의 단위 벡터(dx/dy)를 곱합니다.</p>
 
 <blockquote>
-  <p>투영벡터는 내적을 구하는 부분에서도 나왔는데, v2 대신에 v2의 단위벡터에 대한 v1의 투영벡터를 구해도 된다. 그런데 단위벡터의 길이가 1 이기 때문에 v1과 v2 단위벡터의 내적은 곧 투영벡터의 길이가 된다(<code class="highlighter-rouge">|v1||v2|cosθ = |v1|cosθ</code>). 여기에 위 식처럼 v2의 단위벡터를 곱하면 투영벡터를 구할 수 있다.</p>
+  <p>투영벡터는 내적을 구하는 부분에서도 나왔는데, v2 대신에 v2의 단위벡터에 대한 v1의 투영벡터를 구해도 된다. 그런데 단위벡터의 길이가 1 이기 때문에 v1과 v2 단위벡터의 내적은 곧 투영벡터의 길이가 된다(<code class="language-plaintext highlighter-rouge">|v1||v2|cosθ = |v1|cosθ</code>). 여기에 위 식처럼 v2의 단위벡터를 곱하면 투영벡터를 구할 수 있다.</p>
 
   <p>그리고 투영벡터는 다음과 같이 구할 수 있다.</p>
 
   <p>벡터 A를 벡터 B에 투영시킨 벡터 Proj 는 자신의 크기와 단위벡터의 곱이다.</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Proj = |Proj|unitProj
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Proj = |Proj|unitProj
 </code></pre></div></div>
 
 <blockquote>
   <p>그리고 투영벡터의 크기는 내적에서 배웠듯이 사이각을 이용할 수 있다.</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|Proj|
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|Proj|
  = |A|cosθ
  = |A||B|cosθ / |B|
  = A·B / |B|
@@ -417,7 +417,7 @@ A·(B+C) = A·B + A·C
   <p>그리고 투영 단위벡터는 :</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unitProj = B / |B|
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unitProj = B / |B|
 </code></pre></div></div>
 
 <blockquote>
@@ -470,7 +470,7 @@ Proj.y = (A·B / B·B) * B.y;
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">2D 벡터 알고리즘 기초</h2>
+    <h2 class="footer-heading">2D 벡터의 이해, 그리고 애니메이션</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
@@ -500,7 +500,7 @@ Proj.y = (A·B / B·B) * B.y;
       </div>
 
       <div class="footer-col  footer-col-3">
-        <p class="text">Basic 2D Vectors Algorithm 기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.</p>
+        <p class="text">기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.</p>
       </div>
     </div>
 
