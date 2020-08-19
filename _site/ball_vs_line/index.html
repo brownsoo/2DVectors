@@ -17,7 +17,7 @@
 
   <link rel="stylesheet" href="/2DVectors/css/main.css">
   <link rel="canonical" href="http://localhost:4000/2DVectors/ball_vs_line/">
-  <link rel="alternate" type="application/rss+xml" title="2D 벡터 알고리즘 기초" href="http://localhost:4000/2DVectors/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="2D 벡터의 이해, 그리고 애니메이션" href="http://localhost:4000/2DVectors/feed.xml" />
 
   <script src="/2DVectors/js/processing-v1_6_6.js"></script>
 
@@ -42,7 +42,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/2DVectors/">2D 벡터 알고리즘 기초</a>
+    <a class="site-title" href="/2DVectors/">2D 벡터의 이해, 그리고 애니메이션</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -368,7 +368,7 @@
     <span class="n">ball</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">+=</span> <span class="n">vectors</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">lx</span> <span class="o">*</span> <span class="n">pen</span><span class="o">;</span> <span class="c1">//unit-sized lx</span>
     <span class="n">ball</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">+=</span> <span class="n">vectors</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">ly</span> <span class="o">*</span> <span class="n">pen</span><span class="o">;</span> <span class="c1">//unit-sized ly</span>
     <span class="c1">//change movement</span>
-    <span class="n">Vector</span> <span class="n">vb</span> <span class="o">=</span> <span class="n">bouncingBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">vectors</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+    <span class="nc">Vector</span> <span class="n">vb</span> <span class="o">=</span> <span class="n">bouncingBall</span><span class="o">(</span><span class="n">ball</span><span class="o">,</span> <span class="n">vectors</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
     <span class="n">ball</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">vb</span><span class="o">.</span><span class="na">vx</span><span class="o">;</span>
     <span class="n">ball</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">vb</span><span class="o">.</span><span class="na">vy</span><span class="o">;</span>
   <span class="o">}</span>
@@ -383,13 +383,13 @@
 <p>벽에서부터 공의 중심까지 길이를 구하는 함수 :</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java">  
-<span class="kt">float</span> <span class="nf">findAxesHeight</span><span class="o">(</span><span class="n">Vector</span> <span class="n">v0</span><span class="o">,</span> <span class="n">Vector</span> <span class="n">v1</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">float</span> <span class="nf">findAxesHeight</span><span class="o">(</span><span class="nc">Vector</span> <span class="n">v0</span><span class="o">,</span> <span class="nc">Vector</span> <span class="n">v1</span><span class="o">)</span> <span class="o">{</span>
   <span class="c1">//vector between center of ball to ending point of wall</span>
-  <span class="n">Vector</span> <span class="n">v3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector</span><span class="o">();</span>
+  <span class="nc">Vector</span> <span class="n">v3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Vector</span><span class="o">();</span>
   <span class="n">v3</span><span class="o">.</span><span class="na">vx</span> <span class="o">=</span> <span class="n">v0</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
   <span class="n">v3</span><span class="o">.</span><span class="na">vy</span> <span class="o">=</span> <span class="n">v0</span><span class="o">.</span><span class="na">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">v1</span><span class="o">.</span><span class="na">p0</span><span class="o">.</span><span class="na">y</span><span class="o">;</span>
   <span class="c1">//project this vector on the unit-sized normal of the wall</span>
-  <span class="n">Vector</span> <span class="n">v</span> <span class="o">=</span> <span class="n">projectVector</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">v1</span><span class="o">.</span><span class="na">lx</span><span class="o">,</span> <span class="n">v1</span><span class="o">.</span><span class="na">ly</span><span class="o">);</span>
+  <span class="nc">Vector</span> <span class="n">v</span> <span class="o">=</span> <span class="n">projectVector</span><span class="o">(</span><span class="n">v3</span><span class="o">,</span> <span class="n">v1</span><span class="o">.</span><span class="na">lx</span><span class="o">,</span> <span class="n">v1</span><span class="o">.</span><span class="na">ly</span><span class="o">);</span>
   <span class="c1">//find length of projection</span>
   <span class="n">v</span><span class="o">.</span><span class="na">length</span> <span class="o">=</span> <span class="n">sqrt</span><span class="o">(</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="na">vx</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="na">vy</span><span class="o">);</span>
   <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
@@ -432,7 +432,7 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">2D 벡터 알고리즘 기초</h2>
+    <h2 class="footer-heading">2D 벡터의 이해, 그리고 애니메이션</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
@@ -462,7 +462,7 @@
       </div>
 
       <div class="footer-col  footer-col-3">
-        <p class="text">Basic 2D Vectors Algorithm 기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.</p>
+        <p class="text">기초적인 2D 운동 벡터에 대해 배울 수 있습니다. 벡터를 이해하면, 움직임을 만드는 데 큰 도움이 됩니다.</p>
       </div>
     </div>
 
